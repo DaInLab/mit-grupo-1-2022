@@ -4,7 +4,7 @@ subtitle: 'Trabalho Final da Disciplina Ciência de Dados - 2022'
 author:
 - name: Marcelo José dos Santos
   affiliation: Universidade Estadual Paulista - UNESP/Bauru
-- name: Lívia I Barcellos
+- name: Lívia Inglesis Barcellos
   affiliation: Universidade Estadual Paulista - UNESP/Bauru
 - name: Henrique Mercez
   affiliation: Universidade Estadual Paulista - UNESP/Bauru
