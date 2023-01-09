@@ -1,0 +1,55 @@
+---
+title: "Impacto da COVID-19 nos Estudantes Universitários no Brasil"
+subtitle: 'Trabalho Final da Disciplina Ciência de Dados - 2022'
+
+author: "Lívia Inglesis Barcellos
+afiliation: Universidade Estadual Paulista -UNESP/Bauru
+author: Marcelo José dos Santos
+afiliation:Universidade Estadual Paulista - UNESP/Bauru>
+author: Henrique Mercez
+afiliation:Universidade Estadual Paulista - UNESP/Bauru
+author: Shelley Navari
+afiliation: Universidade Estadual Paulista - UNESP/Bauru"
+
+url: <www.faac.unesp.br>
+date: "`r format(Sys.time(), '%d de %B de %Y')`"
+tags: [ciênciadedados, covid19, analiseexploratoria, trabalhofinal]
+abstract: |
+  A pandemia de 2020 teve impacto global em diversos setores como saúde, política, economia e educação. Tendo em vista os fatores causados pela situação da COVID-19, a proposta desta pesquisa exploratória-descritiva é compreender como os estudantes universitários vivenciram a pandemia. Diante disso, busca-se investigar também de que forma se comportaram frente as restrições impostas pelos riscos de contágio, quais suas considerações a respeito das estratégias que foram adotadas pelas instituições superiores, e  como estes fatores influenciaram suas vidas.
+ 
+   Como resultados foi possível identificar que: 
+  
+  
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+---
+
+```{r}
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Considerações Iniciais
+
+Este relatório representa a análise sobre como a pandemia de Coronavirus (Covid-19) afetou a vida e cotidiano dos estudantes universitários. Os dados foram coletados por meio de formulário online, entre 22 de abril de 2021 e 06 de dezembro de 2022, e foram obtidas 50 respostas.
+
+Ao clicar no botão **Knit**, será gerado um documento que inclui tanto o conteúdo quanto a saída de qualquer fragmento de código R incorporado no documento. Você pode incorporar um pedaço de código R como este::
+
+```{r cars}
+summary(cars)
+```
+
+## Incluindo Gráficos
+
+Você também pode incorporar gráficos, por exemplo:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Observe que o parâmetro `echo = FALSE` foi adicionado ao pedaço de código para evitar a impressão do código R que gerou o gráfico.
