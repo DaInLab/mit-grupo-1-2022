@@ -6,7 +6,7 @@
 #
 # Alunos :  Lívia Inglesis Barcellos
 #           Henrique Mercez
-#           Marcelo José dos Santos
+#           Marcelo Santos
 #           Shelley Navari
 #
 # Impacto da COVID-19 nos Estudantes Universitários no Brasil
@@ -37,24 +37,7 @@ dataset.csv <-read.csv("./dados/COVID19IES.csv", header = TRUE, sep = ";", quote
 num_questionario = as.numeric(nrow(dataset.csv))
 print(paste("Numero de Questionarios Respondidos :", num_questionario))
 
-# Grafico Perfil : Genero (1)
-genero <- table(dataset.csv$genero)
-df_genero <- as.data.frame(table(dataset.csv$genero))
-
-grafico.genero <- ggplot(dataset.csv, aes(y=genero, fill=genero))+
-                  geom_bar()+
-                  geom_text(aes(label = ..count..), stat = "count", size = 5, hjust = -0.3, vjust = 0, colour = "black")+theme(legend.position="none")+
-                  labs(title="Perfil : Gênero", x = "Quantidade", y = "")  
-grafico.genero
-
-ggplot(dataset.csv, aes(genero, fill = genero)) + 
-  geom_bar(aes(y = (..count..)/sum(..count..))) + 
-  scale_y_continuous(labels=scales::percent) +
-  ylab("Frequencia")+
-ggtitle("Perfil : Gênero")+
-scale_fill_discrete(name="")
-
-# Grafico Perfil : Faixas Etárias (2)
+# Grafico Dados Pessoais : 1.Idade (Faixa Etária) 
 idade <- table(dataset.csv$idade)
 
 # Porcentagem das faixas etárias
@@ -90,15 +73,104 @@ pct_faixa_etaria <- paste0(round(unname(tbl_faixa_etaria) / sum(unname(tbl_faixa
 pct_faixa_etaria
 
 grafico_faixa_etaria <- barplot(tbl_faixa_etaria, 
-                              main = "Gráfico Perdil: Faixa etária",
-                              xlab = "Faixa Etária", 
-                              ylab = "Respondentes",
-                              col = c("blue", "orange"),
-                              ylim = c(0,max(tbl_faixa_etaria) + 10),
-                              cex.axis=1.0, cex.names=0.8)
+                                main = "Gráfico Dados Pessoais: Faixa etária",
+                                xlab = "Faixa Etária", 
+                                ylab = "Respondentes",
+                                col = c("blue", "orange"),
+                                ylim = c(0,max(tbl_faixa_etaria) + 10),
+                                cex.axis=1.0, cex.names=0.8)
 text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), cex=1, pos=3)
 
 grafico_faixa_etaria
+
+# Grafico Dados Pessoais : 1.Genero
+genero <- table(dataset.csv$genero)
+df_genero <- as.data.frame(table(dataset.csv$genero))
+df_genero
+
+pct_genero <- paste0(round(unname(genero) / sum(unname(genero)) * 100,0), "%")
+pct_genero
+
+grafico.genero <- ggplot(dataset.csv, aes(y=genero, fill=genero))+
+                  geom_bar()+
+                  geom_text(aes(label = ..count..), stat = "count", size = 5, hjust = -0.3, vjust = 0, colour = "black")+theme(legend.position="none")+
+                  labs(title="Perfil : Gênero", x = "Quantidade", y = "")  
+grafico.genero
+
+ggplot(dataset.csv, aes(genero, fill = genero)) + 
+  geom_bar(aes(y = (..count..)/sum(..count..))) + 
+  scale_y_continuous(labels=scales::percent) +
+  ylab("Frequencia")+
+ggtitle("Perfil : Gênero")+
+scale_fill_discrete(name="")
+
+# Grafico Dados Pessoais : 1.Situacao_conjugal
+sit_conjugal <- table(dataset.csv$situacao_conjugal)
+sit_conjugal
+
+# Porcentagem 
+pct_sit_conjugal <- paste0(round(unname(sit_conjugal) / sum(unname(sit_conjugal)) * 100,0), "%")
+
+grafico_sit_conjugal <- barplot(sit_conjugal, 
+                                main = "Gráfico Dados Pessoais : Situação Conjugal",
+                                xlab = "Situacao Conjugal", 
+                                ylab = "Respondentes",
+                                col = "red",
+                                ylim = c(0,max(sit_conjugal) + 10),
+                                cex.axis=1.0, cex.names=0.8)
+text(x = grafico_sit_conjugal, y = sit_conjugal, label = paste(sit_conjugal, " (", pct_sit_conjugal, ")"), cex=1, pos=3)
+
+grafico_sit_conjugal
+
+# Grafico Dados Pessoais : 1.Situacao_empregaticia
+sit_emprego <- table(dataset.csv$situacao_empregaticia)
+sit_emprego
+
+# Porcentagem 
+pct_sit_emprego <- paste0(round(unname(sit_emprego) / sum(unname(sit_emprego)) * 100,0), "%")
+pct_sit_emprego
+
+
+grafico_sit_empregaticia <- barplot(sit_emprego, 
+                                    las=1,  
+                                    beside = TRUE, 
+                                    horiz=TRUE, 
+                                    xlim = c(0,max(sit_emprego) + 10),
+                                    cex.axis = 0.7,  
+                                    cex.names = 0.6)
+                                    
+grafico_sit_emprego <-barplot(
+  sit_emprego,
+  las=2,  
+  xlim=c(0,20),
+  ylim = c(0,max(sit_emprego) + 10),
+  cex.axis = 0.7,  
+  cex.names = 0.6,  
+  legend.text = paste(rownames(sit_emprego)," (",pct_sit_emprego, ")"),
+  args.legend = list("bottom", bty="n", cex = 0.7),
+  col=rainbow(10),
+  xpd=FALSE,
+  cex.main = 0.7,
+  main="Grafico Dados Pessoas : Situaçao Empregaticia"
+)
+text(x = grafico_sit_emprego, y = sit_emprego, label = paste(sit_emprego, " (", pct_sit_emprego, ")"), cex=0.7, pos=3)
+
+
+
+grafico_sit_emprego <- barplot(sit_emprego, 
+                                    las = 2,
+                                main = "Gráfico Dados Pessoais : Situação Empregatícia",
+                                xlab = "Situacao Empregatícia", 
+                                ylab = "Respondentes",
+                                col = rainbow(4),
+                                ylim = c(0,max(sit_emprego) + 10),
+                                cex.axis=1.0, cex.names=0.8)
+
+
+text(x = grafico_sit_emprego, y = sit_emprego, label = paste(sit_emprego, " (", pct_sit_emprego, ")"), cex=1, pos=3)
+
+grafico_sit_emprego
+
 
 # Grafico Instituicao de Ensino (77% Unesp Bauru)     
 df_ies <- data.frame(sigla_ies="", ies=dataset.csv$ies )
@@ -117,10 +189,10 @@ pct_ies <- paste(round(unname(tbl_ies) / sum(unname(tbl_ies)) * 100), "%")
 pct_ies
 
 pie(tbl_ies, main = "Perfil : Instituicoes de Ensino", labels = pct_ies, col = c(4,5))
-legend("right", c("Demais Instituições", "Unesp"), 
+legend("right", c("Demais Instituições", "UNESP Bauru"), 
        cex = 1.5, fill = c(4,5))
 
-# Grafico Nivel Ensino ()
+# Grafico 1.Nivel Ensino 
 df_nivel_ensino <- data.frame(nivel_ensino = dataset.csv$nivel_ensino )
 
 df_nivel_ensino
