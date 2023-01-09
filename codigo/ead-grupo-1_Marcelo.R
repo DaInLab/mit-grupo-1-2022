@@ -150,8 +150,22 @@ par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
                                     
 
 # Gratico Dados Pessoais : 1.estado_reside
+estado_reside <- table(dataset.csv$estado_reside, exclude = NULL)
+estado_reside
 
+# Porcentagem 
+pct_estado_reside <- paste0(round(unname(estado_reside) / sum(unname(estado_reside)) * 100,0), "%")
+pct_estado_reside
 
+# Tratando Nulo
+names(pct_estado_reside) <-c("Não Respondeu", "Amazonas", "São Paulo")
+
+pie(estado_reside,
+    edges = 200, radius = 0.8,
+    clockwise = F,
+    density = NULL, angle = 90, col = rainbow(3),
+    labels = paste(names(pct_estado_reside), "-", pct_estado_reside),
+    main = "Gráfico Dados Pessoais: Respondentes por estado")
 
 # Grafico Dados Pessoais : 1.Instituicao de Ensino     
 df_ies <- data.frame(sigla_ies="", ies=dataset.csv$ies )
