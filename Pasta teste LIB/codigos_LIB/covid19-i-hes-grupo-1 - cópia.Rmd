@@ -1,0 +1,54 @@
+---
+title: "Impacto da COVID-19 nos Estudantes Universitários no Brasil"
+subtitle: 'Trabalho Final da Disciplina Ciência de Dados - 2022'
+author:
+- name: Marcelo José dos Santos
+  affiliation: Universidade Estadual Paulista - UNESP/Bauru
+- name: Lívia Inglesis Barcellos
+  affiliation: Universidade Estadual Paulista - UNESP/Bauru
+- name: Henrique Mercez
+  affiliation: Universidade Estadual Paulista - UNESP/Bauru
+- name: Shelley Navari
+  affiliation: Universidade Estadual Paulista - UNESP/Bauru
+url: <www.faac.unesp.br>
+date: "`r format(Sys.time(), '%d de %B de %Y')`"
+tags: [ciênciadedados, covid19, analiseexploratoria, trabalhofinal]
+abstract: |
+  Tendo em vista os fatores causados pela situação pandêmica mundial da COVID-19, a proposta desta pesquisa é a de lançar alguma luz neste âmbito e coletar dados exploratórios. O estudo proposto visa compreender como os estudantes universitários estão vivenciando a pandemia e de que forma se comportam frente a esta nova realidade.  
+  Portanto, os objetivos dessa pesquisa exploratória-descritiva são de investigar:   
+  - como os alunos vivenciaram a pandemia da COVID-19;   
+  - de que forma se comportaram frente as restrições impostas pelos riscos de contágio;   
+  - quais suas considerações a respeito das estratégias que foram adotadas pelas instituições superiores; e  
+  - como estes fatores influenciaram suas vidas.
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+---
+```{r}
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Este é um documento R Markdown. Markdown é uma sintaxe de formatação simples para criar documentos HTML, PDF e MS Word. Para obter mais detalhes sobre o uso do R Markdown, consulte http://rmarkdown.rstudio.com.
+
+Ao clicar no botão **Knit**, será gerado um documento que inclui tanto o conteúdo quanto a saída de qualquer fragmento de código R incorporado no documento. Você pode incorporar um pedaço de código R como este::
+
+```{r cars}
+summary(cars)
+```
+
+## Incluindo Gráficos
+
+Você também pode incorporar gráficos, por exemplo:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Observe que o parâmetro `echo = FALSE` foi adicionado ao pedaço de código para evitar a impressão do código R que gerou o gráfico.
