@@ -130,49 +130,30 @@ sit_emprego
 pct_sit_emprego <- paste0(round(unname(sit_emprego) / sum(unname(sit_emprego)) * 100,0), "%")
 pct_sit_emprego
 
-
+par(las=1) # nomes dos eixos perpendicular
+par(mar=c(5,16,1,1)+0.1)  # para aumentar a margem a esquerda 
 grafico_sit_empregaticia <- barplot(sit_emprego, 
+                                    main="Grafico Dados Pessoas : Situaçao Empregaticia",
                                     las=1,  
-                                    beside = TRUE, 
+                                    beside = TRUE,
                                     horiz=TRUE, 
                                     xlim = c(0,max(sit_emprego) + 10),
+                                    legend.text = paste(rownames(sit_emprego)," (",pct_sit_emprego, ")"),
+                                    args.legend = list("top", bty="n", cex = 0.7),
+                                    col=rainbow(10),
                                     cex.axis = 0.7,  
                                     cex.names = 0.6)
+
+text(grafico_sit_empregaticia, x = sit_emprego, label = sit_emprego, cex=0.8, pos=2)
+
+par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
                                     
-grafico_sit_emprego <-barplot(
-  sit_emprego,
-  las=2,  
-  xlim=c(0,20),
-  ylim = c(0,max(sit_emprego) + 10),
-  cex.axis = 0.7,  
-  cex.names = 0.6,  
-  legend.text = paste(rownames(sit_emprego)," (",pct_sit_emprego, ")"),
-  args.legend = list("bottom", bty="n", cex = 0.7),
-  col=rainbow(10),
-  xpd=FALSE,
-  cex.main = 0.7,
-  main="Grafico Dados Pessoas : Situaçao Empregaticia"
-)
-text(x = grafico_sit_emprego, y = sit_emprego, label = paste(sit_emprego, " (", pct_sit_emprego, ")"), cex=0.7, pos=3)
+
+# Gratico Dados Pessoais : 1.estado_reside
 
 
 
-grafico_sit_emprego <- barplot(sit_emprego, 
-                                    las = 2,
-                                main = "Gráfico Dados Pessoais : Situação Empregatícia",
-                                xlab = "Situacao Empregatícia", 
-                                ylab = "Respondentes",
-                                col = rainbow(4),
-                                ylim = c(0,max(sit_emprego) + 10),
-                                cex.axis=1.0, cex.names=0.8)
-
-
-text(x = grafico_sit_emprego, y = sit_emprego, label = paste(sit_emprego, " (", pct_sit_emprego, ")"), cex=1, pos=3)
-
-grafico_sit_emprego
-
-
-# Grafico Instituicao de Ensino (77% Unesp Bauru)     
+# Grafico Dados Pessoais : 1.Instituicao de Ensino     
 df_ies <- data.frame(sigla_ies="", ies=dataset.csv$ies )
 
 for (k in 1:nrow(df_ies)) {
