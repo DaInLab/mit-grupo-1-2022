@@ -222,10 +222,6 @@ text(grafico_nome_cursos, x = nome_cursos, label = nome_cursos, cex=0.8, pos=2)
 par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
 
 # Grafico 1.Nivel Ensino 
-df_nivel_ensino <- data.frame(nivel_ensino = dataset.csv$nivel_ensino )
-
-df_nivel_ensino
-
 tbl_nivel_ensino <- table(dataset.csv$nivel_ensino)
 tbl_nivel_ensino
 
@@ -237,4 +233,100 @@ pie(tbl_nivel_ensino,
     clockwise = T,
     density = NULL, angle = 90, col = c("red", "orange", "yellow", "green", "black", "blue"),
     labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino),
-    main = "Gráfico 5: Quantidade de respondentes por nível de ensino")
+    main = "Gráfico Dados Pessoais: Quantidade de respondentes por nível de ensino")
+
+# Grafico 1.Tipo Instituicao de Ensino
+tipo_ies <- table(dataset.csv$tipo_ies)
+tipo_ies
+
+# Autarquia municipal             Privada             Pública 
+#               1                   6                  45 
+
+pct_tipo_ies <- paste(round(unname(tipo_ies) / sum(unname(tipo_ies)) * 100), "%")
+pct_tipo_ies
+
+# "2 %"  "12 %" "87 %"
+
+pie(tipo_ies,
+    edges = 200, radius = 0.8,
+    clockwise = T,
+    density = NULL, angle = 90, col = rainbow(3),
+    labels = paste(names(tipo_ies), "-", tipo_ies),
+    main = "Gráfico Dados Pessoais: Quantidade de respondentes por tipo Inst Ensino")
+
+# Grafico Dados Pessoais 1. Local Estudante (você é um estudante nativo local, originário de outra cidade ou um estudante internacional)
+local_estudante <- table(dataset.csv$local_estudante)
+local_estudante
+
+#        Local Outra cidade 
+#          18           34 
+
+pct_local_estudante <- paste(round(unname(local_estudante) / sum(unname(local_estudante)) * 100), "%")
+pct_local_estudante
+
+# "35 %" "65 %"
+
+grafico_local_estudante <- pie(local_estudante,
+                            edges = 200, radius = 0.8,
+                            clockwise = T,
+                            density = NULL, angle = 90, col = rainbow(3),
+                            labels = paste(names(local_estudante), "-", local_estudante),
+                            main = "Gráfico Dados Pessoais: respondentes por origem/localização")
+
+# Grafico Dados Pessoais 1. Residencia Atual do estudante
+residencia_atual <- table(dataset.csv$residencia_atual,  exclude = "")
+residencia_atual
+
+# Em outra cidade da instituição de ensino mas dentro do mesmo estado        18
+# Fora do campus, mas na mesma cidade da instituição de ensino                 33 
+
+# Reduçao nome 
+names(residencia_atual) <- c("Em Outra Cidade", "Na mesma Cidade")
+
+pct_residencia_atual <- paste(round(unname(residencia_atual) / sum(unname(residencia_atual)) * 100), "%")
+pct_residencia_atual
+
+# "35 %" "65 %"
+
+pie(residencia_atual,
+    edges = 200, radius = 0.8,
+    clockwise = T,
+    density = NULL, angle = 90, col = rainbow(3),
+    labels = paste(names(residencia_atual), "-", pct_residencia_atual),
+    main = "Gráfico Dados Pessoais: Residencia dos respondentes x Cidade Inst Ensino")
+
+# Grafico Dados Pessoais 1. Moradia Permanente
+moradia_atual_perm <- table(dataset.csv$moradia_atual_permanente)
+moradia_atual_perm
+
+# Não Sim 
+#   5  47 
+
+pct_moradia_atual_perm <- paste(round(unname(moradia_atual_perm) / sum(unname(moradia_atual_perm)) * 100), "%")
+pct_moradia_atual_perm
+
+
+grafico_moradia_atual_perm <- pie(moradia_atual_perm,
+                              edges = 200, radius = 0.8,
+                              clockwise = T,
+                              density = NULL, angle = 90, col = rainbow(3),
+                              labels = paste(names(moradia_atual_perm), "-", pct_moradia_atual_perm),
+                              main = "Gráfico Dados Pessoais: Moradia Atual permanente dos respondentes")
+
+# Grafico Dados Pessoais 1. Respondentes morando com 
+morando_com <- table(dataset.csv$morando_.com)
+morando_com
+
+# Colega de quarto/República                    Família                 Sozinho(a) 
+#                      3                         36                         13 
+
+pct_morando_com <- paste(round(unname(morando_com) / sum(unname(morando_com)) * 100), "%")
+pct_morando_com
+
+
+grafico_morando_com <- pie(morando_com,
+                                  edges = 200, radius = 0.8,
+                                  clockwise = T,
+                                  density = NULL, angle = 90, col = rainbow(3),
+                                  labels = paste(names(morando_com), "-", pct_morando_com),
+                                  main = "Gráfico Dados Pessoais: Com quem mora os respondentes ")
