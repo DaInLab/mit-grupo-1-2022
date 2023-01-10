@@ -187,6 +187,40 @@ pie(tbl_ies, main = "Perfil : Instituicoes de Ensino", labels = pct_ies, col = c
 legend("right", c("Demais Instituições", "UNESP Bauru"), 
        cex = 1.5, fill = c(4,5))
 
+# Grafico Dados Pessoais : 1.Nome_Cursos
+nome_cursos <- table(dataset.csv$nome_curso)
+nome_cursos
+
+# Reduçao nome dos cursos
+names(nome_cursos) <- c("Arquitetura", "Direito", "Ciências Computação", "Sistemas Informação", "Inovação em Moda",
+                       "Biologia", "Ciências Computação", "Educação Especial", "Educaçao Física", "Eng Civil",
+                       "Eng Produção", "Eng Elétrica", "Eng Elétrica", "Eng Mecânica", "Gestão TI", "Física",
+                       "Matemática", "Medicina", "Pos Administração","Pos Biblioteconomia", "Pos Ciências de Materiais",
+                       "Pos em Design", "Pos Educação Básica", "Pos Educação para Ciência", "Pos Midia e Tecnologia", 
+                       "Pos em Quimica", "Psicologia", "Psicologia", "Tecnico Adm")
+
+pct_nome_cursos <- paste(round(unname(nome_cursos) / sum(unname(nome_cursos)) * 100), "%")
+pct_nome_cursos
+                       
+
+par(las=1) # nomes dos eixos perpendicular
+par(mar=c(5,16,1,1)+0.1)  # para aumentar a margem a esquerda 
+grafico_nome_cursos <- barplot(nome_cursos, 
+                                    main="Grafico Dados Pessoas : Cursos",
+                                    las=1,  
+                                    beside = TRUE,
+                                    horiz=TRUE, 
+                                    xlim = c(0,max(nome_cursos) + 10),
+                                    legend.text = paste(rownames(nome_cursos)," (",pct_nome_cursos, ")"),
+                                    args.legend = list("top", bty="n", cex = 0.7),
+                                    col=rainbow(20),
+                                    cex.axis = 0.7,  
+                                    cex.names = 0.6)
+
+text(grafico_nome_cursos, x = nome_cursos, label = nome_cursos, cex=0.8, pos=2)
+
+par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
+
 # Grafico 1.Nivel Ensino 
 df_nivel_ensino <- data.frame(nivel_ensino = dataset.csv$nivel_ensino )
 
@@ -198,12 +232,9 @@ tbl_nivel_ensino
 pct_nivel_ensino <- paste(round(unname(tbl_nivel_ensino) / sum(unname(tbl_nivel_ensino)) * 100), "%")
 pct_nivel_ensino
 
-pie(tbl_nivel_ensino, main = "Perfil : Nivel Ensino", labels = df_nivel_ensino$nivel_ensino)
-
 pie(tbl_nivel_ensino,
     edges = 200, radius = 0.8,
     clockwise = T,
     density = NULL, angle = 90, col = c("red", "orange", "yellow", "green", "black", "blue"),
     labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino),
     main = "Gráfico 5: Quantidade de respondentes por nível de ensino")
-
