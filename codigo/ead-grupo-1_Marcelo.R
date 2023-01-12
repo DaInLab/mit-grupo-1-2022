@@ -405,7 +405,6 @@ ies_reinicio
 # Reduçao nome dos cursos
 names(ies_reinicio) <- c("Em parte", "Não Sabe", "Não, Nenhuma", "Sim, Todas")
 
-
 pct_ies_reinicio <- paste(round(unname(ies_reinicio) / sum(unname(ies_reinicio)) * 100), "%")
 pct_ies_reinicio
 
@@ -417,3 +416,56 @@ grafico_ies_reinicio <- pie(ies_reinicio,
                          density = NULL, angle = 90, col = rainbow(5),
                          labels = paste(names(ies_reinicio), "-", pct_ies_reinicio),
                          main = "Gráfico Instituiçao: já reiniciou todas as atividades presenciais no seu campus e/ou faculdade?")
+
+# Grafico Dados Instituicao de Ensino 2.decisao_fechar (utilizacao de ferramenta online)
+# Com relação à decisão de fechar o campus e de utilizar ferramentas online para as aulas, por conta da pandemia da COVID-19, você sentiu que as decisões na sua instituição foram tomadas: *
+ies_decisao_fechar <- table(dataset.csv$decisao_fechar, exclude = "")
+ies_decisao_fechar
+
+# De forma oportuna e prudente             Muito lentamente            Muito rapidamente 
+#   40                            7                            5 
+
+
+pct_ies_decisao_fechar <- paste(round(unname(ies_decisao_fechar) / sum(unname(ies_decisao_fechar)) * 100), "%")
+pct_ies_decisao_fechar
+
+# "77 %" "13 %" "10 %"" 
+
+grafico_ies_decisao_fechar <- pie(ies_decisao_fechar,
+                            edges = 200, radius = 0.8,
+                            clockwise = T,
+                            density = NULL, angle = 90, col = rainbow(3),
+                            labels = paste(names(ies_decisao_fechar), "-", pct_ies_decisao_fechar),
+                            main = "Gráfico Instituiçao:  decisão de fechar o campus e de utilizar ferramentas online p/as aulas,devido a COVID-19")
+
+# Nuvem de Palavras
+
+# Nuvem de Palavras : Instituicao de Ensino - situacao durante pandemia
+# Ajude-nos a compreender o conjunto e a diversidade da situação durante a pandemia da COVID-19 na sua instituição, compartilhando aqui qualquer informação adicional que julgar importante. (Escreva até 250 palavras).
+library(tm)  #text mining
+## Loading required package: NLP
+library(dplyr)
+
+str(dataset.csv$situação_durante_pandemia)
+words <- as.character(dataset.csv$situação_durante_pandemia)
+
+word.corpus <- Corpus(VectorSource(dataset.csv$situação_durante_pandemia))
+word.corpus<-word.corpus%>%
+  tm_map(removePunctuation)%>% ##eliminar pontuacao
+  tm_map(removeNumbers)%>% #sem numeros
+  tm_map(stripWhitespace)# sem espacos
+
+word.counts <- as.matrix(TermDocumentMatrix(word.corpus))
+word.freq <- sort(rowSums(word.counts), decreasing = TRUE)
+head(word.freq)  ##what are the top words?
+
+word.corpus<-word.corpus%>%
+  tm_map(tolower)%>% ##make all words lowercase
+  tm_map(removeWords, stopwords("por"))
+
+library(wordcloud)  #wordcloud
+set.seed(32)  #be sure to set the seed if you want to reproduce the same again
+
+wordcloud(words = names(word.freq), freq = word.freq, scale = c(3, 0.5), max.words = 40, 
+          random.order = TRUE, shape =  , color = rainbow(10))
+
