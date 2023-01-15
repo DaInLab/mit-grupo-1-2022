@@ -557,7 +557,6 @@ grafico_acesso_servicos_saude <- pie(acesso_servicos_saude,
 
 # Grafico 3. Pandemia_acesso_internet
 # Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ? *
-
 acesso_internet <- table(dataset.csv$acesso_internet, exclude = "")
 acesso_internet
 
@@ -577,27 +576,130 @@ grafico_acesso_internet <- pie(acesso_internet,
                                      clockwise = T,
                                      density = NULL, angle = 90, col = rainbow(6),
                                      labels = paste(names(acesso_internet), "-", pct_acesso_internet),
-                                     main = "Grfico Pandemia Acesso Internet : Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ?",
+                                     main = "Grafico Pandemia Acesso Internet : Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ?",
                                      cex.main=0.8)
 
+# Grafico 3. Pandemia capacidade_prosseguir_estudos
+# Em relação a antes e durante a pandemia da COVID-19, como você classifica sua capacidade em prosseguir seus estudos, 
+# incluindo sua graduação e/ou conclusão de curso?
+capacidade_prosseguir_estudos<- table(dataset.csv$capacidade_prosseguir_estudos, exclude = "")
+capacidade_prosseguir_estudos
 
+# Melhor do que antes Muito melhor do que antes   Muito pior do que antes           N/A ou Não Sabe          O mesmo de antes         Pior do que antes 
+#      5                         1                         4                         2                        22                        17 
 
+names(capacidade_prosseguir_estudos) <- c("Melhorou","Melhorou MUITO" ,"Piorou MUITO", "Não Sabe", "Nada Mudou", "Piorou")
+capacidade_prosseguir_estudos
 
+pct_capacidade_prosseguir_estudos <- paste(round(unname(capacidade_prosseguir_estudos) / sum(unname(capacidade_prosseguir_estudos)) * 100), "%")
+pct_capacidade_prosseguir_estudos
 
+# "10 %" "2 %"  "8 %"  "4 %"  "43 %" "33 %"
 
+grafico_capacidade_prosseguir_estudos <- pie(capacidade_prosseguir_estudos,
+                               edges = 200, radius = 0.8,
+                               clockwise = T,
+                               density = NULL, angle = 90, col = rainbow(6),
+                               labels = paste(names(capacidade_prosseguir_estudos), "-", pct_capacidade_prosseguir_estudos),
+                               main = "Grafico Pandemia Prosseguir Estudos : Em relação a antes e durante a pandemia da COVID-19, como você classifica sua capacidade em prosseguir seus estudos, 
+                                      incluindo sua graduação e/ou conclusão de curso?",
+                              cex.main=0.8)
 
+# Grafico 3. Pandemia_capacidade_socializacao
+# Em relação a antes e durante a pandemia da COVID-19 , como você classificaria a sua capacidade de socialização? 
+# (Socialização aqui definida como a efetiva vivência com demais pessoas em sociedade). *
+capacidade_socializacao <- table(dataset.csv$capacidade_.socializacao, exclude = "")
+capacidade_socializacao
 
+# Melhor do que antes Muito pior do que antes        O mesmo de antes       Pior do que antes 
+# 3                      10                      19                      20 
 
+names(capacidade_socializacao) <- c("Melhorou","Piorou MUITO" ,"Nada Mudou", "Piorou")
+capacidade_socializacao
 
+pct_capacidade_socializacao <- paste(round(unname(capacidade_socializacao) / sum(unname(capacidade_socializacao)) * 100), "%")
+pct_capacidade_socializacao
 
+# "6 %"  "19 %" "37 %" "38 %"
 
+grafico_capacidade_socializacao <- pie(capacidade_socializacao,
+                               edges = 200, radius = 0.8,
+                               clockwise = T,
+                               density = NULL, angle = 90, col = rainbow(4),
+                               labels = paste(names(capacidade_socializacao), "-", pct_capacidade_socializacao),
+                               main = "Grafico Pandemia Socializacao : como você classificaria a sua capacidade de socialização antes e durante a Pandemia? 
+                                       Socialização aqui definida como a efetiva vivência com demais pessoas em sociedade",
+                               cex.main=0.8)
 
+# Grafico 3. Pandemia bem-estar_psicologico
+# Em relação a antes e durante a pandemia da COVID-19, como você classificaria o seu bem-estar psicológico em geral, 
+# incluindo sentimentos de ansiedade e/ou depressão? *
+bemestar_psicologico <- table(dataset.csv$bem.estar_psicologico, exclude = "")
+bemestar_psicologico
 
+# Melhor do que antes Muito melhor do que antes   Muito pior do que antes           N/A ou Não Sabe          O mesmo de antes         Pior do que antes 
+#             2                         2                         9                         1                        12                        26 
 
+names(bemestar_psicologico) <- c("Melhorou","Melhorou MUITO" ,"Piorou MUITO", "Não Sabe", "Nada Mudou", "Piorou")
+bemestar_psicologico
 
+pct_bemestar_psicologico <- paste(round(unname(bemestar_psicologico) / sum(unname(bemestar_psicologico)) * 100), "%")
+pct_bemestar_psicologico
 
+# "4 %"  "4 %"  "17 %" "2 %"  "23 %" "50 %"
 
+grafico_bemestar_psicologico <- pie(bemestar_psicologico,
+                                    edges = 200, radius = 0.8,
+                                    clockwise = T,
+                                    density = NULL, angle = 90, col = rainbow(6),
+                                    labels = paste(names(bemestar_psicologico), "-", pct_bemestar_psicologico),
+                                    main = "Grafico Pandemia Bem-estar Psicologico : Em relação a antes e durante a pandemia da COVID-19, como você classificaria o seu bem-estar psicológico em geral, 
+                                                    incluindo sentimentos de ansiedade e/ou depressão? *",
+                                    cex.main=0.8)
 
+# Grafico 3. Pandemia aulas
+# Com relação à forma como as aulas foram ministradas durante a pandemia do COVID-19, você sente que:
+aulas <- table(dataset.csv$aulas_durante_pandemia, exclude = "")
+aulas
+
+# Está/É mais ou menos o mesmo  Foram mais ou menos o mesmo                   Melhoraram              N/A ou Não sabe                     Pioraram 
+#                     3                           22                            1                            4                           20 
+# Piorou 
+#  2 
+
+pct_aulas <- paste(round(unname(aulas) / sum(unname(aulas)) * 100), "%")
+pct_aulas
+
+# "6 %"  "42 %" "2 %"  "8 %"  "38 %" "4 %" 
+
+grafico_aulas <- pie(aulas,
+                                    edges = 200, radius = 0.8,
+                                    clockwise = T,
+                                    density = NULL, angle = 90, col = rainbow(6),
+                                    labels = paste(names(aulas), "-", pct_aulas),
+                                    main = "Grafico Pandemia Aula : Com relação à forma como as aulas foram ministradas durante a pandemia do COVID-19, você sente que",
+                                    cex.main=0.8)
+
+# Grafico 3. Pandemia acesso professores
+# Durante a pandemia da COVID-19, você sentiu que as formas de acesso aos seus professores: *
+acesso_professores <- table(dataset.csv$acesso_professores, exclude = "")
+acesso_professores
+
+# Está mais ou menos o mesmo  Foi mais ou menos o mesmo                   Melhorou            N/A ou Não sabe                     Piorou 
+# 1                         12                          8                          4                         27
+
+pct_acesso_professores <- paste(round(unname(acesso_professores) / sum(unname(acesso_professores)) * 100), "%")
+pct_acesso_professores
+
+# "2 %"  "23 %" "15 %" "8 %"  "52 %"
+
+grafico_acesso_professores <- pie(acesso_professores,
+                     edges = 200, radius = 0.8,
+                     clockwise = T,
+                     density = NULL, angle = 90, col = rainbow(6),
+                     labels = paste(names(acesso_professores), "-", pct_acesso_professores),
+                     main = "Grafico Pandemia Acesso Professores : Durante a pandemia da COVID-19, você sentiu que as formas de acesso aos seus professores:",
+                     cex.main=0.8)
 
 # Nuvem de Palavras
 
