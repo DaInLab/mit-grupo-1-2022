@@ -701,6 +701,53 @@ grafico_acesso_professores <- pie(acesso_professores,
                      main = "Grafico Pandemia Acesso Professores : Durante a pandemia da COVID-19, você sentiu que as formas de acesso aos seus professores:",
                      cex.main=0.8)
 
+
+# Grafico 3. Pandemia espaco_fisico
+# Com relação ao espaço físico (ambiente/localidade) utilizado por você, durante a pandemia de COVID-19, 
+# para estudar e participar das aulas e/ou atividades, você sentiu que: *
+espaco_fisico <- table(dataset.csv$espaco_físico, exclude = "")
+espaco_fisico
+
+#É mais ou menos o mesmo Era mais ou menos o mesmo                  Melhorou           N/A ou Não sabe                    Piorou 
+#                   2                        23                         7                         4                        15 
+
+pct_espaco_fisico <- paste(round(unname(espaco_fisico) / sum(unname(espaco_fisico)) * 100), "%")
+pct_espaco_fisico
+
+#  "4 %"  "45 %" "14 %" "8 %"  "29 %"
+
+grafico_espaco_fisico <- pie(espaco_fisico,
+                                  edges = 200, radius = 0.8,
+                                  clockwise = T,
+                                  density = NULL, angle = 90, col = rainbow(5),
+                                  labels = paste(names(espaco_fisico), "-", pct_espaco_fisico),
+                                  main = "Grafico Pandemia Espaço Fisico : Ambiente/localidade utilizado por você, durante a pandemia de COVID-19, 
+                                                            para estudar e participar das aulas e/ou atividades, você sentiu que:",
+                                  cex.main=0.8)
+
+# Grafico 3. Pandemia disposicao_atividades
+# Você sentiu que, durante a pandemia do COVID-19, de forma geral, sua disposição para participar das aulas/atividades, estudar e aprender: 
+disposicao_atividades <- table(dataset.csv$disposicao_atividades, exclude = "")
+disposicao_atividades
+
+#Aumentou                    Diminuiu     É mais ou menos o mesmo Ficou mais ou menos a mesma             N/A ou Não sabe 
+#    11                          26                           3                          11                           1
+
+pct_disposicao_atividades <- paste(round(unname(disposicao_atividades) / sum(unname(disposicao_atividades)) * 100), "%")
+pct_disposicao_atividades
+
+#  "21 %" "50 %" "6 %"  "21 %" "2 %"
+
+grafico_disposicao_atividades <- pie(disposicao_atividades,
+                             edges = 200, radius = 0.8,
+                             clockwise = T,
+                             density = NULL, angle = 90, col = rainbow(5),
+                             labels = paste(names(disposicao_atividades), "-", pct_disposicao_atividades),
+                             main = "Grafico Pandemia Disposicao Atividades : Você sentiu que, durante a pandemia do COVID-19, de forma geral, 
+                                    sua disposição para participar das aulas/atividades, estudar e aprender: ",
+                             cex.main=0.8)
+
+
 # Nuvem de Palavras
 
 # Nuvem de Palavras : Instituicao de Ensino - situacao durante pandemia
