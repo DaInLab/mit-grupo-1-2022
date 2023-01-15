@@ -747,6 +747,81 @@ grafico_disposicao_atividades <- pie(disposicao_atividades,
                                     sua disposição para participar das aulas/atividades, estudar e aprender: ",
                              cex.main=0.8)
 
+# Grafico 3. Pandemia desempenho_escolar
+# Você percebeu que o seu desempenho escolar durante a pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):
+desempenho_escolar <- table(dataset.csv$desempenho_escolar, exclude = "")
+desempenho_escolar
+
+# Aumentou                   Diminuiu Está mais ou menos o mesmo  Foi mais ou menos o mesmo            N/A ou Não sabe 
+#       14                         16                          4                         16                          2 
+
+pct_desempenho_escolar <- paste(round(unname(desempenho_escolar) / sum(unname(desempenho_escolar)) * 100), "%")
+pct_desempenho_escolar
+
+#  "27 %" "31 %" "8 %"  "31 %" "4 %" 
+
+grafico_desempenho_escolar <- pie(desempenho_escolar,
+                                     edges = 200, radius = 0.8,
+                                     clockwise = T,
+                                     density = NULL, angle = 90, col = rainbow(5),
+                                     labels = paste(names(desempenho_escolar), "-", pct_desempenho_escolar),
+                                     main = "Grafico Pandemia Desempenho Escolar : Você percebeu que o seu desempenho escolar durante a pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):",
+                                     cex.main=0.8)
+
+Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ? *v
+
+# Grafico 1. Vacinado
+# Você já foi vacinado contra a COVID-19 ?
+vacinado <- table(dataset.csv$vacinado, exclude = "")
+vacinado
+
+names(vacinado) <- c("Sim, duas doses ou dose unica", 
+                     "Sim, duas doses, dose única e reforço", 
+                     "Sim, completamente duas doses ou dose unica ", 
+                     "Sim, duas dose ou dose unica e doses reforço")
+vacinado
+
+#Sim, duas doses ou dose unica        Sim, duas doses, dose única e reforço Sim, completamente duas doses ou dose unica  
+#                  7                                           21                                            1 
+# Sim, duas dose ou dose unica e doses reforço 
+#     19 
+
+pct_vacinado <- paste(round(unname(vacinado) / sum(unname(vacinado)) * 100), "%")
+pct_vacinado
+#  "15 %" "44 %" "2 %"  "40 %" 
+
+grafico_vacinado <- pie(vacinado,
+                                  edges = 200, radius = 0.8,
+                                  clockwise = T,
+                                  density = NULL, angle = 90, col = rainbow(5),
+                                  labels = paste(names(vacinado), "-", pct_vacinado),
+                                  main = "Grafico Vacinação : Você já foi vacinado contra a COVID-19 ?",
+                                  cex.main=0.8)
+
+
+
+# Grafico 4. Financas despesas
+# Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ? *v
+despesas <- table(dataset.csv$despesas, exclude = "")
+despesas
+
+#Aumentaram                    Diminuiram Foram mais ou menos os mesmos   São mais ou menos os mesmos 
+#        17                            14                            19                             2
+
+pct_despesas <- paste(round(unname(despesas) / sum(unname(despesas)) * 100), "%")
+pct_despesas
+
+#  "33 %" "27 %" "37 %" "4 %" 
+
+grafico_despesas <- pie(despesas,
+                                  edges = 200, radius = 0.8,
+                                  clockwise = T,
+                                  density = NULL, angle = 90, col = rainbow(5),
+                                  labels = paste(names(despesas), "-", pct_despesas),
+                                  main = "Grafico Situacao Financeira : Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ?",
+                                  cex.main=0.8)
+
+
 
 # Nuvem de Palavras
 
