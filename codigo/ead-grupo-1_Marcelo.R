@@ -840,14 +840,13 @@ grafico_renda_financeira <- pie(renda_financeira,
                         main = "Grafico Situacao Financeira : Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira?",
                         cex.main=0.8)
 
-# Grafico 4. Financas ajuda_financeira
+# Grafico 2. Financas ajuda_financeira
 # Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19? *
 ajuda_financeira <- table(dataset.csv$ajuda_financeira, exclude = "")
 ajuda_financeira
 
 #Não Sim 
 # 44   8 
-
 
 pct_ajuda_financeira <- paste(round(unname(ajuda_financeira) / sum(unname(ajuda_financeira)) * 100), "%")
 pct_ajuda_financeira
@@ -861,6 +860,59 @@ grafico_ajuda_financeira <- pie(ajuda_financeira,
                                 labels = paste(names(ajuda_financeira), "-", pct_ajuda_financeira),
                                 main = "Grafico Instituicao Ensino : Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19?",
                                 cex.main=0.8)
+
+# Grafico 4. Financas nivel_endividamento
+# Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19? *
+nivel_endividamento <- table(dataset.csv$nivel_endividamento, exclude = "")
+nivel_endividamento
+
+#Aumentaram                    Diminuiram Estão mais ou menos as mesmas               N/A ou Não sabe   São mais ou menos as mesmas 
+#         7                             6                            32                             3                             4 
+
+pct_nivel_endividamento <- paste(round(unname(nivel_endividamento) / sum(unname(nivel_endividamento)) * 100), "%")
+pct_nivel_endividamento
+
+#  "13 %" "12 %" "62 %" "6 %"  "8 %" 
+
+grafico_nivel_endividamento <- pie(nivel_endividamento,
+                                edges = 200, radius = 0.8,
+                                clockwise = T,
+                                density = NULL, angle = 90, col = rainbow(5),
+                                labels = paste(names(nivel_endividamento), "-", pct_nivel_endividamento),
+                                main = "Grafico Finanças : Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas:",
+                                cex.main=0.9)
+
+
+# Grafico 4. Financas despesas_cresceram
+# Quais das despesas do seu dia-a-dia aqui relacionadas você acredita que cresceram no ano/semestre, após o pico da pandemia ? (Marque todas que achar necessárias)
+
+despesas_cresceram <- table(dataset.csv$despesas_.cresceram, exclude = "")
+despesas_cresceram
+
+str <- strsplit(dataset.csv$despesas_.cresceram, ";")
+str
+
+
+
+alug_venda <- strsplit(despesas_cresceram, ",")
+alug_venda
+
+#Aumentaram                    Diminuiram Estão mais ou menos as mesmas               N/A ou Não sabe   São mais ou menos as mesmas 
+#         7                             6                            32                             3                             4 
+
+pct_nivel_endividamento <- paste(round(unname(nivel_endividamento) / sum(unname(nivel_endividamento)) * 100), "%")
+pct_nivel_endividamento
+
+#  "13 %" "12 %" "62 %" "6 %"  "8 %" 
+
+grafico_nivel_endividamento <- pie(nivel_endividamento,
+                                   edges = 200, radius = 0.8,
+                                   clockwise = T,
+                                   density = NULL, angle = 90, col = rainbow(5),
+                                   labels = paste(names(nivel_endividamento), "-", pct_nivel_endividamento),
+                                   main = "Grafico Finanças : Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas:",
+                                   cex.main=0.9)
+
 
 
 # Nuvem de Palavras
