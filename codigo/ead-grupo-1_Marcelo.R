@@ -438,6 +438,77 @@ grafico_ies_decisao_fechar <- pie(ies_decisao_fechar,
                             labels = paste(names(ies_decisao_fechar), "-", pct_ies_decisao_fechar),
                             main = "Gráfico Instituiçao:  decisão de fechar o campus e de utilizar ferramentas online p/as aulas,devido a COVID-19")
 
+
+# Grafico 3. Pandemia_convive_risco 
+# Você está morando ou convivendo atualmente com alguém na faixa etária  dos 60-70 anos, e/ou que 
+# tenha algum fator de risco relevante? (Fatores de risco relevantes são problemas cardíacos, diabetes, hipertensão e/ou obesidade). *
+
+convive_risco <- table(dataset.csv$convive_risco, exclude = "")
+convive_risco
+
+# Não Sim 
+#  39  13
+
+pct_convive_risco <- paste(round(unname(convive_risco) / sum(unname(convive_risco)) * 100), "%")
+pct_convive_risco
+
+# "75 %" "25 %"
+
+grafico_convive_risco <- pie(convive_risco,
+                         edges = 200, radius = 0.8,
+                         clockwise = T,
+                         density = NULL, angle = 90, col = rainbow(2),
+                         labels = paste(names(convive_risco), "-", pct_convive_risco),
+                         main = "Gráfico Pandemia Risco Relevante: Convivencia com Idoso (60-70 anos) ou alguem com Comorbidades")
+
+# Grafico 3. Pandemia_quarentena imposta
+# Você, alguém com quem convive ou que está em sua moradia está ou esteve em quarentena imposta pela COVID-19  ? *
+
+quarentena_imposta <- table(dataset.csv$quarentena_imposta, exclude = "")
+quarentena_imposta
+
+# Não Sim 
+#  19  33 
+
+pct_quarentena_imposta <- paste(round(unname(quarentena_imposta) / sum(unname(quarentena_imposta)) * 100), "%")
+pct_quarentena_imposta
+
+# "37 %" "63 %"
+
+grafico_quarentena_imposta <- pie(quarentena_imposta,
+                             edges = 200, radius = 0.8,
+                             clockwise = T,
+                             density = NULL, angle = 90, col = rainbow(2),
+                             labels = paste(names(quarentena_imposta), "-", pct_quarentena_imposta),
+                             main = "Gráfico Pandemia Risco Relevante: Convivencia com quem convive ou que está em sua moradia está ou esteve em quarentena imposta pela COVID-19",
+                             cex.main=0.9)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Nuvem de Palavras
 
 # Nuvem de Palavras : Instituicao de Ensino - situacao durante pandemia
