@@ -886,33 +886,66 @@ grafico_nivel_endividamento <- pie(nivel_endividamento,
 # Grafico 4. Financas despesas_cresceram
 # Quais das despesas do seu dia-a-dia aqui relacionadas você acredita que cresceram no ano/semestre, após o pico da pandemia ? (Marque todas que achar necessárias)
 
-despesas_cresceram <- table(dataset.csv$despesas_.cresceram, exclude = "")
-despesas_cresceram
 
-str <- strsplit(dataset.csv$despesas_.cresceram, ";")
-str
+# Grafico 5. Ansiedade nivel_ansiedade
+# Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao que poderá acontecer com você nos próximos meses? *
+nivel_ansiedade <- table(dataset.csv$nivel_ansiedade, exclude = "")
+nivel_ansiedade
 
+# Melhor do que antes Muito melhor do que antes   Muito pior do que antes           N/A ou Não Sabe          O mesmo de antes         Pior do que antes 
+#                   2                         3                        10                         2                        17                        18 
 
+pct_nivel_ansiedade <- paste(round(unname(nivel_ansiedade) / sum(unname(nivel_ansiedade)) * 100), "%")
+pct_nivel_ansiedade
+#  "4 %"  "6 %"  "19 %" "4 %"  "33 %" "35 %"
 
-alug_venda <- strsplit(despesas_cresceram, ",")
-alug_venda
-
-#Aumentaram                    Diminuiram Estão mais ou menos as mesmas               N/A ou Não sabe   São mais ou menos as mesmas 
-#         7                             6                            32                             3                             4 
-
-pct_nivel_endividamento <- paste(round(unname(nivel_endividamento) / sum(unname(nivel_endividamento)) * 100), "%")
-pct_nivel_endividamento
-
-#  "13 %" "12 %" "62 %" "6 %"  "8 %" 
-
-grafico_nivel_endividamento <- pie(nivel_endividamento,
+grafico_nivel_ansiedade <- pie(nivel_ansiedade,
                                    edges = 200, radius = 0.8,
                                    clockwise = T,
-                                   density = NULL, angle = 90, col = rainbow(5),
-                                   labels = paste(names(nivel_endividamento), "-", pct_nivel_endividamento),
-                                   main = "Grafico Finanças : Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas:",
-                                   cex.main=0.9)
+                                   density = NULL, angle = 90, col = rainbow(6),
+                                   labels = paste(names(nivel_ansiedade), "-", pct_nivel_ansiedade),
+                                   main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao que poderá acontecer com você nos próximos meses? ",
+                                   cex.main=0.8)
 
+# Grafico 5. Ansiedade ansiedade_planejamento
+# Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao seu planejamento pessoal (férias, viagens, feriados, etc). 
+ansiedade_planejamento <- table(dataset.csv$ansiedade_planejamento, exclude = "")
+ansiedade_planejamento
+
+# Melhor do que antes Muito melhor do que antes   Muito pior do que antes          O mesmo de antes         Pior do que antes 
+#                  7                         2                         8                        13                        22 
+pct_ansiedade_planejamento <- paste(round(unname(ansiedade_planejamento) / sum(unname(ansiedade_planejamento)) * 100), "%")
+pct_ansiedade_planejamento
+#  "13 %" "4 %"  "15 %" "25 %" "42 %"
+
+grafico_ansiedade_planejamento <- pie(ansiedade_planejamento,
+                               edges = 200, radius = 0.8,
+                               clockwise = T,
+                               density = NULL, angle = 90, col = rainbow(5),
+                               labels = paste(names(ansiedade_planejamento), "-", pct_ansiedade_planejamento),
+                               main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao seu planejamento pessoal (férias, viagens, feriados, etc). ",
+                               cex.main=0.8)
+
+# Grafico 5. Ansiedade ansiedade_longo_prazo
+# Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação aos planos de longo prazo (sua formatura, o término do curso atual, novos projetos etc.)
+ansiedade_longo_prazo <- table(dataset.csv$ansiedade_longo_prazo, exclude = "")
+ansiedade_longo_prazo
+
+# Melhor do que antes Muito melhor do que antes   Muito pior do que antes          O mesmo de antes         Pior do que antes 
+#                   3                         2                        12                        19                        16 
+
+pct_ansiedade_longo_prazo <- paste(round(unname(ansiedade_longo_prazo) / sum(unname(ansiedade_longo_prazo)) * 100), "%")
+pct_ansiedade_longo_prazo
+#  "6 %"  "4 %"  "23 %" "37 %" "31 %"
+
+grafico_ansiedade_planejamento <- pie(ansiedade_longo_prazo,
+                                      edges = 200, radius = 0.8,
+                                      clockwise = T,
+                                      density = NULL, angle = 90, col = rainbow(5),
+                                      labels = paste(names(ansiedade_longo_prazo), "-", pct_ansiedade_longo_prazo),
+                                      main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação aos 
+                                        planos de longo prazo (sua formatura, o término do curso atual, novos projetos etc.)",
+                                      cex.main=0.9)
 
 
 # Nuvem de Palavras
