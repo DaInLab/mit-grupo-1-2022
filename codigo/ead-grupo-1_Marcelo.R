@@ -798,8 +798,6 @@ grafico_vacinado <- pie(vacinado,
                                   main = "Grafico Vacinação : Você já foi vacinado contra a COVID-19 ?",
                                   cex.main=0.8)
 
-
-
 # Grafico 4. Financas despesas
 # Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ? *v
 despesas <- table(dataset.csv$despesas, exclude = "")
@@ -821,6 +819,48 @@ grafico_despesas <- pie(despesas,
                                   main = "Grafico Situacao Financeira : Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ?",
                                   cex.main=0.8)
 
+# Grafico 4. Financas renda_financeira
+# Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira? *
+renda_financeira <- table(dataset.csv$renda_financeira, exclude = "")
+renda_financeira
+
+#Aumentou                   Diminuiu Está mais ou menos a mesma N/A ou Não quero responder 
+#       3                         25                         23                          1 
+
+pct_renda_financeira <- paste(round(unname(renda_financeira) / sum(unname(renda_financeira)) * 100), "%")
+pct_renda_financeira
+
+#  "6 %"  "48 %" "44 %" "2 %" 
+
+grafico_renda_financeira <- pie(renda_financeira,
+                        edges = 200, radius = 0.8,
+                        clockwise = T,
+                        density = NULL, angle = 90, col = rainbow(4),
+                        labels = paste(names(renda_financeira), "-", pct_renda_financeira),
+                        main = "Grafico Situacao Financeira : Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira?",
+                        cex.main=0.8)
+
+# Grafico 4. Financas ajuda_financeira
+# Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19? *
+ajuda_financeira <- table(dataset.csv$ajuda_financeira, exclude = "")
+ajuda_financeira
+
+#Não Sim 
+# 44   8 
+
+
+pct_ajuda_financeira <- paste(round(unname(ajuda_financeira) / sum(unname(ajuda_financeira)) * 100), "%")
+pct_ajuda_financeira
+
+#  "85 %" "15 %"
+
+grafico_ajuda_financeira <- pie(ajuda_financeira,
+                                edges = 200, radius = 0.8,
+                                clockwise = T,
+                                density = NULL, angle = 90, col = rainbow(2),
+                                labels = paste(names(ajuda_financeira), "-", pct_ajuda_financeira),
+                                main = "Grafico Instituicao Ensino : Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19?",
+                                cex.main=0.8)
 
 
 # Nuvem de Palavras
