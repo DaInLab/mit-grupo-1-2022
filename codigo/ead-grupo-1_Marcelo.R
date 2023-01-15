@@ -484,11 +484,76 @@ grafico_quarentena_imposta <- pie(quarentena_imposta,
                              cex.main=0.9)
 
 
+# Grafico 3. Pandemia_quarentena imposta
+# Durante a pandemia do COVID-19, você obteve e/ou vivenciou: *
+  
+vivenciou <- table(dataset.csv$vivenciou, exclude = "")
+vivenciou
 
+# Ajuda ou assistência de pessoas desconhecidas 
+#   4 
+# Dificuldades devido a alterações em suas condições de vida, incluindo o fechamento de alojamentos, perda de emprego, etc. 
+#   9 
+# Dificuldades para viajar/se deslocar 
+# 19 
+# Discriminação por pessoas desconhecidas 
+# 1 
+# Não se aplica / Não sabe 
+# 6 
+# Não se aplica / Não sabe / Não se lembra 
+# 13
 
+# Tratamento nomes
+names(vivenciou) <- c("Assistencia de Desconhecidos", "Alterações de Condiçoes de Vida", "Dificuldade Deslocamento", "Discriminação", "Não Sabe", "Nao se Lembra")
 
+pct_vivenciou <- paste(round(unname(vivenciou) / sum(unname(vivenciou)) * 100), "%")
+pct_vivenciou
 
+# "8 %"  "17 %" "37 %" "2 %"  "12 %" "25 %"
 
+par(las=1) # nomes dos eixos perpendicular
+par(mar=c(5,16,1,1)+0.1)  # para aumentar a margem a esquerda 
+grafico_vivenciou <- barplot(vivenciou, 
+                                    main="Grafico Pandemia Vivenciou : Durante a pandemia do COVID-19, você obteve e/ou vivenciou",
+                                    cex.main=0.9,
+                                    las=1,  
+                                    beside = TRUE,
+                                    horiz=TRUE, 
+                                    xlim = c(0,max(vivenciou) + 5),
+                                    legend.text = paste(rownames(vivenciou)," (",vivenciou, ")"),
+                                    args.legend = list("top", bty="n", cex = 0.7),
+                                    col=rainbow(6),
+                                    cex.axis = 0.7,  
+                                    cex.names = 0.6)
+
+text(grafico_vivenciou, x = vivenciou, label = pct_vivenciou, cex=0.7, pos=4)
+
+par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
+
+# Grafico 3. Pandemia_acesso_servicos_saude
+# Como você classifica o seu acesso aos serviços de saúde, a antes e durante a pandemia COVID-19 ? *
+
+acesso_servicos_saude <- table(dataset.csv$acesso_servicos_saude, exclude = "")
+acesso_servicos_saude
+
+# Melhor do que antes Muito pior do que antes         N/A ou Não sabe        O mesmo de antes       Pior do que antes 
+#    5                       5                       1                      28                      13 
+
+names(acesso_servicos_saude) <- c("Melhorou", "Piorou Muito", "Não Sabe", "Nada Mudou", "Piorou")
+acesso_servicos_saude
+
+pct_acesso_servicos_saude <- paste(round(unname(acesso_servicos_saude) / sum(unname(acesso_servicos_saude)) * 100), "%")
+pct_acesso_servicos_saude
+
+# "10 %" "10 %" "2 %"  "54 %" "25 %"
+
+grafico_acesso_servicos_saude <- pie(acesso_servicos_saude,
+                                  edges = 200, radius = 0.8,
+                                  clockwise = T,
+                                  density = NULL, angle = 90, col = rainbow(5),
+                                  labels = paste(names(acesso_servicos_saude), "-", pct_acesso_servicos_saude),
+                                  main = "Grafico Pandemia Serviços Saude : Como você classifica o seu acesso aos serviços de saúde, a antes e durante a pandemia COVID-19 ? ",
+                                  cex.main=0.7)
 
 
 
@@ -539,4 +604,5 @@ set.seed(32)  #be sure to set the seed if you want to reproduce the same again
 
 wordcloud(words = names(word.freq), freq = word.freq, scale = c(3, 0.5), max.words = 40, 
           random.order = TRUE, shape =  , color = rainbow(10))
+
 
