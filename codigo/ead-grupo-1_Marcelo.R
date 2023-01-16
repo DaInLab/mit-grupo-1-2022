@@ -91,11 +91,11 @@ df_genero
 pct_genero <- paste0(round(unname(genero) / sum(unname(genero)) * 100,0), "%")
 pct_genero
 
-grafico.genero <- ggplot(dataset.csv, aes(y=genero, fill=genero))+
+grafico.genero2 <- ggplot(dataset.csv, aes(y=genero, fill=genero))+
                   geom_bar()+
-                  geom_text(aes(label = ..count..), stat = "count", size = 5, hjust = -0.3, vjust = 0, colour = "black")+theme(legend.position="none")+
+                  geom_text(aes(label = pct_genero), stat = "count", size = 5, hjust = -0.3, vjust = 0, colour = "black")+theme(legend.position="none")+
                   labs(title="Perfil : Gênero", x = "Quantidade", y = "")  
-grafico.genero
+grafico.genero2
 
 ggplot(dataset.csv, aes(genero, fill = genero)) + 
   geom_bar(aes(y = (..count..)/sum(..count..))) + 
@@ -103,6 +103,15 @@ ggplot(dataset.csv, aes(genero, fill = genero)) +
   ylab("Frequencia")+
 ggtitle("Perfil : Gênero")+
 scale_fill_discrete(name="")
+
+grafico_genero <- barplot(genero, 
+                                main = "Gráfico Genero",
+                                ylab = "Respondentes",
+                                col = c(rainbow(4)),
+                                ylim = c(0,max(genero) + 10),
+                                cex.axis=1.0, cex.names=0.8)
+text(x = grafico_genero, y = genero, label = paste(genero, " (", pct_genero, ")"), cex=1, pos=3)
+
 
 # Grafico Dados Pessoais : 1.Situacao_conjugal
 sit_conjugal <- table(dataset.csv$situacao_conjugal)
