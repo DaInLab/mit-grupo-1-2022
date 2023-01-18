@@ -27,7 +27,7 @@
 # 4.     
 
 # Import packages
-library(tidyverse)
+#library(tidyverse)
 library(ggplot2)
 
 # Importacao arquivo CSV
@@ -77,11 +77,9 @@ grafico_faixa_etaria <- barplot(tbl_faixa_etaria,
                                 xlab = "Faixa Etária", 
                                 ylab = "Respondentes",
                                 col = c("blue", "orange"),
-                                ylim = c(0,max(tbl_faixa_etaria) + 10),
-                                cex.axis=1.0, cex.names=0.8)
-text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), cex=1, pos=3)
-
-grafico_faixa_etaria
+                                ylim = c(0,max(tbl_faixa_etaria) + 5),
+                                cex.axis=1.0, cex.names=0.7)
+text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), cex=0,8, pos=3)
 
 # Grafico Dados Pessoais : 1.Genero
 genero <- table(dataset.csv$genero)
@@ -265,12 +263,12 @@ tbl_nivel_ensino
 pct_nivel_ensino <- paste(round(unname(tbl_nivel_ensino) / sum(unname(tbl_nivel_ensino)) * 100), "%")
 pct_nivel_ensino
 
-pie(tbl_nivel_ensino,
-    edges = 200, radius = 0.8,
-    clockwise = T,
-    density = NULL, angle = 90, col = c("red", "orange", "yellow", "green", "gray", "blue"),
-    labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino),
-    main = "Gráfico Dados Pessoais: Qual nível de ensino você está cursando ? ")
+grafico_nivel_ensino <- pie(tbl_nivel_ensino,
+                        edges = 200, radius = 0.8,
+                        clockwise = T,
+                        density = NULL, angle = 90, col = c("red", "orange", "yellow", "green", "gray", "blue"),
+                        labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino),
+                        main = "Gráfico Dados Pessoais: Qual nível de ensino você está cursando ? ")
 
 # Grafico 1.Tipo Instituicao de Ensino
 # Qual é o tipo da sua instituição de ensino ? 
