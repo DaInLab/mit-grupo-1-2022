@@ -591,24 +591,37 @@ grafico_acesso_internet <- pie(acesso_internet,
 # Grafico 3. Pandemia capacidade_prosseguir_estudos
 # Em relação a antes e durante a pandemia da COVID-19, como você classifica sua capacidade em prosseguir seus estudos, 
 # incluindo sua graduação e/ou conclusão de curso?
-capacidade_prosseguir_estudos<- table(dataset.csv$capacidade_prosseguir_estudos, exclude = "")
+
+# Tratamento opcoes
+df_estudos <- data.frame(estudos="", nivel =dataset.csv$capacidade_.socializacao)
+
+for (k in 1:nrow(df_estudos)) {
+  if(df_estudos$nivel[k] == "Melhor do que antes")            df_estudos$estudos[k] <- "Melhorou"
+  if(df_estudos$nivel[k] == "Muito melhor do que antes")      df_estudos$estudos[k] <- "Melhorou"
+  if(df_estudos$nivel[k] == "Muito pior do que antes")        df_estudos$estudos[k] <- "Piorou"
+  if(df_estudos$nivel[k] == "O mesmo de antes")               df_estudos$estudos[k] <- "Não Mudou"
+  if(df_estudos$nivel[k] == "Pior do que antes")              df_estudos$estudos[k] <- "Piorou"
+  if(df_estudos$nivel[k] == "N/A ou Não Sabe")              df_estudos$estudos[k] <- "Não Sabe"
+}  
+
+df_estudos
+
+
+capacidade_prosseguir_estudos<- table(df_estudos$estudos, exclude = "")
 capacidade_prosseguir_estudos
 
-# Melhor do que antes Muito melhor do que antes   Muito pior do que antes           N/A ou Não Sabe          O mesmo de antes         Pior do que antes 
-#      5                         1                         4                         2                        22                        17 
-
-names(capacidade_prosseguir_estudos) <- c("Melhorou","Melhorou MUITO" ,"Piorou MUITO", "Não Sabe", "Nada Mudou", "Piorou")
-capacidade_prosseguir_estudos
+# Melhorou Não Mudou    Piorou 
+#      3        19        30 
 
 pct_capacidade_prosseguir_estudos <- paste(round(unname(capacidade_prosseguir_estudos) / sum(unname(capacidade_prosseguir_estudos)) * 100), "%")
 pct_capacidade_prosseguir_estudos
 
-# "10 %" "2 %"  "8 %"  "4 %"  "43 %" "33 %"
+# "6 %"  "37 %" "58 %"
 
 grafico_capacidade_prosseguir_estudos <- pie(capacidade_prosseguir_estudos,
                                edges = 200, radius = 0.8,
                                clockwise = T,
-                               density = NULL, angle = 90, col = rainbow(6),
+                               density = NULL, angle = 90, col = rainbow(3),
                                labels = paste(names(capacidade_prosseguir_estudos), "-", pct_capacidade_prosseguir_estudos),
                                main = "Grafico Pandemia Prosseguir Estudos : Em relação a antes e durante a pandemia da COVID-19, como você classifica sua capacidade em prosseguir seus estudos, 
                                       incluindo sua graduação e/ou conclusão de curso?",
@@ -617,24 +630,34 @@ grafico_capacidade_prosseguir_estudos <- pie(capacidade_prosseguir_estudos,
 # Grafico 3. Pandemia_capacidade_socializacao
 # Em relação a antes e durante a pandemia da COVID-19 , como você classificaria a sua capacidade de socialização? 
 # (Socialização aqui definida como a efetiva vivência com demais pessoas em sociedade). *
-capacidade_socializacao <- table(dataset.csv$capacidade_.socializacao, exclude = "")
+
+# Tratamento opcoes
+df_socializacao <- data.frame(socializacao="", nivel =dataset.csv$capacidade_.socializacao)
+
+for (k in 1:nrow(df_socializacao)) {
+  if(df_socializacao$nivel[k] == "Melhor do que antes")            df_socializacao$socializacao[k] <- "Melhorou"
+  if(df_socializacao$nivel[k] == "Muito pior do que antes")        df_socializacao$socializacao[k] <- "Piorou"
+  if(df_socializacao$nivel[k] == "O mesmo de antes")               df_socializacao$socializacao[k] <- "Não Mudou"
+  if(df_socializacao$nivel[k] == "Pior do que antes")              df_socializacao$socializacao[k] <- "Piorou"
+}  
+
+df_socializacao
+
+capacidade_socializacao <- table(df_socializacao$socializacao, exclude = "")
 capacidade_socializacao
 
-# Melhor do que antes Muito pior do que antes        O mesmo de antes       Pior do que antes 
-# 3                      10                      19                      20 
-
-names(capacidade_socializacao) <- c("Melhorou","Piorou MUITO" ,"Nada Mudou", "Piorou")
-capacidade_socializacao
+# Melhorou Não Mudou    Piorou 
+#     3        19        30 
 
 pct_capacidade_socializacao <- paste(round(unname(capacidade_socializacao) / sum(unname(capacidade_socializacao)) * 100), "%")
 pct_capacidade_socializacao
 
-# "6 %"  "19 %" "37 %" "38 %"
+# "6 %"  "37 %" "58 %"
 
 grafico_capacidade_socializacao <- pie(capacidade_socializacao,
                                edges = 200, radius = 0.8,
                                clockwise = T,
-                               density = NULL, angle = 90, col = rainbow(4),
+                               density = NULL, angle = 90, col = rainbow(3),
                                labels = paste(names(capacidade_socializacao), "-", pct_capacidade_socializacao),
                                main = "Grafico Pandemia Socializacao : como você classificaria a sua capacidade de socialização antes e durante a Pandemia? 
                                        Socialização aqui definida como a efetiva vivência com demais pessoas em sociedade",
@@ -643,24 +666,36 @@ grafico_capacidade_socializacao <- pie(capacidade_socializacao,
 # Grafico 3. Pandemia bem-estar_psicologico
 # Em relação a antes e durante a pandemia da COVID-19, como você classificaria o seu bem-estar psicológico em geral, 
 # incluindo sentimentos de ansiedade e/ou depressão? *
-bemestar_psicologico <- table(dataset.csv$bem.estar_psicologico, exclude = "")
+
+# Tratamento opcoes
+df_bemestar <- data.frame(bemestar="", nivel =dataset.csv$bem.estar_psicologico)
+
+for (k in 1:nrow(df_bemestar)) {
+  if(df_bemestar$nivel[k] == "Melhor do que anteS")            df_bemestar$bemestar[k] <- "Melhorou"
+  if(df_bemestar$nivel[k] == "Muito melhor do que antes")      df_bemestar$bemestar[k] <- "Melhorou"
+  if(df_bemestar$nivel[k] == "Muito pior do que antes")        df_bemestar$bemestar[k] <- "Piorou"
+  if(df_bemestar$nivel[k] == "Pior do que antes")              df_bemestar$bemestar[k] <- "Piorou"
+  if(df_bemestar$nivel[k] == "O mesmo de antes")               df_bemestar$bemestar[k] <- "Não Mudou"
+  if(df_bemestar$nivel[k] == "N/A ou Não Sabe")              df_bemestar$bemestar[k] <- "Não Sabe"
+}  
+
+df_bemestar
+
+bemestar_psicologico <- table(df_bemestar$bemestar, exclude = "")
 bemestar_psicologico
 
-# Melhor do que antes Muito melhor do que antes   Muito pior do que antes           N/A ou Não Sabe          O mesmo de antes         Pior do que antes 
-#             2                         2                         9                         1                        12                        26 
-
-names(bemestar_psicologico) <- c("Melhorou","Melhorou MUITO" ,"Piorou MUITO", "Não Sabe", "Nada Mudou", "Piorou")
-bemestar_psicologico
+# Melhorou Não Mudou  Não Sabe    Piorou 
+#        2        12         1        35 
 
 pct_bemestar_psicologico <- paste(round(unname(bemestar_psicologico) / sum(unname(bemestar_psicologico)) * 100), "%")
 pct_bemestar_psicologico
 
-# "4 %"  "4 %"  "17 %" "2 %"  "23 %" "50 %"
+# "4 %"  "24 %" "2 %"  "70 %"
 
 grafico_bemestar_psicologico <- pie(bemestar_psicologico,
                                     edges = 200, radius = 0.8,
                                     clockwise = T,
-                                    density = NULL, angle = 90, col = rainbow(6),
+                                    density = NULL, angle = 90, col = rainbow(4),
                                     labels = paste(names(bemestar_psicologico), "-", pct_bemestar_psicologico),
                                     main = "Grafico Pandemia Bem-estar Psicologico : Em relação a antes e durante a pandemia da COVID-19, como você classificaria o seu bem-estar psicológico em geral, 
                                                     incluindo sentimentos de ansiedade e/ou depressão? *",
