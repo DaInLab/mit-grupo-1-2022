@@ -691,16 +691,30 @@ grafico_aulas <- pie(aulas,
 
 # Grafico 3. Pandemia acesso professores
 # Durante a pandemia da COVID-19, você sentiu que as formas de acesso aos seus professores: *
-acesso_professores <- table(dataset.csv$acesso_professores, exclude = "")
+
+df_professores <- data.frame(professores="", nivel =dataset.csv$acesso_professores)
+df_pro
+
+for (k in 1:nrow(df_professores)) {
+  if(df_professores$nivel[k] == "Melhorou")                     df_professores$professores[k] <- "Melhorou"
+  if(df_professores$nivel[k] == "Piorou")                       df_professores$professores[k] <- "Piorou"
+  if(df_professores$nivel[k] == "Está mais ou menos o mesmo")      df_professores$professores[k] <- "Não Mudou"
+  if(df_professores$nivel[k] == "Foi mais ou menos o mesmo")    df_professores$professores[k] <- "Não Mudou"
+  if(df_professores$nivel[k] == "N/A ou Não sabe")              df_professores$professores[k] <- "Não Sabe"
+}  
+
+df_professores
+
+acesso_professores <- table(df_professores$professores, exclude = "")
 acesso_professores
 
-# Está mais ou menos o mesmo  Foi mais ou menos o mesmo                   Melhorou            N/A ou Não sabe                     Piorou 
-# 1                         12                          8                          4                         27
+# Melhorou Não Mudou  Não Sabe    Piorou 
+#      8        13         4        27 
 
 pct_acesso_professores <- paste(round(unname(acesso_professores) / sum(unname(acesso_professores)) * 100), "%")
 pct_acesso_professores
 
-# "2 %"  "23 %" "15 %" "8 %"  "52 %"
+# "15 %" "25 %" "8 %"  "52 %"
 
 grafico_acesso_professores <- pie(acesso_professores,
                      edges = 200, radius = 0.8,
@@ -714,21 +728,36 @@ grafico_acesso_professores <- pie(acesso_professores,
 # Grafico 3. Pandemia espaco_fisico
 # Com relação ao espaço físico (ambiente/localidade) utilizado por você, durante a pandemia de COVID-19, 
 # para estudar e participar das aulas e/ou atividades, você sentiu que: *
-espaco_fisico <- table(dataset.csv$espaco_físico, exclude = "")
+
+# Tratamento das Opcoes
+df_espaco <- data.frame(espaco="", nivel =dataset.csv$espaco_físico)
+
+for (k in 1:nrow(df_espaco)) {
+  if(df_espaco$nivel[k] == "Melhorou")                     df_espaco$espaco[k] <- "Melhorou"
+  if(df_espaco$nivel[k] == "Piorou")                     df_espaco$espaco[k] <- "Piorou"
+  if(df_espaco$nivel[k] == "É mais ou menos o mesmo")      df_espaco$espaco[k] <- "Não Mudou"
+  if(df_espaco$nivel[k] == "Era mais ou menos o mesmo")    df_espaco$espaco[k] <- "Não Mudou"
+  if(df_espaco$nivel[k] == "N/A ou Não sabe")              df_espaco$espaco[k] <- "Não Sabe"
+  if(df_espaco$nivel[k] == "")                      df_espaco$espaco[k] <- "Não Sabe"
+  
+}
+df_espaco
+
+espaco_fisico <- table(df_espaco$espaco, exclude = "")
 espaco_fisico
 
-#É mais ou menos o mesmo Era mais ou menos o mesmo                  Melhorou           N/A ou Não sabe                    Piorou 
-#                   2                        23                         7                         4                        15 
+# Melhorou Não Mudou  Não Sabe    Piorou 
+#       7        25         5        15 
 
 pct_espaco_fisico <- paste(round(unname(espaco_fisico) / sum(unname(espaco_fisico)) * 100), "%")
 pct_espaco_fisico
 
-#  "4 %"  "45 %" "14 %" "8 %"  "29 %"
+#  "13 %" "48 %" "10 %" "29 %"
 
 grafico_espaco_fisico <- pie(espaco_fisico,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
-                                  density = NULL, angle = 90, col = rainbow(5),
+                                  density = NULL, angle = 90, col = rainbow(4),
                                   labels = paste(names(espaco_fisico), "-", pct_espaco_fisico),
                                   main = "Grafico Pandemia Espaço Fisico : Ambiente/localidade utilizado por você, durante a pandemia de COVID-19, 
                                                             para estudar e participar das aulas e/ou atividades, você sentiu que:",
@@ -736,6 +765,7 @@ grafico_espaco_fisico <- pie(espaco_fisico,
 
 # Grafico 3. Pandemia disposicao_atividades
 # Você sentiu que, durante a pandemia do COVID-19, de forma geral, sua disposição para participar das aulas/atividades, estudar e aprender: 
+
 # Tratamento das Opcoes
 df_disposicao <- data.frame(disposicao="", nivel =dataset.csv$disposicao_atividades )
 
