@@ -197,6 +197,7 @@ legend("right", c("Demais Instituições", "UNESP Bauru"),
        cex = 1.5, fill = c(4,5))
 
 # Grafico Dados Pessoais : 1.Nome_Cursos
+# Qual o nome/denominação do seu curso?
 nome_cursos <- table(dataset.csv$nome_curso)
 nome_cursos
 
@@ -215,18 +216,18 @@ pct_nome_cursos
 par(las=1) # nomes dos eixos perpendicular
 par(mar=c(5,16,1,1)+0.1)  # para aumentar a margem a esquerda 
 grafico_nome_cursos <- barplot(nome_cursos, 
-                                    main="Grafico Dados Pessoas : Cursos",
+                                    main="Grafico Dados Pessoas : Qual o nome/denominação do seu curso?",
                                     las=1,  
                                     beside = TRUE,
                                     horiz=TRUE, 
                                     xlim = c(0,max(nome_cursos) + 10),
-                                    legend.text = paste(rownames(nome_cursos)," (",pct_nome_cursos, ")"),
+                                    legend.text = paste(rownames(nome_cursos)," (",nome_cursos, ")"),
                                     args.legend = list("top", bty="n", cex = 0.7),
                                     col=rainbow(20),
                                     cex.axis = 0.7,  
-                                    cex.names = 0.6)
+                                    cex.names = 0.7)
 
-text(grafico_nome_cursos, x = nome_cursos, label = nome_cursos, cex=0.8, pos=2)
+text(grafico_nome_cursos, x = nome_cursos, label = pct_nome_cursos, cex=0.8, pos=4)
 
 par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
 
