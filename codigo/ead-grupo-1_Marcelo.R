@@ -382,24 +382,41 @@ grafico_ies_fechou_dorm <- pie(ies_fechou_dorm,
 
 # Grafico Dados Instituicao de Ensino 2. Instituicao_acesso_infra
 # Com relação às formas de acesso aos recursos de infraestrutura oferecidos pela sua instituição (biblioteca, coordenação, orientação de assuntos acadêmicos, matrícula, etc.) durante a pandemia do COVID-19 você sentiu que: *
-ies_infra <- table(dataset.csv$acesso_infra_ies, exclude = "")
+
+# Tratamento opcoes
+df_infra <- data.frame(infra="", nivel =dataset.csv$acesso_infra_ies)
+
+for (k in 1:nrow(df_infra)) {
+  if(df_infra$nivel[k] == "Melhorou")            df_infra$infra[k] <- "Melhoraram"
+  if(df_infra$nivel[k] == "Pioraram")        df_infra$infra[k] <- "Pioraram"
+  if(df_infra$nivel[k] == "Piorou")              df_infra$infra[k] <- "Pioraram"
+  if(df_infra$nivel[k] == "N/A ou Não sabe")              df_infra$infra[k] <- "Não Sabe"
+  if(df_infra$nivel[k] == "Ficou mais ou menos o mesmo")               df_infra$infra[k] <- "Não Mudaram"
+}  
+
+df_infra
+
+
+ies_infra <- table(df_infra$infra, exclude = "")
 ies_infra
 
-# Ficou mais ou menos o mesmo                    Melhorou             N/A ou Não sabe                    Pioraram                      Piorou 
-#                      17                           7                           3                          20                           1 
+#  Melhoraram Não Mudaram    Não Sabe    Pioraram 
+#      7          17           3          21 
  
-
 pct_ies_infra <- paste(round(unname(ies_infra) / sum(unname(ies_infra)) * 100), "%")
 pct_ies_infra
 
-# "35 %" "15 %" "6 %"  "42 %" "2 %" 
+# "15 %" "35 %" "6 %"  "44 %"
 
 grafico_ies_infra <- pie(ies_infra,
                                edges = 200, radius = 0.8,
                                clockwise = T,
-                               density = NULL, angle = 90, col = rainbow(5),
+                               density = NULL, angle = 90, col = rainbow(4),
                                labels = paste(names(ies_infra), "-", pct_ies_infra),
-                               main = "Gráfico Instituiçao: às formas de acesso aos recursos de infra oferecidos durante a COVID-19 você sentiu que:")
+                               main = "Gráfico Instituiçao: Com relação às formas de acesso aos recursos de infraestrutura oferecidos pela sua 
+                                    instituição (biblioteca, coordenação, orientação de assuntos acadêmicos, matrícula, etc.) 
+                                durante a pandemia do COVID-19 você sentiu que: ",
+                                cex.main =0.8)
 
 # Grafico Dados Instituicao de Ensino 2. Instituicao_reinicio
 # A sua instituição já reiniciou todas as atividades presenciais no seu campus e/ou faculdade?
@@ -412,7 +429,7 @@ ies_reinicio
 #           4                                                           29 
 
 # Reduçao nome dos cursos
-names(ies_reinicio) <- c("Em parte", "Não Sabe", "Não, Retornou Presencial", "Sim, Retornou Presencial")
+names(ies_reinicio) <- c("Em parte", "Não Sabe", "Não Reiniciou Presencial", "Sim Reiniciou Presencial")
 
 pct_ies_reinicio <- paste(round(unname(ies_reinicio) / sum(unname(ies_reinicio)) * 100), "%")
 pct_ies_reinicio
