@@ -132,33 +132,60 @@ text(x = grafico_sit_conjugal, y = sit_conjugal, label = paste(sit_conjugal, " (
 grafico_sit_conjugal
 
 # Grafico Dados Pessoais : 1.Situacao_empregaticia
-sit_emprego <- table(dataset.csv$situacao_empregaticia)
+# Qual sua situação empregatícia e/ou financeira atual ? 
+
+df_situacao_emp <- data.frame(situacao ="", emp=dataset.csv$situacao_empregaticia)
+
+for (k in 1:nrow(df_situacao_emp)) {
+  if(df_situacao_emp$emp[k] == "Aposentada")       df_situacao_emp$situacao[k]<- "Aposentado"
+  if(df_situacao_emp$emp[k] == "Bolsista")          df_situacao_emp$situacao[k]<- "Bolsista ou Estagiário(a)"
+  if(df_situacao_emp$emp[k] == "Corretor de Imóveis") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Dependente (dos pais) com vínculo empregatício") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Dependente (dos pais, etc.)") df_situacao_emp$situacao[k]<- "Dependente dos Pais"
+  if(df_situacao_emp$emp[k] == "Desempregado(a)") df_situacao_emp$situacao[k]<- "Desempregado(a)"
+  if(df_situacao_emp$emp[k] == "Empregado(a)") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Empresária") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Estagiário(a)") df_situacao_emp$situacao[k]<- "Bolsista ou Estagiário(a)"
+  if(df_situacao_emp$emp[k] == "Micro-empresário instituído por ME") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "Servidora pública") df_situacao_emp$situacao[k]<- "Empregado(a)"
+  if(df_situacao_emp$emp[k] == "tatuador autônomo, mas conto com ajuda dos pais") df_situacao_emp$situacao[k]<- "Empregado(a)"
+}
+
+df_situacao_emp
+
+#      Aposentado    Bolsista ou Estagiário Bolsista ou Estagiário(a)       Dependente dos Pais           Desempregado(a)              Empregado(a) 
+#               1                         2                        10                         7                         2                        30 
+
+sit_emprego <- table(df_situacao_emp$situacao)
 sit_emprego
 
 # Porcentagem 
 pct_sit_emprego <- paste0(round(unname(sit_emprego) / sum(unname(sit_emprego)) * 100,0), "%")
 pct_sit_emprego
 
+# "2%"  "4%"  "19%" "13%" "4%"  "58%"
+
 par(las=1) # nomes dos eixos perpendicular
-par(mar=c(5,16,1,1)+0.1)  # para aumentar a margem a esquerda 
+par(mar=c(5,10,1,1)+0.1)  # para aumentar a margem a esquerda 
 grafico_sit_empregaticia <- barplot(sit_emprego, 
-                                    main="Grafico Dados Pessoas : Situaçao Empregaticia",
+                                    main="Grafico Dados Pessoas : Qual sua situação empregatícia e/ou financeira atual ? ",
                                     las=1,  
                                     beside = TRUE,
                                     horiz=TRUE, 
-                                    xlim = c(0,max(sit_emprego) + 10),
+                                    xlim = c(0,max(sit_emprego) + 20),
                                     legend.text = paste(rownames(sit_emprego)," (",pct_sit_emprego, ")"),
                                     args.legend = list("top", bty="n", cex = 0.7),
                                     col=rainbow(10),
                                     cex.axis = 0.7,  
-                                    cex.names = 0.6)
+                                    cex.names = 0.8)
 
-text(grafico_sit_empregaticia, x = sit_emprego, label = sit_emprego, cex=0.8, pos=2)
+text(grafico_sit_empregaticia, x = sit_emprego, label = paste(sit_emprego, " (", pct_sit_emprego, ")"), cex=0.8, pos=4)
 
 par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
                                     
 
 # Gratico Dados Pessoais : 1.estado_reside
+# Qual o Estado no qual você reside e/ou estuda? 
 estado_reside <- table(dataset.csv$estado_reside, exclude = NULL)
 estado_reside
 
@@ -169,12 +196,12 @@ pct_estado_reside
 # Tratando Nulo
 names(pct_estado_reside) <-c("Não Respondeu", "Amazonas", "São Paulo")
 
-pie(estado_reside,
-    edges = 200, radius = 0.8,
-    clockwise = F,
-    density = NULL, angle = 90, col = rainbow(3),
-    labels = paste(names(pct_estado_reside), "-", pct_estado_reside),
-    main = "Gráfico Dados Pessoais: Respondentes por estado")
+grafico_estado_reside <- pie(estado_reside,
+                          edges = 200, radius = 0.8,
+                          clockwise = F,
+                          density = NULL, angle = 90, col = rainbow(3),
+                          labels = paste(names(pct_estado_reside), "-", pct_estado_reside, " (", estado_reside, ")"),
+                          main = "Gráfico Dados Pessoais: Qual o Estado no qual você reside e/ou estuda? ")
 
 # Grafico Dados Pessoais : 1.Instituicao de Ensino     
 # Qual o nome da sua instituição de ensino ?
