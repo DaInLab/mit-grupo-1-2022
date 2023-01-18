@@ -898,34 +898,68 @@ grafico_nivel_endividamento <- pie(nivel_endividamento,
 
 # Grafico 5. Ansiedade nivel_ansiedade
 # Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao que poderá acontecer com você nos próximos meses? *
-nivel_ansiedade <- table(dataset.csv$nivel_ansiedade, exclude = "")
+
+# Tratamento das Opcoes (Melhorou, Piorou ou Nada Mudou)
+df_nivel_ansiedade <- data.frame(nivel_ansiedade="", nivel =dataset.csv$nivel_ansiedade )
+
+df_nivel_ansiedade
+
+for (k in 1:nrow(df_nivel_ansiedade)) {
+  if(df_nivel_ansiedade$nivel[k] == "Melhor do que antes")       df_nivel_ansiedade$nivel_ansiedade[k] <- "Melhorou"
+  if(df_nivel_ansiedade$nivel[k] == "Muito melhor do que antes") df_nivel_ansiedade$nivel_ansiedade[k] <- "Melhorou"
+  if(df_nivel_ansiedade$nivel[k] == "Muito pior do que antes")   df_nivel_ansiedade$nivel_ansiedade[k] <- "Piorou"
+  if(df_nivel_ansiedade$nivel[k] == "Pior do que antes")         df_nivel_ansiedade$nivel_ansiedade[k] <- "Piorou"
+  if(df_nivel_ansiedade$nivel[k] == "O mesmo de antes")          df_nivel_ansiedade$nivel_ansiedade[k] <- "Nada Mudou"
+  if(df_nivel_ansiedade$nivel[k] == "N/A ou Não Sabe")           df_nivel_ansiedade$nivel_ansiedade[k] <- "Não Sabe"
+}
+
+
+nivel_ansiedade <- table(df_nivel_ansiedade$nivel_ansiedade, exclude = "")
 nivel_ansiedade
 
-# Melhor do que antes Muito melhor do que antes   Muito pior do que antes           N/A ou Não Sabe          O mesmo de antes         Pior do que antes 
-#                   2                         3                        10                         2                        17                        18 
+#Melhorou Nada Mudou   Não Sabe     Piorou 
+#       5         17          2         28 
 
 pct_nivel_ansiedade <- paste(round(unname(nivel_ansiedade) / sum(unname(nivel_ansiedade)) * 100), "%")
 pct_nivel_ansiedade
-#  "4 %"  "6 %"  "19 %" "4 %"  "33 %" "35 %"
+#  "10 %" "33 %" "4 %"  "54 %"
 
 grafico_nivel_ansiedade <- pie(nivel_ansiedade,
                                    edges = 200, radius = 0.8,
                                    clockwise = T,
                                    density = NULL, angle = 90, col = rainbow(6),
                                    labels = paste(names(nivel_ansiedade), "-", pct_nivel_ansiedade),
-                                   main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao que poderá acontecer com você nos próximos meses? ",
-                                   cex.main=0.8)
+                                   main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade 
+                                                          com relação ao que poderá acontecer com você nos próximos meses? ",
+                                   cex.main=0.9)
+
+
 
 # Grafico 5. Ansiedade ansiedade_planejamento
 # Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao seu planejamento pessoal (férias, viagens, feriados, etc). 
-ansiedade_planejamento <- table(dataset.csv$ansiedade_planejamento, exclude = "")
+
+# Tratamento das Opcoes (Melhorou, Piorou ou Nada Mudou)
+df_ansiedade_planejamento <- data.frame(ansiedade_planejamento="", aplan =dataset.csv$ansiedade_planejamento )
+
+df_ansiedade_planejamento
+
+for (k in 1:nrow(df_ansiedade_planejamento)) {
+  if(df_ansiedade_planejamento$aplan[k] == "Melhor do que antes")       df_ansiedade_planejamento$ansiedade_planejamento[k] <- "Melhorou"
+  if(df_ansiedade_planejamento$aplan[k] == "Muito melhor do que antes") df_ansiedade_planejamento$ansiedade_planejamento[k] <- "Melhorou"
+  if(df_ansiedade_planejamento$aplan[k] == "Muito pior do que antes")   df_ansiedade_planejamento$ansiedade_planejamento[k] <- "Piorou"
+  if(df_ansiedade_planejamento$aplan[k] == "Pior do que antes")         df_ansiedade_planejamento$ansiedade_planejamento[k] <- "Piorou"
+  if(df_ansiedade_planejamento$aplan[k] == "O mesmo de antes")         df_ansiedade_planejamento$ansiedade_planejamento[k] <- "Nada Mudou"
+}
+
+ansiedade_planejamento <- table(df_ansiedade_planejamento$ansiedade_planejamento, exclude = "")
 ansiedade_planejamento
 
-# Melhor do que antes Muito melhor do que antes   Muito pior do que antes          O mesmo de antes         Pior do que antes 
-#                  7                         2                         8                        13                        22 
+#   Melhorou Nada Mudou     Piorou 
+#          9         13         30 
+
 pct_ansiedade_planejamento <- paste(round(unname(ansiedade_planejamento) / sum(unname(ansiedade_planejamento)) * 100), "%")
 pct_ansiedade_planejamento
-#  "13 %" "4 %"  "15 %" "25 %" "42 %"
+#  "17 %" "25 %" "58 %"
 
 grafico_ansiedade_planejamento <- pie(ansiedade_planejamento,
                                edges = 200, radius = 0.8,
@@ -937,17 +971,29 @@ grafico_ansiedade_planejamento <- pie(ansiedade_planejamento,
 
 # Grafico 5. Ansiedade ansiedade_longo_prazo
 # Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação aos planos de longo prazo (sua formatura, o término do curso atual, novos projetos etc.)
-ansiedade_longo_prazo <- table(dataset.csv$ansiedade_longo_prazo, exclude = "")
+
+# Tratamento das Opcoes (Melhorou, Piorou ou Nada Mudou)
+df_ansiedade_longo_prazo <- data.frame(ansiedade_longo_prazo="", alp=dataset.csv$ansiedade_longo_prazo )
+
+for (k in 1:nrow(df_ansiedade_longo_prazo)) {
+  if(df_ansiedade_longo_prazo$alp[k] == "Melhor do que antes")       df_ansiedade_longo_prazo$ansiedade_longo_prazo[k] <- "Melhorou"
+  if(df_ansiedade_longo_prazo$alp[k] == "Muito melhor do que antes") df_ansiedade_longo_prazo$ansiedade_longo_prazo[k] <- "Melhorou"
+  if(df_ansiedade_longo_prazo$alp[k] == "Muito pior do que antes")   df_ansiedade_longo_prazo$ansiedade_longo_prazo[k] <- "Piorou"
+  if(df_ansiedade_longo_prazo$alp[k] == "Pior do que antes")         df_ansiedade_longo_prazo$ansiedade_longo_prazo[k] <- "Piorou"
+  if(df_ansiedade_longo_prazo$alp[k] == "O mesmo de antes")         df_ansiedade_longo_prazo$ansiedade_longo_prazo[k] <- "Nada Mudou"
+}
+
+ansiedade_longo_prazo <- table(df_ansiedade_longo_prazo$ansiedade_longo_prazo, exclude = "")
 ansiedade_longo_prazo
 
-# Melhor do que antes Muito melhor do que antes   Muito pior do que antes          O mesmo de antes         Pior do que antes 
-#                   3                         2                        12                        19                        16 
+# Melhorou Nada Mudou     Piorou 
+        5         19         28 
 
 pct_ansiedade_longo_prazo <- paste(round(unname(ansiedade_longo_prazo) / sum(unname(ansiedade_longo_prazo)) * 100), "%")
 pct_ansiedade_longo_prazo
-#  "6 %"  "4 %"  "23 %" "37 %" "31 %"
+#  "10 %" "37 %" "54 %"
 
-grafico_ansiedade_planejamento <- pie(ansiedade_longo_prazo,
+grafico_ansiedade_longo_prazo <- pie(ansiedade_longo_prazo,
                                       edges = 200, radius = 0.8,
                                       clockwise = T,
                                       density = NULL, angle = 90, col = rainbow(5),
