@@ -668,23 +668,37 @@ grafico_bemestar_psicologico <- pie(bemestar_psicologico,
 
 # Grafico 3. Pandemia aulas
 # Com relação à forma como as aulas foram ministradas durante a pandemia do COVID-19, você sente que:
-aulas <- table(dataset.csv$aulas_durante_pandemia, exclude = "")
+# Tratamento opcoes
+df_aulas <- data.frame(aulas="", nivel =dataset.csv$aulas_durante_pandemia)
+df_aulas
+
+for (k in 1:nrow(df_aulas)) {
+  if(df_aulas$nivel[k] == "Melhoraram")                     df_aulas$aulas[k] <- "Melhoraram"
+  if(df_aulas$nivel[k] == "Pioraram")                       df_aulas$aulas[k] <- "Pioraram"
+  if(df_aulas$nivel[k] == "Está/É mais ou menos o mesmo")      df_aulas$aulas[k] <- "Não Mudaram"
+  if(df_aulas$nivel[k] == "Foram mais ou menos o mesmo")    df_aulas$aulas[k] <- "Não Mudaram"
+  if(df_aulas$nivel[k] == "N/A ou Não sabe")              df_aulas$aulas[k] <- "Não Sabe"
+}  
+
+df_aulas
+
+
+
+aulas <- table(df_aulas$aulas, exclude = "")
 aulas
 
-# Está/É mais ou menos o mesmo  Foram mais ou menos o mesmo                   Melhoraram              N/A ou Não sabe                     Pioraram 
-#                     3                           22                            1                            4                           20 
-# Piorou 
-#  2 
+#  Melhoraram Não Mudaram    Não Sabe    Pioraram 
+#         1          25           4          20 
 
 pct_aulas <- paste(round(unname(aulas) / sum(unname(aulas)) * 100), "%")
 pct_aulas
 
-# "6 %"  "42 %" "2 %"  "8 %"  "38 %" "4 %" 
+# "2 %"  "50 %" "8 %"  "40 %"
 
 grafico_aulas <- pie(aulas,
                                     edges = 200, radius = 0.8,
                                     clockwise = T,
-                                    density = NULL, angle = 90, col = rainbow(6),
+                                    density = NULL, angle = 90, col = rainbow(4),
                                     labels = paste(names(aulas), "-", pct_aulas),
                                     main = "Grafico Pandemia Aula : Com relação à forma como as aulas foram ministradas durante a pandemia do COVID-19, você sente que",
                                     cex.main=0.8)
@@ -692,6 +706,7 @@ grafico_aulas <- pie(aulas,
 # Grafico 3. Pandemia acesso professores
 # Durante a pandemia da COVID-19, você sentiu que as formas de acesso aos seus professores: *
 
+# Tratamento opcoes
 df_professores <- data.frame(professores="", nivel =dataset.csv$acesso_professores)
 df_pro
 
