@@ -412,7 +412,7 @@ ies_reinicio
 #           4                                                           29 
 
 # Reduçao nome dos cursos
-names(ies_reinicio) <- c("Em parte", "Não Sabe", "Não, Nenhuma", "Sim, Todas")
+names(ies_reinicio) <- c("Em parte", "Não Sabe", "Não, Retornou Presencial", "Sim, Retornou Presencial")
 
 pct_ies_reinicio <- paste(round(unname(ies_reinicio) / sum(unname(ies_reinicio)) * 100), "%")
 pct_ies_reinicio
@@ -432,8 +432,7 @@ ies_decisao_fechar <- table(dataset.csv$decisao_fechar, exclude = "")
 ies_decisao_fechar
 
 # De forma oportuna e prudente             Muito lentamente            Muito rapidamente 
-#   40                            7                            5 
-
+#                  40                            7                            5 
 
 pct_ies_decisao_fechar <- paste(round(unname(ies_decisao_fechar) / sum(unname(ies_decisao_fechar)) * 100), "%")
 pct_ies_decisao_fechar
@@ -445,7 +444,9 @@ grafico_ies_decisao_fechar <- pie(ies_decisao_fechar,
                             clockwise = T,
                             density = NULL, angle = 90, col = rainbow(3),
                             labels = paste(names(ies_decisao_fechar), "-", pct_ies_decisao_fechar),
-                            main = "Gráfico Instituiçao:  decisão de fechar o campus e de utilizar ferramentas online p/as aulas,devido a COVID-19")
+                            main = "Gráfico Instituiçao:  Com relação à decisão de fechar o campus e de utilizar ferramentas online para as aulas, por conta da pandemia da COVID-19, 
+                                você sentiu que as decisões na sua instituição foram tomadas:",
+                            cex.main=0.9)
 
 
 # Grafico 3. Pandemia_convive_risco 
@@ -472,7 +473,6 @@ grafico_convive_risco <- pie(convive_risco,
 
 # Grafico 3. Pandemia_quarentena imposta
 # Você, alguém com quem convive ou que está em sua moradia está ou esteve em quarentena imposta pela COVID-19  ? *
-
 quarentena_imposta <- table(dataset.csv$quarentena_imposta, exclude = "")
 quarentena_imposta
 
@@ -542,27 +542,37 @@ par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
 # Grafico 3. Pandemia_acesso_servicos_saude
 # Como você classifica o seu acesso aos serviços de saúde, a antes e durante a pandemia COVID-19 ? *
 
-acesso_servicos_saude <- table(dataset.csv$acesso_servicos_saude, exclude = "")
+# Tratamento opcoes
+df_saude <- data.frame(saude="", nivel =dataset.csv$acesso_servicos_saude)
+
+for (k in 1:nrow(df_saude)) {
+  if(df_saude$nivel[k] == "Melhor do que antes")            df_saude$saude[k] <- "Melhorou"
+  if(df_saude$nivel[k] == "Muito pior do que antes")        df_saude$saude[k] <- "Piorou"
+  if(df_saude$nivel[k] == "O mesmo de antes")               df_saude$saude[k] <- "Não Mudou"
+  if(df_saude$nivel[k] == "Pior do que antes")              df_saude$saude[k] <- "Piorou"
+  if(df_saude$nivel[k] == "N/A ou Não sabe")              df_saude$saude[k] <- "Não Sabe"
+}  
+
+df_saude
+
+acesso_servicos_saude <- table(df_saude$saude, exclude = "")
 acesso_servicos_saude
 
-# Melhor do que antes Muito pior do que antes         N/A ou Não sabe        O mesmo de antes       Pior do que antes 
-#    5                       5                       1                      28                      13 
-
-names(acesso_servicos_saude) <- c("Melhorou", "Piorou MUITO", "Não Sabe", "NADA Mudou", "Piorou")
-acesso_servicos_saude
+# Melhorou Não Mudou  Não Sabe    Piorou 
+#     5        28         1        18 
 
 pct_acesso_servicos_saude <- paste(round(unname(acesso_servicos_saude) / sum(unname(acesso_servicos_saude)) * 100), "%")
 pct_acesso_servicos_saude
 
-# "10 %" "10 %" "2 %"  "54 %" "25 %"
+# "10 %" "54 %" "2 %"  "35 %"
 
 grafico_acesso_servicos_saude <- pie(acesso_servicos_saude,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
-                                  density = NULL, angle = 90, col = rainbow(5),
+                                  density = NULL, angle = 90, col = rainbow(4),
                                   labels = paste(names(acesso_servicos_saude), "-", pct_acesso_servicos_saude),
                                   main = "Grafico Pandemia Serviços Saude : Como você classifica o seu acesso aos serviços de saúde, a antes e durante a pandemia COVID-19 ? ",
-                                  cex.main=0.7)
+                                  cex.main=0.9)
 
 # Grafico 3. Pandemia_acesso_internet
 # Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ? *
