@@ -809,16 +809,29 @@ grafico_vacinado <- pie(vacinado,
 
 # Grafico 4. Financas despesas
 # Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ? *v
-despesas <- table(dataset.csv$despesas, exclude = "")
+# Tratamento das Opcoes
+df_despesas <- data.frame(despesas="", nivel =dataset.csv$despesas )
+
+df_despesas
+
+for (k in 1:nrow(df_despesas)) {
+  if(df_despesas$nivel[k] == "Aumentaram")       df_despesas$despesas[k] <- "Aumentaram"
+  if(df_despesas$nivel[k] == "Diminuiram")       df_despesas$despesas[k] <- "Diminuiram"
+  if(df_despesas$nivel[k] == "Foram mais ou menos os mesmos")   df_despesas$despesas[k] <- "Não Mudaram"
+  if(df_despesas$nivel[k] == "São mais ou menos os mesmos")           df_despesas$despesas[k] <- "Não Mudaram"
+  
+}
+
+despesas <- table(df_despesas$despesas, exclude = "")
 despesas
 
-#Aumentaram                    Diminuiram Foram mais ou menos os mesmos   São mais ou menos os mesmos 
-#        17                            14                            19                             2
+# Aumentaram  Diminuiram Não Mudaram 
+#     17          14          21 
 
 pct_despesas <- paste(round(unname(despesas) / sum(unname(despesas)) * 100), "%")
 pct_despesas
 
-#  "33 %" "27 %" "37 %" "4 %" 
+#  "33 %" "27 %" "40 %" 
 
 grafico_despesas <- pie(despesas,
                                   edges = 200, radius = 0.8,
@@ -828,13 +841,14 @@ grafico_despesas <- pie(despesas,
                                   main = "Grafico Situacao Financeira : Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ?",
                                   cex.main=0.8)
 
+
 # Grafico 4. Financas renda_financeira
 # Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira? *
 renda_financeira <- table(dataset.csv$renda_financeira, exclude = "")
 renda_financeira
 
-#Aumentou                   Diminuiu Está mais ou menos a mesma N/A ou Não quero responder 
-#       3                         25                         23                          1 
+#                   Aumentou                   Diminuiu Está mais ou menos a mesma N/A ou Não quero responder 
+#                          3                         25                         23                          1 
 
 pct_renda_financeira <- paste(round(unname(renda_financeira) / sum(unname(renda_financeira)) * 100), "%")
 pct_renda_financeira
@@ -849,7 +863,7 @@ grafico_renda_financeira <- pie(renda_financeira,
                         main = "Grafico Situacao Financeira : Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira?",
                         cex.main=0.8)
 
-# Grafico 2. Financas ajuda_financeira
+# Grafico 2. Instituicao ajuda_financeira
 # Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19? *
 ajuda_financeira <- table(dataset.csv$ajuda_financeira, exclude = "")
 ajuda_financeira
@@ -871,17 +885,31 @@ grafico_ajuda_financeira <- pie(ajuda_financeira,
                                 cex.main=0.8)
 
 # Grafico 4. Financas nivel_endividamento
-# Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19? *
-nivel_endividamento <- table(dataset.csv$nivel_endividamento, exclude = "")
+# Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas: *
+
+# Tratamento das Opcoes
+df_endividamento <- data.frame(endividamento="", nivel =dataset.csv$nivel_endividamento )
+
+df_endividamento
+
+for (k in 1:nrow(df_endividamento)) {
+  if(df_endividamento$nivel[k] == "Aumentaram")       df_endividamento$endividamento[k] <- "Aumentaram"
+  if(df_endividamento$nivel[k] == "Diminuiram")       df_endividamento$endividamento[k] <- "Diminuiram"
+  if(df_endividamento$nivel[k] == "Estão mais ou menos as mesmas")   df_endividamento$endividamento[k] <- "Não Mudaram"
+  if(df_endividamento$nivel[k] == "N/A ou Não sabe")           df_endividamento$endividamento[k] <- "Não Sabe"
+  if(df_endividamento$nivel[k] == "São mais ou menos as mesmas")         df_endividamento$endividamento[k] <- "Não Mudaram"
+}
+
+nivel_endividamento <- table(df_endividamento$endividamento, exclude = "")
 nivel_endividamento
 
-#Aumentaram                    Diminuiram Estão mais ou menos as mesmas               N/A ou Não sabe   São mais ou menos as mesmas 
-#         7                             6                            32                             3                             4 
+# Aumentaram  Diminuiram Não Mudaram    Não Sabe 
+#        7           6          36           3 
 
 pct_nivel_endividamento <- paste(round(unname(nivel_endividamento) / sum(unname(nivel_endividamento)) * 100), "%")
 pct_nivel_endividamento
 
-#  "13 %" "12 %" "62 %" "6 %"  "8 %" 
+#  "13 %" "12 %" "69 %" "6 %" 
 
 grafico_nivel_endividamento <- pie(nivel_endividamento,
                                 edges = 200, radius = 0.8,
@@ -892,8 +920,11 @@ grafico_nivel_endividamento <- pie(nivel_endividamento,
                                 cex.main=0.9)
 
 
+
 # Grafico 4. Financas despesas_cresceram
 # Quais das despesas do seu dia-a-dia aqui relacionadas você acredita que cresceram no ano/semestre, após o pico da pandemia ? (Marque todas que achar necessárias)
+
+# ??
 
 
 # Grafico 5. Ansiedade nivel_ansiedade
