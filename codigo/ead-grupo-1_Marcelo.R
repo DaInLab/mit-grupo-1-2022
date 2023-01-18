@@ -566,24 +566,36 @@ grafico_acesso_servicos_saude <- pie(acesso_servicos_saude,
 
 # Grafico 3. Pandemia_acesso_internet
 # Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ? *
-acesso_internet <- table(dataset.csv$acesso_internet, exclude = "")
+
+# Tratamento opcoes
+df_internet <- data.frame(internet="", nivel =dataset.csv$acesso_internet)
+
+for (k in 1:nrow(df_internet)) {
+  if(df_internet$nivel[k] == "Melhor do que antes")            df_internet$internet[k] <- "Melhorou"
+  if(df_internet$nivel[k] == "Muito melhor que antes")      df_internet$internet[k] <- "Melhorou"
+  if(df_internet$nivel[k] == "Muito pior que antes")        df_internet$internet[k] <- "Piorou"
+  if(df_internet$nivel[k] == "O mesmo que antes")               df_internet$internet[k] <- "Não Mudou"
+  if(df_internet$nivel[k] == "Pior que antes")              df_internet$internet[k] <- "Piorou"
+  if(df_internet$nivel[k] == "N/A ou Não sabe")              df_internet$internet[k] <- "Não Sabe"
+}  
+
+df_internet
+
+acesso_internet <- table(df_internet$internet, exclude = "")
 acesso_internet
 
-# Melhor do que antes Muito melhor do que antes      Muito pior que antes           N/A ou Não sabe         O mesmo que antes            Pior que antes 
-#             9                         1                         2                         1                        34                         5 
-
-names(acesso_internet) <- c("Melhorou","Melhorou MUITO" ,"Piorou MUITO", "Não Sabe", "Nada Mudou", "Piorou")
-acesso_internet
+#  Melhorou Não Mudou  Não Sabe    Piorou 
+#      10        34         1         7 
 
 pct_acesso_internet <- paste(round(unname(acesso_internet) / sum(unname(acesso_internet)) * 100), "%")
 pct_acesso_internet
 
-# "17 %" "2 %"  "4 %"  "2 %"  "65 %" "10 %"
+# "19 %" "65 %" "2 %"  "13 %"
 
 grafico_acesso_internet <- pie(acesso_internet,
                                      edges = 200, radius = 0.8,
                                      clockwise = T,
-                                     density = NULL, angle = 90, col = rainbow(6),
+                                     density = NULL, angle = 90, col = rainbow(4),
                                      labels = paste(names(acesso_internet), "-", pct_acesso_internet),
                                      main = "Grafico Pandemia Acesso Internet : Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ?",
                                      cex.main=0.8)
@@ -605,7 +617,6 @@ for (k in 1:nrow(df_estudos)) {
 }  
 
 df_estudos
-
 
 capacidade_prosseguir_estudos<- table(df_estudos$estudos, exclude = "")
 capacidade_prosseguir_estudos
