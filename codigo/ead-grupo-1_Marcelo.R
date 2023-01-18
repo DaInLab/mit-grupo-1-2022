@@ -231,6 +231,7 @@ text(grafico_nome_cursos, x = nome_cursos, label = nome_cursos, cex=0.8, pos=2)
 par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
 
 # Grafico 1.Nivel Ensino 
+# Qual nível de ensino você está cursando ? 
 tbl_nivel_ensino <- table(dataset.csv$nivel_ensino)
 tbl_nivel_ensino
 
@@ -240,11 +241,12 @@ pct_nivel_ensino
 pie(tbl_nivel_ensino,
     edges = 200, radius = 0.8,
     clockwise = T,
-    density = NULL, angle = 90, col = c("red", "orange", "yellow", "green", "black", "blue"),
+    density = NULL, angle = 90, col = c("red", "orange", "yellow", "green", "gray", "blue"),
     labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino),
-    main = "Gráfico Dados Pessoais: Quantidade de respondentes por nível de ensino")
+    main = "Gráfico Dados Pessoais: Qual nível de ensino você está cursando ? ")
 
 # Grafico 1.Tipo Instituicao de Ensino
+# Qual é o tipo da sua instituição de ensino ? 
 tipo_ies <- table(dataset.csv$tipo_ies)
 tipo_ies
 
@@ -261,9 +263,10 @@ pie(tipo_ies,
     clockwise = T,
     density = NULL, angle = 90, col = rainbow(3),
     labels = paste(names(tipo_ies), "-", tipo_ies),
-    main = "Gráfico Dados Pessoais: Quantidade de respondentes por tipo Inst Ensino")
+    main = "Gráfico Dados Pessoais: Qual é o tipo da sua instituição de ensino ? ")
 
 # Grafico Dados Pessoais 1. Local Estudante (você é um estudante nativo local, originário de outra cidade ou um estudante internacional)
+# Com relação à cidade onde está localizada sua instituição de ensino, você é um estudante nativo local, originário de outra cidade ou um estudante internacional ?
 local_estudante <- table(dataset.csv$local_estudante)
 local_estudante
 
@@ -280,7 +283,9 @@ grafico_local_estudante <- pie(local_estudante,
                             clockwise = T,
                             density = NULL, angle = 90, col = rainbow(3),
                             labels = paste(names(local_estudante), "-", local_estudante),
-                            main = "Gráfico Dados Pessoais: respondentes por origem/localização")
+                            main = "Gráfico Dados Pessoais: Com relação à cidade onde está localizada sua instituição de ensino, 
+                                  você é um estudante nativo local, originário de outra cidade ou um estudante internacional ?",
+                            cex.main = 0.9)
 
 # Grafico Dados Pessoais 1. Residencia Atual do estudante
 # Onde você está vivendo ou residindo atualmente?
