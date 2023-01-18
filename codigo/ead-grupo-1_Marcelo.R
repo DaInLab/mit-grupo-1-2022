@@ -736,21 +736,34 @@ grafico_espaco_fisico <- pie(espaco_fisico,
 
 # Grafico 3. Pandemia disposicao_atividades
 # Você sentiu que, durante a pandemia do COVID-19, de forma geral, sua disposição para participar das aulas/atividades, estudar e aprender: 
-disposicao_atividades <- table(dataset.csv$disposicao_atividades, exclude = "")
+# Tratamento das Opcoes
+df_disposicao <- data.frame(disposicao="", nivel =dataset.csv$disposicao_atividades )
+
+for (k in 1:nrow(df_disposicao)) {
+  if(df_disposicao$nivel[k] == "Aumentou")                     df_disposicao$disposicao[k] <- "Aumentou"
+  if(df_disposicao$nivel[k] == "Diminuiu")                     df_disposicao$disposicao[k] <- "Diminuiu"
+  if(df_disposicao$nivel[k] == "É mais ou menos o mesmo")      df_disposicao$disposicao[k] <- "Não Mudou"
+  if(df_disposicao$nivel[k] == "Ficou mais ou menos a mesma")    df_disposicao$disposicao[k] <- "Não Mudou"
+  if(df_disposicao$nivel[k] == "N/A ou Não sabe")              df_disposicao$disposicao[k] <- "Não Sabe"
+  
+}
+df_disposicao
+
+disposicao_atividades <- table(df_disposicao$disposicao, exclude = "")
 disposicao_atividades
 
-#Aumentou                    Diminuiu     É mais ou menos o mesmo Ficou mais ou menos a mesma             N/A ou Não sabe 
-#    11                          26                           3                          11                           1
+# Aumentou  Diminuiu Não Mudou  Não Sabe 
+#    11        26        14         1 
 
 pct_disposicao_atividades <- paste(round(unname(disposicao_atividades) / sum(unname(disposicao_atividades)) * 100), "%")
 pct_disposicao_atividades
 
-#  "21 %" "50 %" "6 %"  "21 %" "2 %"
+#  "21 %" "50 %" "27 %" "2 %"
 
 grafico_disposicao_atividades <- pie(disposicao_atividades,
                              edges = 200, radius = 0.8,
                              clockwise = T,
-                             density = NULL, angle = 90, col = rainbow(5),
+                             density = NULL, angle = 90, col = rainbow(4),
                              labels = paste(names(disposicao_atividades), "-", pct_disposicao_atividades),
                              main = "Grafico Pandemia Disposicao Atividades : Você sentiu que, durante a pandemia do COVID-19, de forma geral, 
                                     sua disposição para participar das aulas/atividades, estudar e aprender: ",
@@ -758,16 +771,32 @@ grafico_disposicao_atividades <- pie(disposicao_atividades,
 
 # Grafico 3. Pandemia desempenho_escolar
 # Você percebeu que o seu desempenho escolar durante a pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):
-desempenho_escolar <- table(dataset.csv$desempenho_escolar, exclude = "")
+
+# Tratamento das Opcoes
+df_desempenho_escolar <- data.frame(desempenho_escolar="", nivel =dataset.csv$desempenho_escolar )
+
+df_desempenho_escolar
+
+for (k in 1:nrow(df_desempenho_escolar)) {
+  if(df_desempenho_escolar$nivel[k] == "Aumentou")                     df_desempenho_escolar$desempenho_escolar[k] <- "Aumentou"
+  if(df_desempenho_escolar$nivel[k] == "Diminuiu")                     df_desempenho_escolar$desempenho_escolar[k] <- "Diminuiu"
+  if(df_desempenho_escolar$nivel[k] == "Está mais ou menos o mesmo")   df_desempenho_escolar$desempenho_escolar[k] <- "Não Mudou"
+  if(df_desempenho_escolar$nivel[k] == "Foi mais ou menos o mesmo")    df_desempenho_escolar$desempenho_escolar[k] <- "Não Mudou"
+  if(df_desempenho_escolar$nivel[k] == "N/A ou Não sabe")              df_desempenho_escolar$desempenho_escolar[k] <- "Não Sabe"
+  
+}
+df_desempenho_escolar
+
+desempenho_escolar <- table(df_desempenho_escolar$desempenho_escolar, exclude = "")
 desempenho_escolar
 
-# Aumentou                   Diminuiu Está mais ou menos o mesmo  Foi mais ou menos o mesmo            N/A ou Não sabe 
-#       14                         16                          4                         16                          2 
+# Aumentou  Diminuiu Não Mudou  Não Sabe 
+#     14        16        20         2 
 
 pct_desempenho_escolar <- paste(round(unname(desempenho_escolar) / sum(unname(desempenho_escolar)) * 100), "%")
 pct_desempenho_escolar
 
-#  "27 %" "31 %" "8 %"  "31 %" "4 %" 
+#  "27 %" "31 %" "38 %" "4 %"
 
 grafico_desempenho_escolar <- pie(desempenho_escolar,
                                      edges = 200, radius = 0.8,
@@ -777,7 +806,6 @@ grafico_desempenho_escolar <- pie(desempenho_escolar,
                                      main = "Grafico Pandemia Desempenho Escolar : Você percebeu que o seu desempenho escolar durante a pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):",
                                      cex.main=0.8)
 
-Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ? *v
 
 # Grafico 1. Vacinado
 # Você já foi vacinado contra a COVID-19 ?
