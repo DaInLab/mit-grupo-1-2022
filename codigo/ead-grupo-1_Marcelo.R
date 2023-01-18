@@ -283,6 +283,7 @@ grafico_local_estudante <- pie(local_estudante,
                             main = "Gráfico Dados Pessoais: respondentes por origem/localização")
 
 # Grafico Dados Pessoais 1. Residencia Atual do estudante
+# Onde você está vivendo ou residindo atualmente?
 residencia_atual <- table(dataset.csv$residencia_atual,  exclude = "")
 residencia_atual
 
@@ -290,7 +291,7 @@ residencia_atual
 # Fora do campus, mas na mesma cidade da instituição de ensino                 33 
 
 # Reduçao nome 
-names(residencia_atual) <- c("Em Outra Cidade", "Na mesma Cidade")
+names(residencia_atual) <- c("Em Outra Cidade da Instituição", "Na mesma Cidade da Instituição")
 
 pct_residencia_atual <- paste(round(unname(residencia_atual) / sum(unname(residencia_atual)) * 100), "%")
 pct_residencia_atual
@@ -302,9 +303,10 @@ pie(residencia_atual,
     clockwise = T,
     density = NULL, angle = 90, col = rainbow(3),
     labels = paste(names(residencia_atual), "-", pct_residencia_atual),
-    main = "Gráfico Dados Pessoais: Residencia dos respondentes x Cidade Inst Ensino")
+    main = "Gráfico Dados Pessoais: Onde você está vivendo ou residindo atualmente?")
 
 # Grafico Dados Pessoais 1. Moradia Permanente
+# Sua moradia atual é uma residência permanente e estável para você?
 moradia_atual_perm <- table(dataset.csv$moradia_atual_permanente)
 moradia_atual_perm
 
@@ -313,16 +315,17 @@ moradia_atual_perm
 
 pct_moradia_atual_perm <- paste(round(unname(moradia_atual_perm) / sum(unname(moradia_atual_perm)) * 100), "%")
 pct_moradia_atual_perm
-
+# "10 %" "90 %"
 
 grafico_moradia_atual_perm <- pie(moradia_atual_perm,
                               edges = 200, radius = 0.8,
                               clockwise = T,
                               density = NULL, angle = 90, col = rainbow(3),
                               labels = paste(names(moradia_atual_perm), "-", pct_moradia_atual_perm),
-                              main = "Gráfico Dados Pessoais: Moradia Atual permanente dos respondentes")
+                              main = "Gráfico Dados Pessoais: Sua moradia atual é uma residência permanente e estável para você?")
 
 # Grafico Dados Pessoais 1. Respondentes morando com 
+# Atualmente, você está morando ou residindo com/em: 
 morando_com <- table(dataset.csv$morando_.com)
 morando_com
 
@@ -331,14 +334,14 @@ morando_com
 
 pct_morando_com <- paste(round(unname(morando_com) / sum(unname(morando_com)) * 100), "%")
 pct_morando_com
-
+"6 %"  "69 %" "25 %"
 
 grafico_morando_com <- pie(morando_com,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(3),
                                   labels = paste(names(morando_com), "-", pct_morando_com),
-                                  main = "Gráfico Dados Pessoais: Com quem mora os respondentes ")
+                                  main = "Gráfico Dados Pessoais: Atualmente, você está morando ou residindo com/em:  ")
 
 # Grafico Dados Instituicao de Ensino  2. Migrou Virtual
 # Sua instituição migrou para as aulas virtuais durante a pandemia da COVID-19? 
@@ -388,14 +391,13 @@ df_infra <- data.frame(infra="", nivel =dataset.csv$acesso_infra_ies)
 
 for (k in 1:nrow(df_infra)) {
   if(df_infra$nivel[k] == "Melhorou")            df_infra$infra[k] <- "Melhoraram"
-  if(df_infra$nivel[k] == "Pioraram")        df_infra$infra[k] <- "Pioraram"
+  if(df_infra$nivel[k] == "Pioraram")            df_infra$infra[k] <- "Pioraram"
   if(df_infra$nivel[k] == "Piorou")              df_infra$infra[k] <- "Pioraram"
-  if(df_infra$nivel[k] == "N/A ou Não sabe")              df_infra$infra[k] <- "Não Sabe"
-  if(df_infra$nivel[k] == "Ficou mais ou menos o mesmo")               df_infra$infra[k] <- "Não Mudaram"
+  if(df_infra$nivel[k] == "N/A ou Não sabe")     df_infra$infra[k] <- "Não Sabe"
+  if(df_infra$nivel[k] == "Ficou mais ou menos o mesmo")  df_infra$infra[k] <- "Não Mudaram"
 }  
 
 df_infra
-
 
 ies_infra <- table(df_infra$infra, exclude = "")
 ies_infra
