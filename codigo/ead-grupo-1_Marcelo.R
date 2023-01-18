@@ -177,6 +177,7 @@ pie(estado_reside,
     main = "Gráfico Dados Pessoais: Respondentes por estado")
 
 # Grafico Dados Pessoais : 1.Instituicao de Ensino     
+# Qual o nome da sua instituição de ensino ?
 df_ies <- data.frame(sigla_ies="", ies=dataset.csv$ies )
 
 for (k in 1:nrow(df_ies)) {
@@ -192,9 +193,7 @@ tbl_ies
 pct_ies <- paste(round(unname(tbl_ies) / sum(unname(tbl_ies)) * 100), "%")
 pct_ies
 
-pie(tbl_ies, main = "Perfil : Instituicoes de Ensino", labels = pct_ies, col = c(4,5))
-legend("right", c("Demais Instituições", "UNESP Bauru"), 
-       cex = 1.5, fill = c(4,5))
+grafico_ies <- pie(tbl_ies, main = "Perfil : Qual o nome da sua instituição de ensino ?", labels = paste(df_ies$sigla_ies, " - ", pct_ies, "(", tbl_ies, ")"), col = c(4,5))
 
 # Grafico Dados Pessoais : 1.Nome_Cursos
 # Qual o nome/denominação do seu curso?
