@@ -28,7 +28,7 @@
 
 # Import packages
 #library(tidyverse)
-library(ggplot2)
+#library(ggplot2)
 
 # Importacao arquivo CSV
 dataset.csv <-read.csv("./dados/COVID19IES.csv", header = TRUE, sep = ";", quote = "\"", dec = ".")
@@ -38,10 +38,18 @@ num_questionario = as.numeric(nrow(dataset.csv))
 print(paste("Numero de Questionarios Respondidos :", num_questionario))
 
 # Grafico Dados Pessoais : 1.Idade (Faixa Etária) 
+# Qual a sua idade ? 
 idade <- table(dataset.csv$idade)
+idade
+
+# 17 18 19 20 21 22 23 25 26 28 29 30 34 35 37 40 41 43 46 48 51 54 55 60 
+#  1  1  3  4  2  3  4  4  3  1  1  1  1  2  1  3  3  4  1  2  2  2  2  1 
 
 # Porcentagem das faixas etárias
 pct_idade <- paste0(round(unname(idade) / sum(unname(idade)) * 100,0), "%")
+pct_idade
+
+# "2%" "2%" "6%" "8%" "4%" "6%" "8%" "8%" "6%" "2%" "2%" "2%" "2%" "4%" "2%" "6%" "6%" "8%" "2%" "4%" "4%" "4%" "4%" "2%"
 
 # Amplitude 
 valor_min = min(dataset.csv$idade)
@@ -68,46 +76,60 @@ df_faixa_etaria
 tbl_faixa_etaria <- table(df_faixa_etaria$faixa_etaria)
 tbl_faixa_etaria
 
+# de 17 a 24 anos de 22 a 26 anos de 27 a 31 anos de 32 a 36 anos de 37 a 41 anos de 42 a 46 anos de 47 a 51 anos de 52 a 56 anos de 57 a 61 anos 
+#             18               7               3               3               7               5               4               4               1 
+
 ## Porcentagem por Faixa Etaria
 pct_faixa_etaria <- paste0(round(unname(tbl_faixa_etaria) / sum(unname(tbl_faixa_etaria)) * 100,0), "%")
 pct_faixa_etaria
 
+# "35%" "13%" "6%"  "6%"  "13%" "10%" "8%"  "8%"  "2%" 
+
 grafico_faixa_etaria <- barplot(tbl_faixa_etaria, 
-                                main = "Gráfico Dados Pessoais: Faixa etária",
-                                xlab = "Faixa Etária", 
+                                main = "Gráfico Dados Pessoais: Qual a sua idade ? ",
+                                xlab = "Idades", 
                                 ylab = "Respondentes",
-                                col = c("blue", "orange"),
+                                col = rainbow(9),
                                 ylim = c(0,max(tbl_faixa_etaria) + 5),
                                 cex.axis=1.0, cex.names=0.7)
 text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), cex=0,8, pos=3)
 
+
 # Grafico Dados Pessoais : 1.Genero
+# Qual o seu gênero ?
 genero <- table(dataset.csv$genero)
 df_genero <- as.data.frame(table(dataset.csv$genero))
 df_genero
 
+# Var1 Freq
+# 1               Feminino   24
+# 2              Homem gay    1
+# 3              Masculino   25
+# 4 Transgênero/Transexual    2
+
 pct_genero <- paste0(round(unname(genero) / sum(unname(genero)) * 100,0), "%")
 pct_genero
+# "46%" "2%"  "48%" "4%"
 
-grafico.genero2 <- ggplot(dataset.csv, aes(y=genero, fill=genero))+
-                  geom_bar()+
-                  geom_text(aes(label = pct_genero), stat = "count", size = 5, hjust = -0.3, vjust = 0, colour = "black")+theme(legend.position="none")+
-                  labs(title="Perfil : Gênero", x = "Quantidade", y = "")  
-grafico.genero2
+#grafico.genero2 <- ggplot(dataset.csv, aes(y=genero, fill=genero))+
+#                  geom_bar()+
+#                  geom_text(aes(label = pct_genero), stat = "count", size = 5, hjust = -0.3, vjust = 0, colour = "black")+theme(legend.position="none")+
+#                  labs(title="Perfil : Gênero", x = "Quantidade", y = "")  
+#grafico.genero2
 
-ggplot(dataset.csv, aes(genero, fill = genero)) + 
-  geom_bar(aes(y = (..count..)/sum(..count..))) + 
-  scale_y_continuous(labels=scales::percent) +
-  ylab("Frequencia")+
-ggtitle("Perfil : Gênero")+
-scale_fill_discrete(name="")
+#ggplot(dataset.csv, aes(genero, fill = genero)) + 
+#  geom_bar(aes(y = (..count..)/sum(..count..))) + 
+#  scale_y_continuous(labels=scales::percent) +
+#  ylab("Frequencia")+
+#ggtitle("Perfil : Gênero")+
+#scale_fill_discrete(name="")
 
 grafico_genero <- barplot(genero, 
-                                main = "Gráfico Genero",
+                                main = "Gráfico Dados Pessoais: Qual o seu gênero ?",
                                 ylab = "Respondentes",
                                 col = c(rainbow(4)),
-                                ylim = c(0,max(genero) + 10),
-                                cex.axis=1.0, cex.names=0.8)
+                                ylim = c(0,max(genero) + 5),
+                                cex.axis=1.0, cex.names=1)
 text(x = grafico_genero, y = genero, label = paste(genero, " (", pct_genero, ")"), cex=1, pos=3)
 
 
