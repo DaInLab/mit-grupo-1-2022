@@ -370,7 +370,6 @@ grafico_tipo_ies <- pie(tipo_ies,
 # Com relação à cidade onde está localizada sua instituição de ensino, você é um estudante nativo local, originário de outra cidade ou um estudante internacional ?
 local_estudante <- table(dataset.csv$local_estudante)
 local_estudante
-
 #        Local Outra cidade 
 #          18           34 
 
@@ -383,7 +382,7 @@ grafico_local_estudante <- pie(local_estudante,
                             edges = 200, radius = 0.8,
                             clockwise = T,
                             density = NULL, angle = 90, col = rainbow(3),
-                            labels = paste(names(local_estudante), "-", local_estudante),
+                            labels = paste(names(local_estudante), "-", local_estudante, "(", pct_local_estudante,")"),
                             main = "Gráfico Dados Pessoais: Com relação à cidade onde está localizada sua instituição de ensino, 
                                   você é um estudante nativo local, originário de outra cidade ou um estudante internacional ?",
                             cex.main = 0.9)
@@ -393,8 +392,8 @@ grafico_local_estudante <- pie(local_estudante,
 residencia_atual <- table(dataset.csv$residencia_atual,  exclude = "")
 residencia_atual
 
-# Em outra cidade da instituição de ensino mas dentro do mesmo estado        18
-# Fora do campus, mas na mesma cidade da instituição de ensino                 33 
+#Em outra cidade da instituição de ensino mas dentro do mesmo estado        Fora do campus, mas na mesma cidade da instituição de ensino 
+#         18                                                                  33 
 
 # Reduçao nome 
 names(residencia_atual) <- c("Em Outra Cidade da Instituição", "Na mesma Cidade da Instituição")
@@ -404,12 +403,12 @@ pct_residencia_atual
 
 # "35 %" "65 %"
 
-pie(residencia_atual,
-    edges = 200, radius = 0.8,
-    clockwise = T,
-    density = NULL, angle = 90, col = rainbow(3),
-    labels = paste(names(residencia_atual), "-", pct_residencia_atual),
-    main = "Gráfico Dados Pessoais: Onde você está vivendo ou residindo atualmente?")
+grafico_residencia_atual <- pie(residencia_atual,
+                            edges = 100, radius = 0.8,
+                            clockwise = T,
+                            density = NULL, angle = 90, col = rainbow(3),
+                            labels = paste(names(residencia_atual), "-", pct_residencia_atual, "(", pct_residencia_atual,")"),
+                            main = "Gráfico Dados Pessoais: Onde você está vivendo ou residindo atualmente?")
 
 # Grafico Dados Pessoais 1. Moradia Permanente
 # Sua moradia atual é uma residência permanente e estável para você?
