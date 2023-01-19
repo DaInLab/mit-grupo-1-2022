@@ -1179,8 +1179,6 @@ grafico_nivel_endividamento <- pie(nivel_endividamento,
 # Tratamento das Opcoes (Melhorou, Piorou ou Nada Mudou)
 df_nivel_ansiedade <- data.frame(nivel_ansiedade="", nivel =dataset.csv$nivel_ansiedade )
 
-df_nivel_ansiedade
-
 for (k in 1:nrow(df_nivel_ansiedade)) {
   if(df_nivel_ansiedade$nivel[k] == "Melhor do que antes")       df_nivel_ansiedade$nivel_ansiedade[k] <- "Melhorou"
   if(df_nivel_ansiedade$nivel[k] == "Muito melhor do que antes") df_nivel_ansiedade$nivel_ansiedade[k] <- "Melhorou"
@@ -1205,12 +1203,10 @@ grafico_nivel_ansiedade <- pie(nivel_ansiedade,
                                    edges = 200, radius = 0.8,
                                    clockwise = T,
                                    density = NULL, angle = 90, col = rainbow(6),
-                                   labels = paste(names(nivel_ansiedade), "-", pct_nivel_ansiedade),
+                                   labels = paste(names(nivel_ansiedade), " ", nivel_ansiedade, "(", pct_nivel_ansiedade, ")"),
                                    main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade 
-                                                          com relação ao que poderá acontecer com você nos próximos meses? ",
-                                   cex.main=0.9)
-
-
+                                                      com relação ao que poderá acontecer com você nos próximos meses? ",
+                                   cex.main=1)
 
 # Grafico 5. Ansiedade ansiedade_planejamento
 # Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao seu planejamento pessoal (férias, viagens, feriados, etc). 
@@ -1218,7 +1214,6 @@ grafico_nivel_ansiedade <- pie(nivel_ansiedade,
 # Tratamento das Opcoes (Melhorou, Piorou ou Nada Mudou)
 df_ansiedade_planejamento <- data.frame(ansiedade_planejamento="", aplan =dataset.csv$ansiedade_planejamento )
 
-df_ansiedade_planejamento
 
 for (k in 1:nrow(df_ansiedade_planejamento)) {
   if(df_ansiedade_planejamento$aplan[k] == "Melhor do que antes")       df_ansiedade_planejamento$ansiedade_planejamento[k] <- "Melhorou"
@@ -1242,9 +1237,10 @@ grafico_ansiedade_planejamento <- pie(ansiedade_planejamento,
                                edges = 200, radius = 0.8,
                                clockwise = T,
                                density = NULL, angle = 90, col = rainbow(5),
-                               labels = paste(names(ansiedade_planejamento), "-", pct_ansiedade_planejamento),
-                               main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao seu planejamento pessoal (férias, viagens, feriados, etc). ",
-                               cex.main=0.8)
+                               labels = paste(names(ansiedade_planejamento), " ", ansiedade_planejamento, "(",pct_ansiedade_planejamento, ")"),
+                               main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao seu 
+                                          planejamento pessoal (férias, viagens, feriados, etc). ",
+                               cex.main=0.9)
 
 # Grafico 5. Ansiedade ansiedade_longo_prazo
 # Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação aos planos de longo prazo (sua formatura, o término do curso atual, novos projetos etc.)
@@ -1264,7 +1260,7 @@ ansiedade_longo_prazo <- table(df_ansiedade_longo_prazo$ansiedade_longo_prazo, e
 ansiedade_longo_prazo
 
 # Melhorou Nada Mudou     Piorou 
-        5         19         28 
+#        5         19         28 
 
 pct_ansiedade_longo_prazo <- paste(round(unname(ansiedade_longo_prazo) / sum(unname(ansiedade_longo_prazo)) * 100), "%")
 pct_ansiedade_longo_prazo
@@ -1274,7 +1270,7 @@ grafico_ansiedade_longo_prazo <- pie(ansiedade_longo_prazo,
                                       edges = 200, radius = 0.8,
                                       clockwise = T,
                                       density = NULL, angle = 90, col = rainbow(5),
-                                      labels = paste(names(ansiedade_longo_prazo), "-", pct_ansiedade_longo_prazo),
+                                      labels = paste(names(ansiedade_longo_prazo), " ", ansiedade_longo_prazo, "(", pct_ansiedade_longo_prazo, ")"),
                                       main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação aos 
                                         planos de longo prazo (sua formatura, o término do curso atual, novos projetos etc.)",
                                       cex.main=0.9)
