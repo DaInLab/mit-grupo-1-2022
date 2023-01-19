@@ -1292,7 +1292,7 @@ library(magrittr)
 
 
 
-# Nuvem de Palabras 1: situacao_durante-pandemia
+# Nuvem de Palavras 1: situacao_durante-pandemia
 # Ajude-nos a compreender o conjunto e a diversidade da situação durante a pandemia da COVID-19 na sua instituição, 
 # compartilhando aqui qualquer informação adicional que julgar importante. (Escreva até 250 palavras).
 
@@ -1324,7 +1324,7 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 2,
           max.words=200, random.order=FALSE, rot.per=0.35,       
           colors=brewer.pal(8, "Dark2"))
 
-# Nuvem de Palabras 2: qualidade_de_vida 
+# Nuvem de Palavras 2: qualidade_de_vida 
 # Ajude-nos a compreender a variedade e a diversidade de experiências com relação à sua qualidade de vida, 
 # compartilhando aqui qualquer outra informação que julgar importante. 
 
@@ -1356,7 +1356,7 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 2,
           max.words=200, random.order=FALSE, rot.per=0.35,       
           colors=brewer.pal(8, "Dark2"))
 
-# Nuvem de Palabras 3: dificuldades_academicas
+# Nuvem de Palavras 3: dificuldades_academicas
 # Por favor, ajude-nos a entender melhor a variedade e a diversidade de suas dificuldades acadêmicas, fruto da pandemia de COVID-19, 
 # compartilhando aqui qualquer outra informação que julgar importante. 
 
@@ -1388,5 +1388,163 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 2,
           max.words=200, random.order=FALSE, rot.per=0.35,       
           colors=brewer.pal(8, "Dark2"))
 
+# Nuvem de Palavras 4: dificuldades_financeiras
+# Por favor, ajude-nos a entender a variedade e diversidade das suas dificuldades financeiras atuais, 
+# compartilhando aqui qualquer outra informação que julgar pertinente. 
 
+#Carregando o texto e eliminando os NA (missing data)
+texto <- na.omit(dataset.csv$dificuldades_financeiras)
+
+# Criando um corpus  
+docs <- Corpus(VectorSource(texto))
+
+# Limpando o texto
+docs <- docs %>%
+  tm_map(removeNumbers) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(stripWhitespace)
+docs <- tm_map(docs, content_transformer(tolower))
+docs <- tm_map(docs, removeWords, stopwords("portuguese"))
+
+# Criar uma matrix de termos de documento
+# Uma matriz de termos de documento é uma matriz matemática que descreve a frequência 
+# dos termos que ocorrem em uma coleção de documentos.
+dtm <- TermDocumentMatrix(docs) 
+matrix <- as.matrix(dtm) 
+words <- sort(rowSums(matrix),decreasing=TRUE) 
+df <- data.frame(word = names(words),freq=words)
+
+# Gerar a núvem de palavras
+set.seed(1234) # para reprodutibilidade 
+wordcloud(words = df$word, freq = df$freq, min.freq = 2,      
+          max.words=200, random.order=FALSE, rot.per=0.35,       
+          colors=brewer.pal(8, "Dark2"))
+
+# Nuvem de Palavras 5: ies_positivo
+# Por favor, use este espaço para nos dizer o que sua instituição fez de positivo 
+# em resposta à pandemia:  Reconheço que minha instituição fez ...
+
+#Carregando o texto e eliminando os NA (missing data)
+texto <- na.omit(dataset.csv$ies_positivo)
+
+# Criando um corpus  
+docs <- Corpus(VectorSource(texto))
+
+# Limpando o texto
+docs <- docs %>%
+  tm_map(removeNumbers) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(stripWhitespace)
+docs <- tm_map(docs, content_transformer(tolower))
+docs <- tm_map(docs, removeWords, stopwords("portuguese"))
+
+# Criar uma matrix de termos de documento
+# Uma matriz de termos de documento é uma matriz matemática que descreve a frequência 
+# dos termos que ocorrem em uma coleção de documentos.
+dtm <- TermDocumentMatrix(docs) 
+matrix <- as.matrix(dtm) 
+words <- sort(rowSums(matrix),decreasing=TRUE) 
+df <- data.frame(word = names(words),freq=words)
+
+# Gerar a núvem de palavras
+set.seed(1234) # para reprodutibilidade 
+wordcloud(words = df$word, freq = df$freq, min.freq = 2,      
+          max.words=200, random.order=FALSE, rot.per=0.35,       
+          colors=brewer.pal(8, "Dark2"))
+
+# Nuvem de Palavras 6: ies_melhorar
+# Por favor, use este espaço para nos dizer em quais aspectos sua instituição poderia melhorar 
+# em resposta à pandemia:  Gostaria que minha instituição tivesse feito ... 
+
+#Carregando o texto e eliminando os NA (missing data)
+texto <- na.omit(dataset.csv$ies_.melhorar)
+
+# Criando um corpus  
+docs <- Corpus(VectorSource(texto))
+
+# Limpando o texto
+docs <- docs %>%
+  tm_map(removeNumbers) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(stripWhitespace)
+docs <- tm_map(docs, content_transformer(tolower))
+docs <- tm_map(docs, removeWords, stopwords("portuguese"))
+
+# Criar uma matrix de termos de documento
+# Uma matriz de termos de documento é uma matriz matemática que descreve a frequência 
+# dos termos que ocorrem em uma coleção de documentos.
+dtm <- TermDocumentMatrix(docs) 
+matrix <- as.matrix(dtm) 
+words <- sort(rowSums(matrix),decreasing=TRUE) 
+df <- data.frame(word = names(words),freq=words)
+
+# Gerar a núvem de palavras
+set.seed(1234) # para reprodutibilidade 
+wordcloud(words = df$word, freq = df$freq, min.freq = 2,      
+          max.words=200, random.order=FALSE, rot.per=0.35,       
+          colors=brewer.pal(8, "Dark2"))
+
+# Nuvem de Palavras 7: ies_ajudar
+# Por favor, use este espaço para nos dizer se há ou haveria alguma ação específica que a instituição 
+# poderia realizar para ajudar ainda mais em resposta à pandemia:  Além do que foi feito, ajudaria muito se minha instituição ...
+
+#Carregando o texto e eliminando os NA (missing data)
+texto <- na.omit(dataset.csv$ies_ajudar)
+
+# Criando um corpus  
+docs <- Corpus(VectorSource(texto))
+
+# Limpando o texto
+docs <- docs %>%
+  tm_map(removeNumbers) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(stripWhitespace)
+docs <- tm_map(docs, content_transformer(tolower))
+docs <- tm_map(docs, removeWords, stopwords("portuguese"))
+
+# Criar uma matrix de termos de documento
+# Uma matriz de termos de documento é uma matriz matemática que descreve a frequência 
+# dos termos que ocorrem em uma coleção de documentos.
+dtm <- TermDocumentMatrix(docs) 
+matrix <- as.matrix(dtm) 
+words <- sort(rowSums(matrix),decreasing=TRUE) 
+df <- data.frame(word = names(words),freq=words)
+
+# Gerar a núvem de palavras
+set.seed(1234) # para reprodutibilidade 
+wordcloud(words = df$word, freq = df$freq, min.freq = 2,      
+          max.words=200, random.order=FALSE, rot.per=0.35,       
+          colors=brewer.pal(8, "Dark2"))
+
+# Nuvem de Palavras 8: detalhes_finais
+# Agradecemos seu tempo e sua paciência para responder a essas questões! Portanto, antes de encerrar e enviar suas respostas, você poderia, se assim desejar,  nos contar de forma mais detalhada e livre sua experiência com a COVID-19. Por favor,
+# não inclua nenhuma informações de identificação, como seu nome, seu e-mail e/ou sua localização.
+
+#Carregando o texto e eliminando os NA (missing data)
+texto <- na.omit(dataset.csv$detalhes_finais)
+
+# Criando um corpus  
+docs <- Corpus(VectorSource(texto))
+
+# Limpando o texto
+docs <- docs %>%
+  tm_map(removeNumbers) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(stripWhitespace)
+docs <- tm_map(docs, content_transformer(tolower))
+docs <- tm_map(docs, removeWords, stopwords("portuguese"))
+
+# Criar uma matrix de termos de documento
+# Uma matriz de termos de documento é uma matriz matemática que descreve a frequência 
+# dos termos que ocorrem em uma coleção de documentos.
+dtm <- TermDocumentMatrix(docs) 
+matrix <- as.matrix(dtm) 
+words <- sort(rowSums(matrix),decreasing=TRUE) 
+df <- data.frame(word = names(words),freq=words)
+
+# Gerar a núvem de palavras
+set.seed(1234) # para reprodutibilidade 
+wordcloud(words = df$word, freq = df$freq, min.freq = 2,      
+          max.words=100, random.order=FALSE, rot.per=0.35,       
+          colors=brewer.pal(8, "Dark2"))
 
