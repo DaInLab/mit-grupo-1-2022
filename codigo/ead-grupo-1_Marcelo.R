@@ -550,6 +550,27 @@ grafico_ies_reinicio <- pie(ies_reinicio,
                          labels = paste(names(ies_reinicio), " ", ies_reinicio, "(", pct_ies_reinicio, ")"),
                          main = "Gráfico Instituiçao: já reiniciou todas as atividades presenciais no seu campus e/ou faculdade?")
 
+# Grafico 2. Instituicao ajuda_financeira
+# Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19? *
+ajuda_financeira <- table(dataset.csv$ajuda_financeira, exclude = "")
+ajuda_financeira
+
+#Não Sim 
+# 44   8 
+
+pct_ajuda_financeira <- paste(round(unname(ajuda_financeira) / sum(unname(ajuda_financeira)) * 100), "%")
+pct_ajuda_financeira
+#  "85 %" "15 %"
+
+grafico_ajuda_financeira <- pie(ajuda_financeira,
+                                edges = 200, radius = 0.8,
+                                clockwise = T,
+                                density = NULL, angle = 90, col = rainbow(2),
+                                labels = paste(names(ajuda_financeira), " ", ajuda_financeira, "(", pct_ajuda_financeira, ")"),
+                                main = "Grafico Instituicao Ensino : Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou 
+                                            de outra organização durante a pandemia da COVID-19?",
+                                cex.main=0.9)
+
 # Grafico Dados Instituicao de Ensino 2.decisao_fechar (utilizacao de ferramenta online)
 # Com relação à decisão de fechar o campus e de utilizar ferramentas online para as aulas, por conta da pandemia da COVID-19, você sentiu que as decisões na sua instituição foram tomadas: *
 ies_decisao_fechar <- table(dataset.csv$decisao_fechar, exclude = "")
@@ -567,7 +588,7 @@ grafico_ies_decisao_fechar <- pie(ies_decisao_fechar,
                             edges = 200, radius = 0.8,
                             clockwise = T,
                             density = NULL, angle = 90, col = rainbow(3),
-                            labels = paste(names(ies_decisao_fechar), "-", pct_ies_decisao_fechar),
+                            labels = paste(names(ies_decisao_fechar), " ", ies_decisao_fechar, "(", pct_ies_decisao_fechar, ")"),
                             main = "Gráfico Instituiçao:  Com relação à decisão de fechar o campus e de utilizar ferramentas online para as aulas, por conta da pandemia da COVID-19, 
                                 você sentiu que as decisões na sua instituição foram tomadas:",
                             cex.main=0.9)
@@ -1115,27 +1136,6 @@ grafico_renda_financeira <- pie(renda_financeira,
                         labels = paste(names(renda_financeira), "-", pct_renda_financeira),
                         main = "Grafico Situacao Financeira : Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira?",
                         cex.main=0.8)
-
-# Grafico 2. Instituicao ajuda_financeira
-# Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19? *
-ajuda_financeira <- table(dataset.csv$ajuda_financeira, exclude = "")
-ajuda_financeira
-
-#Não Sim 
-# 44   8 
-
-pct_ajuda_financeira <- paste(round(unname(ajuda_financeira) / sum(unname(ajuda_financeira)) * 100), "%")
-pct_ajuda_financeira
-
-#  "85 %" "15 %"
-
-grafico_ajuda_financeira <- pie(ajuda_financeira,
-                                edges = 200, radius = 0.8,
-                                clockwise = T,
-                                density = NULL, angle = 90, col = rainbow(2),
-                                labels = paste(names(ajuda_financeira), "-", pct_ajuda_financeira),
-                                main = "Grafico Instituicao Ensino : Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19?",
-                                cex.main=0.8)
 
 # Grafico 4. Financas nivel_endividamento
 # Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas: *
