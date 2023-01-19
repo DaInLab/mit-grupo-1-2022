@@ -728,7 +728,7 @@ df_internet <- data.frame(internet="", nivel =dataset.csv$acesso_internet)
 
 for (k in 1:nrow(df_internet)) {
   if(df_internet$nivel[k] == "Melhor do que antes")            df_internet$internet[k] <- "Melhorou"
-  if(df_internet$nivel[k] == "Muito melhor que antes")      df_internet$internet[k] <- "Melhorou"
+  if(df_internet$nivel[k] == "Muito melhor do que antes")      df_internet$internet[k] <- "Melhorou"
   if(df_internet$nivel[k] == "Muito pior que antes")        df_internet$internet[k] <- "Piorou"
   if(df_internet$nivel[k] == "O mesmo que antes")               df_internet$internet[k] <- "Não Mudou"
   if(df_internet$nivel[k] == "Pior que antes")              df_internet$internet[k] <- "Piorou"
@@ -752,7 +752,7 @@ grafico_acesso_internet <- pie(acesso_internet,
                                      edges = 200, radius = 0.8,
                                      clockwise = T,
                                      density = NULL, angle = 90, col = rainbow(4),
-                                     labels = paste(names(acesso_internet), "-", pct_acesso_internet),
+                                     labels = paste(names(acesso_internet), " ", acesso_internet, "(", pct_acesso_internet, ")"),
                                      main = "Grafico Pandemia Acesso Internet : Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ?",
                                      cex.main=0.8)
 
@@ -789,7 +789,7 @@ grafico_capacidade_prosseguir_estudos <- pie(capacidade_prosseguir_estudos,
                                edges = 200, radius = 0.8,
                                clockwise = T,
                                density = NULL, angle = 90, col = rainbow(3),
-                               labels = paste(names(capacidade_prosseguir_estudos), "-", pct_capacidade_prosseguir_estudos),
+                               labels = paste(names(capacidade_prosseguir_estudos), " ", capacidade_prosseguir_estudos, "(", pct_capacidade_prosseguir_estudos, ")"),
                                main = "Grafico Pandemia Prosseguir Estudos : Em relação a antes e durante a pandemia da COVID-19, como você classifica sua capacidade em prosseguir seus estudos, 
                                       incluindo sua graduação e/ou conclusão de curso?",
                               cex.main=0.8)
