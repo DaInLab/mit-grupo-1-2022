@@ -134,27 +134,34 @@ text(x = grafico_genero, y = genero, label = paste(genero, " (", pct_genero, ")"
 
 
 # Grafico Dados Pessoais : 1.Situacao_conjugal
+# Qual sua situação conjugal ?
 sit_conjugal <- table(dataset.csv$situacao_conjugal)
 sit_conjugal
 
+# Casado(a)   Divorciado(a)/Separado(a)                 Solteiro(a) União Estável/Vivendo junto                    Viúvo(a) 
+#       16                           2                          28                           5                           1 
+
 # Porcentagem 
 pct_sit_conjugal <- paste0(round(unname(sit_conjugal) / sum(unname(sit_conjugal)) * 100,0), "%")
+pct_sit_conjugal
+
+# "31%" "4%"  "54%" "10%" "2%" 
 
 grafico_sit_conjugal <- barplot(sit_conjugal, 
-                                main = "Gráfico Dados Pessoais : Situação Conjugal",
-                                xlab = "Situacao Conjugal", 
+                                main = "Gráfico Dados Pessoais : Qual sua situação conjugal ?",
+                                xlab = "", 
                                 ylab = "Respondentes",
-                                col = "red",
-                                ylim = c(0,max(sit_conjugal) + 10),
+                                col = rainbow(5),
+                                ylim = c(0,max(sit_conjugal) + 4),
                                 cex.axis=1.0, cex.names=0.8)
 text(x = grafico_sit_conjugal, y = sit_conjugal, label = paste(sit_conjugal, " (", pct_sit_conjugal, ")"), cex=1, pos=3)
 
-grafico_sit_conjugal
 
 # Grafico Dados Pessoais : 1.Situacao_empregaticia
 # Qual sua situação empregatícia e/ou financeira atual ? 
 
 df_situacao_emp <- data.frame(situacao ="", emp=dataset.csv$situacao_empregaticia)
+df_situacao_emp
 
 for (k in 1:nrow(df_situacao_emp)) {
   if(df_situacao_emp$emp[k] == "Aposentada")       df_situacao_emp$situacao[k]<- "Aposentado"
@@ -173,11 +180,12 @@ for (k in 1:nrow(df_situacao_emp)) {
 
 df_situacao_emp
 
-#      Aposentado    Bolsista ou Estagiário Bolsista ou Estagiário(a)       Dependente dos Pais           Desempregado(a)              Empregado(a) 
-#               1                         2                        10                         7                         2                        30 
-
 sit_emprego <- table(df_situacao_emp$situacao)
 sit_emprego
+
+# Aposentado Bolsista ou Estagiário(a)       Dependente dos Pais           Desempregado(a)              Empregado(a) 
+#         1                        12                         7                         2                        30 
+
 
 # Porcentagem 
 pct_sit_emprego <- paste0(round(unname(sit_emprego) / sum(unname(sit_emprego)) * 100,0), "%")
@@ -192,26 +200,30 @@ grafico_sit_empregaticia <- barplot(sit_emprego,
                                     las=1,  
                                     beside = TRUE,
                                     horiz=TRUE, 
-                                    xlim = c(0,max(sit_emprego) + 20),
+                                    xlim = c(0,max(sit_emprego) + 15),
                                     legend.text = paste(rownames(sit_emprego)," (",pct_sit_emprego, ")"),
                                     args.legend = list("top", bty="n", cex = 0.7),
-                                    col=rainbow(10),
+                                    col=rainbow(5),
                                     cex.axis = 0.7,  
                                     cex.names = 0.8)
 
-text(grafico_sit_empregaticia, x = sit_emprego, label = paste(sit_emprego, " (", pct_sit_emprego, ")"), cex=0.8, pos=4)
+text(grafico_sit_empregaticia, x = sit_emprego, label = paste(sit_emprego, "(", pct_sit_emprego, ")"), cex=0.9, pos=4)
 
 par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
                                     
-
 # Gratico Dados Pessoais : 1.estado_reside
 # Qual o Estado no qual você reside e/ou estuda? 
 estado_reside <- table(dataset.csv$estado_reside, exclude = NULL)
 estado_reside
 
+#    AM SP 
+#  4  1 47 
+
 # Porcentagem 
 pct_estado_reside <- paste0(round(unname(estado_reside) / sum(unname(estado_reside)) * 100,0), "%")
 pct_estado_reside
+
+# "8%"  "2%"  "90%"
 
 # Tratando Nulo
 names(pct_estado_reside) <-c("Não Respondeu", "Amazonas", "São Paulo")
@@ -226,6 +238,7 @@ grafico_estado_reside <- pie(estado_reside,
 # Grafico Dados Pessoais : 1.Instituicao de Ensino     
 # Qual o nome da sua instituição de ensino ?
 df_ies <- data.frame(sigla_ies="", ies=dataset.csv$ies )
+df_ies
 
 for (k in 1:nrow(df_ies)) {
   if(df_ies$ies[k] == "UNESP Bauru") df_ies$sigla_ies[k]<- "UNESP Bauru"
@@ -237,8 +250,12 @@ df_ies$sigla_ies
 tbl_ies <- table(df_ies$sigla_ies)
 tbl_ies
 
+# Demais Instituições         UNESP Bauru 
+#             12                  40 
+
 pct_ies <- paste(round(unname(tbl_ies) / sum(unname(tbl_ies)) * 100), "%")
 pct_ies
+#  "23 %" "77 %"
 
 grafico_ies <- pie(tbl_ies, main = "Perfil : Qual o nome da sua instituição de ensino ?", labels = paste(df_ies$sigla_ies, " - ", pct_ies, "(", tbl_ies, ")"), col = c(4,5))
 
