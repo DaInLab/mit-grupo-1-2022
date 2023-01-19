@@ -28,7 +28,7 @@
 
 # Import packages
 #library(tidyverse)
-#library(ggplot2)
+library(ggplot2)
 
 # Importacao arquivo CSV
 dataset.csv <-read.csv("./dados/COVID19IES.csv", header = TRUE, sep = ";", quote = "\"", dec = ".")
@@ -613,8 +613,10 @@ grafico_convive_risco <- pie(convive_risco,
                          edges = 200, radius = 0.8,
                          clockwise = T,
                          density = NULL, angle = 90, col = rainbow(2),
-                         labels = paste(names(convive_risco), "-", pct_convive_risco),
-                         main = "Gráfico Pandemia Risco Relevante: Convivencia com Idoso (60-70 anos) ou alguem com Comorbidades")
+                         labels = paste(names(convive_risco), " ", convive_risco, "(",pct_convive_risco, ")"),
+                         main = "Gráfico Pandemia Risco Relevante:Você está morando ou convivendo atualmente com alguém na faixa etária  dos 60-70 anos,e/ou que tenha algum fator de risco relevante?
+                           (Fatores de risco relevantes são problemas cardíacos, diabetes, hipertensão e/ou obesidade).",
+                         cex.main =0.8)
 
 # Grafico 3. Pandemia_quarentena imposta
 # Você, alguém com quem convive ou que está em sua moradia está ou esteve em quarentena imposta pela COVID-19  ? *
@@ -633,14 +635,13 @@ grafico_quarentena_imposta <- pie(quarentena_imposta,
                              edges = 200, radius = 0.8,
                              clockwise = T,
                              density = NULL, angle = 90, col = rainbow(2),
-                             labels = paste(names(quarentena_imposta), "-", pct_quarentena_imposta),
-                             main = "Gráfico Pandemia Risco Relevante: Convivencia com quem convive ou que está em sua moradia está ou esteve em quarentena imposta pela COVID-19",
-                             cex.main=0.9)
+                             labels = paste(names(quarentena_imposta), " ", quarentena_imposta, "(",pct_quarentena_imposta,")"),
+                             main = "Gráfico Pandemia Risco Relevante: Você, alguém com quem convive ou que está em sua moradia está ou esteve em quarentena imposta pela COVID-19  ?",
+                             cex.main=0.8)
 
 
 # Grafico 3. Pandemia_quarentena imposta
 # Durante a pandemia do COVID-19, você obteve e/ou vivenciou: *
-  
 vivenciou <- table(dataset.csv$vivenciou, exclude = "")
 vivenciou
 
@@ -678,7 +679,7 @@ grafico_vivenciou <- barplot(vivenciou,
                                     args.legend = list("top", bty="n", cex = 0.7),
                                     col=rainbow(6),
                                     cex.axis = 0.7,  
-                                    cex.names = 0.6)
+                                    cex.names = 0.8)
 
 text(grafico_vivenciou, x = vivenciou, label = pct_vivenciou, cex=0.7, pos=4)
 
@@ -715,7 +716,7 @@ grafico_acesso_servicos_saude <- pie(acesso_servicos_saude,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(4),
-                                  labels = paste(names(acesso_servicos_saude), "-", pct_acesso_servicos_saude),
+                                  labels = paste(names(acesso_servicos_saude), " ", acesso_servicos_saude, "(", pct_acesso_servicos_saude, ")"),
                                   main = "Grafico Pandemia Serviços Saude : Como você classifica o seu acesso aos serviços de saúde, a antes e durante a pandemia COVID-19 ? ",
                                   cex.main=0.9)
 
