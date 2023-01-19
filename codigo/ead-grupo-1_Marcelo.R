@@ -264,6 +264,37 @@ grafico_ies <- pie(tbl_ies, main = "Perfil : Qual o nome da sua instituição de
 nome_cursos <- table(dataset.csv$nome_curso)
 nome_cursos
 
+#Arquitetura e Urbanismo                                       Bacharel em Direito 
+#1                                                        1 
+#Bacharelado em Ciências da Computação                   Bacharelado em Sistemas de Informação  
+#1                                                        1 
+#BEI - Bolsista de estimulo à Inovação em Moda                                                 Biologia 
+#1                                                        1 
+#Ciência da Computação                            Educação Especial e Inclusiva 
+#1                                                        1 
+#Educação Física                                          Engenharia Civil 
+#1                                                        3 
+#Engenharia de Produção                                       Engenharia Elétrica 
+#1                                                        1 
+#Engenharia Elétrica                                       Engenharia Mecânica 
+#1                                                        2 
+#Gestão da Tecnologia da Informação                                    Licenciatura em Física 
+#1                                                        1 
+#Licenciatura em matemática                                                 Medicina 
+#1                                                        2 
+###Pós-Graduação em Administração de Empresas Pós-Graduação em Biblioteconomia e Ciência da Informação 
+###1                                                        2 
+#Pós-Graduação em Ciência de Materiais                                  Pós-Graduação em Desing 
+#1                                                        1 
+#Pós-Graduação em Docência Para a Educação Básica                 Pós-Graduação em Educação para a Ciência 
+#2                                                        4 
+#Pós-Graduação em Mídia e Tecnologia                     Pós-Graduação em Quimica Tecnologica 
+#13                                                        1 
+#Psicologia                                              Psicologia  
+#3                                                        1 
+#Técnico em Administração 
+#1 
+
 # Reduçao nome dos cursos
 names(nome_cursos) <- c("Arquitetura", "Direito", "Ciências Computação", "Sistemas Informação", "Inovação em Moda",
                        "Biologia", "Ciências Computação", "Educação Especial", "Educaçao Física", "Eng Civil",
@@ -274,8 +305,10 @@ names(nome_cursos) <- c("Arquitetura", "Direito", "Ciências Computação", "Sis
 
 pct_nome_cursos <- paste(round(unname(nome_cursos) / sum(unname(nome_cursos)) * 100), "%")
 pct_nome_cursos
-                       
 
+# "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "6 %"  "2 %"  "2 %"  "2 %"  "4 %"  "2 %"  "2 %"  "2 %"  "4 %"  "2 %"  "4 %"  "2 %"  "2 %" 
+# "4 %"  "8 %"  "25 %" "2 %"  "6 %"  "2 %"  "2 %" 
+                     
 par(las=1) # nomes dos eixos perpendicular
 par(mar=c(5,16,1,1)+0.1)  # para aumentar a margem a esquerda 
 grafico_nome_cursos <- barplot(nome_cursos, 
@@ -286,7 +319,7 @@ grafico_nome_cursos <- barplot(nome_cursos,
                                     xlim = c(0,max(nome_cursos) + 10),
                                     legend.text = paste(rownames(nome_cursos)," (",nome_cursos, ")"),
                                     args.legend = list("top", bty="n", cex = 0.7),
-                                    col=rainbow(20),
+                                    col=rainbow(7),
                                     cex.axis = 0.7,  
                                     cex.names = 0.7)
 
@@ -299,14 +332,18 @@ par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
 tbl_nivel_ensino <- table(dataset.csv$nivel_ensino)
 tbl_nivel_ensino
 
+#         Doutorado     Ensino Técnico Especialização/MBA          Graduação           Mestrado      Pós-doutorado 
+#              15                  1                  1                 21                 13                  1 
+
 pct_nivel_ensino <- paste(round(unname(tbl_nivel_ensino) / sum(unname(tbl_nivel_ensino)) * 100), "%")
 pct_nivel_ensino
+# "29 %" "2 %"  "2 %"  "40 %" "25 %" "2 %" 
 
 grafico_nivel_ensino <- pie(tbl_nivel_ensino,
                         edges = 200, radius = 0.8,
                         clockwise = T,
-                        density = NULL, angle = 90, col = c("red", "orange", "yellow", "green", "gray", "blue"),
-                        labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino),
+                        density = NULL, angle = 90, col = rainbow(6),
+                        labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino, "(", pct_nivel_ensino, ")"),
                         main = "Gráfico Dados Pessoais: Qual nível de ensino você está cursando ? ")
 
 # Grafico 1.Tipo Instituicao de Ensino
@@ -322,12 +359,12 @@ pct_tipo_ies
 
 # "2 %"  "12 %" "87 %"
 
-pie(tipo_ies,
-    edges = 200, radius = 0.8,
-    clockwise = T,
-    density = NULL, angle = 90, col = rainbow(3),
-    labels = paste(names(tipo_ies), "-", tipo_ies),
-    main = "Gráfico Dados Pessoais: Qual é o tipo da sua instituição de ensino ? ")
+grafico_tipo_ies <- pie(tipo_ies,
+                    edges = 200, radius = 0.8,
+                    clockwise = T,
+                    density = NULL, angle = 90, col = rainbow(3),
+                    labels = paste(names(tipo_ies), "-", tipo_ies, "(",pct_tipo_ies,")"),
+                    main = "Gráfico Dados Pessoais: Qual é o tipo da sua instituição de ensino ? ")
 
 # Grafico Dados Pessoais 1. Local Estudante (você é um estudante nativo local, originário de outra cidade ou um estudante internacional)
 # Com relação à cidade onde está localizada sua instituição de ensino, você é um estudante nativo local, originário de outra cidade ou um estudante internacional ?
