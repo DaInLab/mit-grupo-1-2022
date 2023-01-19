@@ -426,7 +426,7 @@ grafico_moradia_atual_perm <- pie(moradia_atual_perm,
                               edges = 200, radius = 0.8,
                               clockwise = T,
                               density = NULL, angle = 90, col = rainbow(3),
-                              labels = paste(names(moradia_atual_perm), "-", pct_moradia_atual_perm),
+                              labels = paste(names(moradia_atual_perm), " ", moradia_atual_perm, "(", pct_moradia_atual_perm, ")"),
                               main = "Gráfico Dados Pessoais: Sua moradia atual é uma residência permanente e estável para você?")
 
 # Grafico Dados Pessoais 1. Respondentes morando com 
@@ -439,13 +439,13 @@ morando_com
 
 pct_morando_com <- paste(round(unname(morando_com) / sum(unname(morando_com)) * 100), "%")
 pct_morando_com
-"6 %"  "69 %" "25 %"
+# "6 %"  "69 %" "25 %"
 
 grafico_morando_com <- pie(morando_com,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(3),
-                                  labels = paste(names(morando_com), "-", pct_morando_com),
+                                  labels = paste(names(morando_com), "  ", morando_com, "(", pct_morando_com, ")"),
                                   main = "Gráfico Dados Pessoais: Atualmente, você está morando ou residindo com/em:  ")
 
 # Grafico Dados Instituicao de Ensino  2. Migrou Virtual
@@ -465,7 +465,7 @@ grafico_migrou_virtual <- pie(migrou_virtual,
                            edges = 200, radius = 0.8,
                            clockwise = T,
                            density = NULL, angle = 90, col = rainbow(2),
-                           labels = paste(names(migrou_virtual), "-", pct_migrou_virtual),
+                           labels = paste(names(migrou_virtual), "", migrou_virtual,"(", pct_migrou_virtual, ")"),
                            main = "Gráfico Instituiçao: Sua instituição migrou para as aulas virtuais durante a pandemia da COVID-19? ")
 
 # Grafico Dados Instituicao de Ensino  2. Fechou Dormitorios
@@ -485,7 +485,7 @@ grafico_ies_fechou_dorm <- pie(ies_fechou_dorm,
                            edges = 200, radius = 0.8,
                            clockwise = T,
                            density = NULL, angle = 90, col = rainbow(4),
-                           labels = paste(names(ies_fechou_dorm), "-", pct_ies_fechou_dorm),
+                           labels = paste(names(ies_fechou_dorm), " ", ies_fechou_dorm, "(", pct_ies_fechou_dorm, ")"),
                            main = "Gráfico Instituiçao: Sua instituição fechou os dormitórios ou residências estudantis devido à crise da COVID-19? ")
 
 # Grafico Dados Instituicao de Ensino 2. Instituicao_acesso_infra
@@ -513,17 +513,17 @@ ies_infra
 pct_ies_infra <- paste(round(unname(ies_infra) / sum(unname(ies_infra)) * 100), "%")
 pct_ies_infra
 
-# "15 %" "35 %" "6 %"  "44 %"
+# "13 %" "33 %" "13 %" "40 %"
 
 grafico_ies_infra <- pie(ies_infra,
                                edges = 200, radius = 0.8,
                                clockwise = T,
                                density = NULL, angle = 90, col = rainbow(4),
-                               labels = paste(names(ies_infra), "-", pct_ies_infra),
-                               main = "Gráfico Instituiçao: Com relação às formas de acesso aos recursos de infraestrutura oferecidos pela sua 
-                                    instituição (biblioteca, coordenação, orientação de assuntos acadêmicos, matrícula, etc.) 
-                                durante a pandemia do COVID-19 você sentiu que: ",
-                                cex.main =0.8)
+                               labels = paste(names(ies_infra), " ", ies_infra, "(", pct_ies_infra, ")"),
+                               main = "Gráfico Instituiçao: Com relação às formas de acesso aos recursos de infraestrutura oferecidos pela sua instituição 
+                                              (biblioteca, coordenação, orientação de assuntos acadêmicos, matrícula, etc.) 
+                                              durante a pandemia do COVID-19 você sentiu que: ",
+                                cex.main =0.9)
 
 # Grafico Dados Instituicao de Ensino 2. Instituicao_reinicio
 # A sua instituição já reiniciou todas as atividades presenciais no seu campus e/ou faculdade?
@@ -531,7 +531,7 @@ ies_reinicio <- table(dataset.csv$ies_reinicio, exclude = "")
 ies_reinicio
 
 # Em parte (apenas algumas atividades  presenciais retornaram)            N/A ou Não sabe 
-#                14                                                            1 
+#                14                                                            5
 #  Não, ainda não retornou nenhuma atividade presencial               Sim (retornou todas as atividades presenciais) 
 #           4                                                           29 
 
@@ -541,13 +541,13 @@ names(ies_reinicio) <- c("Em parte", "Não Sabe", "Não Reiniciou Presencial", "
 pct_ies_reinicio <- paste(round(unname(ies_reinicio) / sum(unname(ies_reinicio)) * 100), "%")
 pct_ies_reinicio
 
-# "29 %" "2 %"  "8 %"  "60 %"" 
+# "27 %" "10 %" "8 %"  "56 %"
 
 grafico_ies_reinicio <- pie(ies_reinicio,
                          edges = 200, radius = 0.8,
                          clockwise = T,
                          density = NULL, angle = 90, col = rainbow(5),
-                         labels = paste(names(ies_reinicio), "-", pct_ies_reinicio),
+                         labels = paste(names(ies_reinicio), " ", ies_reinicio, "(", pct_ies_reinicio, ")"),
                          main = "Gráfico Instituiçao: já reiniciou todas as atividades presenciais no seu campus e/ou faculdade?")
 
 # Grafico Dados Instituicao de Ensino 2.decisao_fechar (utilizacao de ferramenta online)
