@@ -972,10 +972,10 @@ grafico_espaco_fisico <- pie(espaco_fisico,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(4),
-                                  labels = paste(names(espaco_fisico), "-", pct_espaco_fisico),
+                                  labels = paste(names(espaco_fisico), " ", espaco_fisico, "(", pct_espaco_fisico, ")"),
                                   main = "Grafico Pandemia Espaço Fisico : Ambiente/localidade utilizado por você, durante a pandemia de COVID-19, 
                                                             para estudar e participar das aulas e/ou atividades, você sentiu que:",
-                                  cex.main=0.8)
+                                  cex.main=0.9)
 
 # Grafico 3. Pandemia disposicao_atividades
 # Você sentiu que, durante a pandemia do COVID-19, de forma geral, sua disposição para participar das aulas/atividades, estudar e aprender: 
@@ -1008,18 +1008,16 @@ grafico_disposicao_atividades <- pie(disposicao_atividades,
                              edges = 200, radius = 0.8,
                              clockwise = T,
                              density = NULL, angle = 90, col = rainbow(4),
-                             labels = paste(names(disposicao_atividades), "-", pct_disposicao_atividades),
+                             labels = paste(names(disposicao_atividades), " ", disposicao_atividades, "(", pct_disposicao_atividades, ")"),
                              main = "Grafico Pandemia Disposicao Atividades : Você sentiu que, durante a pandemia do COVID-19, de forma geral, 
                                     sua disposição para participar das aulas/atividades, estudar e aprender: ",
-                             cex.main=0.8)
+                             cex.main=0.9)
 
 # Grafico 3. Pandemia desempenho_escolar
 # Você percebeu que o seu desempenho escolar durante a pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):
 
 # Tratamento das Opcoes
 df_desempenho_escolar <- data.frame(desempenho_escolar="", nivel =dataset.csv$desempenho_escolar )
-
-df_desempenho_escolar
 
 for (k in 1:nrow(df_desempenho_escolar)) {
   if(df_desempenho_escolar$nivel[k] == "Aumentou")                     df_desempenho_escolar$desempenho_escolar[k] <- "Aumentou"
@@ -1046,9 +1044,10 @@ grafico_desempenho_escolar <- pie(desempenho_escolar,
                                      edges = 200, radius = 0.8,
                                      clockwise = T,
                                      density = NULL, angle = 90, col = rainbow(5),
-                                     labels = paste(names(desempenho_escolar), "-", pct_desempenho_escolar),
-                                     main = "Grafico Pandemia Desempenho Escolar : Você percebeu que o seu desempenho escolar durante a pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):",
-                                     cex.main=0.8)
+                                     labels = paste(names(desempenho_escolar), " ", desempenho_escolar, "(", pct_desempenho_escolar, ")"),
+                                     main = "Grafico Pandemia Desempenho Escolar : Você percebeu que o seu desempenho escolar durante a 
+                                              pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):",
+                                     cex.main=0.9)
 
 
 # Grafico 1. Vacinado
@@ -1075,16 +1074,14 @@ grafico_vacinado <- pie(vacinado,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(5),
-                                  labels = paste(names(vacinado), "-", pct_vacinado),
+                                  labels = paste(names(vacinado), " ", vacinado, "(", pct_vacinado, ")"),
                                   main = "Grafico Vacinação : Você já foi vacinado contra a COVID-19 ?",
-                                  cex.main=0.8)
+                                  cex.main=1)
 
 # Grafico 4. Financas despesas
 # Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ? *v
 # Tratamento das Opcoes
 df_despesas <- data.frame(despesas="", nivel =dataset.csv$despesas )
-
-df_despesas
 
 for (k in 1:nrow(df_despesas)) {
   if(df_despesas$nivel[k] == "Aumentaram")       df_despesas$despesas[k] <- "Aumentaram"
@@ -1109,7 +1106,7 @@ grafico_despesas <- pie(despesas,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(5),
-                                  labels = paste(names(despesas), "-", pct_despesas),
+                                  labels = paste(names(despesas), " ", despesas, "(", pct_despesas, ")"),
                                   main = "Grafico Situacao Financeira : Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ?",
                                   cex.main=0.8)
 
@@ -1131,7 +1128,7 @@ grafico_renda_financeira <- pie(renda_financeira,
                         edges = 200, radius = 0.8,
                         clockwise = T,
                         density = NULL, angle = 90, col = rainbow(4),
-                        labels = paste(names(renda_financeira), "-", pct_renda_financeira),
+                        labels = paste(names(renda_financeira), " ", renda_financeira, "(", pct_renda_financeira, ")"),
                         main = "Grafico Situacao Financeira : Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira?",
                         cex.main=0.8)
 
@@ -1140,8 +1137,6 @@ grafico_renda_financeira <- pie(renda_financeira,
 
 # Tratamento das Opcoes
 df_endividamento <- data.frame(endividamento="", nivel =dataset.csv$nivel_endividamento )
-
-df_endividamento
 
 for (k in 1:nrow(df_endividamento)) {
   if(df_endividamento$nivel[k] == "Aumentaram")       df_endividamento$endividamento[k] <- "Aumentaram"
@@ -1166,9 +1161,9 @@ grafico_nivel_endividamento <- pie(nivel_endividamento,
                                 edges = 200, radius = 0.8,
                                 clockwise = T,
                                 density = NULL, angle = 90, col = rainbow(5),
-                                labels = paste(names(nivel_endividamento), "-", pct_nivel_endividamento),
+                                labels = paste(names(nivel_endividamento), " ", nivel_endividamento, "(", pct_nivel_endividamento, ")"),
                                 main = "Grafico Finanças : Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas:",
-                                cex.main=0.9)
+                                cex.main=1)
 
 
 
