@@ -838,7 +838,7 @@ grafico_capacidade_socializacao <- pie(capacidade_socializacao,
 df_bemestar <- data.frame(bemestar="", nivel =dataset.csv$bem.estar_psicologico)
 
 for (k in 1:nrow(df_bemestar)) {
-  if(df_bemestar$nivel[k] == "Melhor do que anteS")            df_bemestar$bemestar[k] <- "Melhorou"
+  if(df_bemestar$nivel[k] == "Melhor do que antes")            df_bemestar$bemestar[k] <- "Melhorou"
   if(df_bemestar$nivel[k] == "Muito melhor do que antes")      df_bemestar$bemestar[k] <- "Melhorou"
   if(df_bemestar$nivel[k] == "Muito pior do que antes")        df_bemestar$bemestar[k] <- "Piorou"
   if(df_bemestar$nivel[k] == "Pior do que antes")              df_bemestar$bemestar[k] <- "Piorou"
@@ -852,18 +852,18 @@ bemestar_psicologico <- table(df_bemestar$bemestar, exclude = "")
 bemestar_psicologico
 
 # Melhorou Não Mudou  Não Sabe    Piorou 
-#        2        12         1        35 
+#        4        12         1        35 
 
 pct_bemestar_psicologico <- paste(round(unname(bemestar_psicologico) / sum(unname(bemestar_psicologico)) * 100), "%")
 pct_bemestar_psicologico
 
-# "4 %"  "24 %" "2 %"  "70 %"
+# "8 %"  "23 %" "2 %"  "67 %"
 
 grafico_bemestar_psicologico <- pie(bemestar_psicologico,
                                     edges = 200, radius = 0.8,
                                     clockwise = T,
                                     density = NULL, angle = 90, col = rainbow(4),
-                                    labels = paste(names(bemestar_psicologico), "-", pct_bemestar_psicologico),
+                                    labels = paste(names(bemestar_psicologico), " ", bemestar_psicologico, "(", pct_bemestar_psicologico, ")"),
                                     main = "Grafico Pandemia Bem-estar Psicologico : Em relação a antes e durante a pandemia da COVID-19, como você classificaria o seu bem-estar psicológico em geral, 
                                                     incluindo sentimentos de ansiedade e/ou depressão? *",
                                     cex.main=0.8)
@@ -875,33 +875,31 @@ df_aulas <- data.frame(aulas="", nivel =dataset.csv$aulas_durante_pandemia)
 df_aulas
 
 for (k in 1:nrow(df_aulas)) {
-  if(df_aulas$nivel[k] == "Melhoraram")                     df_aulas$aulas[k] <- "Melhoraram"
-  if(df_aulas$nivel[k] == "Pioraram")                       df_aulas$aulas[k] <- "Pioraram"
-  if(df_aulas$nivel[k] == "Está/É mais ou menos o mesmo")      df_aulas$aulas[k] <- "Não Mudaram"
-  if(df_aulas$nivel[k] == "Foram mais ou menos o mesmo")    df_aulas$aulas[k] <- "Não Mudaram"
+  if(df_aulas$nivel[k] == "Melhoraram")                     df_aulas$aulas[k] <- "Melhorou"
+  if(df_aulas$nivel[k] == "Pioraram")                       df_aulas$aulas[k] <- "Piorou"
+  if(df_aulas$nivel[k] == "Está/É mais ou menos o mesmo")      df_aulas$aulas[k] <- "Não Mudou"
+  if(df_aulas$nivel[k] == "Foram mais ou menos o mesmo")    df_aulas$aulas[k] <- "Não Mudou"
   if(df_aulas$nivel[k] == "N/A ou Não sabe")              df_aulas$aulas[k] <- "Não Sabe"
 }  
 
 df_aulas
 
-
-
 aulas <- table(df_aulas$aulas, exclude = "")
 aulas
 
-#  Melhoraram Não Mudaram    Não Sabe    Pioraram 
-#         1          25           4          20 
+#  Melhorou Não Mudou  Não Sabe    Piorou 
+#        1        25         4        22 
 
 pct_aulas <- paste(round(unname(aulas) / sum(unname(aulas)) * 100), "%")
 pct_aulas
 
-# "2 %"  "50 %" "8 %"  "40 %"
+# "2 %"  "48 %" "8 %"  "42 %"
 
 grafico_aulas <- pie(aulas,
                                     edges = 200, radius = 0.8,
                                     clockwise = T,
                                     density = NULL, angle = 90, col = rainbow(4),
-                                    labels = paste(names(aulas), "-", pct_aulas),
+                                    labels = paste(names(aulas), " ", aulas, "(", pct_aulas, ")"),
                                     main = "Grafico Pandemia Aula : Com relação à forma como as aulas foram ministradas durante a pandemia do COVID-19, você sente que",
                                     cex.main=0.8)
 
@@ -910,7 +908,6 @@ grafico_aulas <- pie(aulas,
 
 # Tratamento opcoes
 df_professores <- data.frame(professores="", nivel =dataset.csv$acesso_professores)
-df_pro
 
 for (k in 1:nrow(df_professores)) {
   if(df_professores$nivel[k] == "Melhorou")                     df_professores$professores[k] <- "Melhorou"
@@ -936,10 +933,10 @@ pct_acesso_professores
 grafico_acesso_professores <- pie(acesso_professores,
                      edges = 200, radius = 0.8,
                      clockwise = T,
-                     density = NULL, angle = 90, col = rainbow(6),
-                     labels = paste(names(acesso_professores), "-", pct_acesso_professores),
+                     density = NULL, angle = 90, col = rainbow(4),
+                     labels = paste(names(acesso_professores), " ", acesso_professores, "(", pct_acesso_professores, ")"),
                      main = "Grafico Pandemia Acesso Professores : Durante a pandemia da COVID-19, você sentiu que as formas de acesso aos seus professores:",
-                     cex.main=0.8)
+                     cex.main=0.9)
 
 
 # Grafico 3. Pandemia espaco_fisico
