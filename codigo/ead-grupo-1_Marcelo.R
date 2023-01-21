@@ -29,9 +29,14 @@
 # Import packages
 #library(tidyverse)
 library(ggplot2)
+library(stringr)
+library(readxl)
 
 # Importacao arquivo CSV
 dataset.csv <-read.csv("./dados/COVID19IES.csv", header = TRUE, sep = ";", quote = "\"", dec = ".")
+
+# Importacao arquivo Excel 
+dataset.xlsx <-dbf.xlsx <- read_excel("./dados/COVID19IES.xlsx")
 
 # Numero Total de Questionarios respondidos
 num_questionario = as.numeric(nrow(dataset.csv))
@@ -1168,9 +1173,66 @@ grafico_nivel_endividamento <- pie(nivel_endividamento,
 
 
 # Grafico 4. Financas despesas_cresceram
-# Quais das despesas do seu dia-a-dia aqui relacionadas você acredita que cresceram no ano/semestre, após o pico da pandemia ? (Marque todas que achar necessárias)
+# Quais das despesas do seu dia-a-dia aqui relacionadas você acredita que cresceram no ano/semestre, 
+# após o pico da pandemia ? (Marque todas que achar necessárias)
 
-# ??
+# Relacionadas com saúde
+# Viagens/deslocamentos
+# Transporte urbano
+# Aluguel
+# Internet
+# Alimentação
+# Outras (não relacionadas)
+
+# selecionando todos os casos da variável estilo de uso
+despesas_cresceram <- dataset.xlsx$`despesas_ cresceram`
+despesas_cresceram
+
+# Relacionadas com saúde
+# Viagens/deslocamentos
+# Transporte urbano
+# Aluguel
+# Internet
+# Alimentação
+# Outras (não relacionadas)
+
+relacionadas_saude <- length(na.omit(str_match(despesas_cresceram, "Relacionadas com saúde")))
+viagens_deslocamentos <- length(na.omit(str_match(despesas_cresceram, "Viagens/deslocamentos")))
+transporte_urbano <- length(na.omit(str_match(despesas_cresceram, "Transporte urbano")))
+aluguel <- length(na.omit(str_match(despesas_cresceram, "Aluguel")))
+internet <- length(na.omit(str_match(despesas_cresceram, "Internet")))
+alimentacao <- length(na.omit(str_match(despesas_cresceram, "Alimentação")))  
+outras <- length(na.omit(str_match(despesas_cresceram, "Outras")))
+
+casos_despesas_cresceram <- c(relacionadas_saude, viagens_deslocamentos, transporte_urbano, aluguel, internet, alimentacao, outras)
+names(casos_despesas_cresceram) <- c("Relac.Saúde", "Deslocamento", "Transp.Urbano", "Aluguel", "Internet", "Alimentação", "Outras")
+casos_despesas_cresceram
+
+# Relac. saúde   Deslocamento Transp. urbano        Aluguel       Internet    Alimentação         Outras 
+#       16             21             22             18             18             37             15 
+
+pct_despesas_cresceram <- paste0(round(unname(casos_despesas_cresceram) / sum(unname(casos_despesas_cresceram)) * 100,0), "%")
+pct_despesas_cresceram  
+#[1] "11%" "14%" "15%" "12%" "12%" "25%" "10%"
+
+# Grafico
+par(las=1) # nomes dos eixos perpendicular
+par(mar=c(5,10,7,1)+0.1)  # para aumentar a margem a esquerda 
+grafico_despesas_cresceram <- barplot(casos_despesas_cresceram, 
+                               main="Grafico Finanças : Quais das despesas do seu dia-a-dia aqui relacionadas você acredita que cresceram no ano/semestre, 
+                                                 após o pico da pandemia ? (Marque todas que achar necessárias)",
+                               las=1,  
+                               beside = TRUE,
+                               horiz=TRUE, 
+                               xlim = c(0,max(casos_despesas_cresceram) + 12),
+                               col=rainbow(7),
+                               cex.axis = 0.6,  
+                               cex.names = 0.8,
+                               cex.main = 0.9)
+
+text(grafico_despesas_cresceram, x = casos_despesas_cresceram, label = paste(casos_despesas_cresceram, "(", pct_despesas_cresceram, ")"), cex=0.8, pos=4)
+
+par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
 
 
 # Grafico 5. Ansiedade nivel_ansiedade
