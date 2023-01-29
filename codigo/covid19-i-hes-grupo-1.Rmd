@@ -2,15 +2,10 @@
 title: "Impacto da COVID-19 nos Estudantes Universitários no Brasil"
 subtitle: 'Trabalho Final da Disciplina Ciência de Dados - 2022'
 author:
-- name: Marcelo José dos Santos
-  affiliation: Universidade Estadual Paulista - UNESP/Bauru
-- name: Lívia Inglesis Barcellos
-  affiliation: Universidade Estadual Paulista - UNESP/Bauru
-- name: Henrique Mercez
-  affiliation: Universidade Estadual Paulista - UNESP/Bauru
-- name: Shelley Navari
-  affiliation: Universidade Estadual Paulista - UNESP/Bauru
-url: <www.faac.unesp.br>
+- name: Marcelo José dos Santos^[Universidade Estadual Paulista - UNESP/Bauru, @unesp.br]
+- name: Lívia Inglesis Barcellos^[Universidade Estadual Paulista - UNESP/Bauru, livia.i.barcellos@unesp.br]
+- name: Henrique Campos Mercez dos Santos ^[Universidade Estadual Paulista - UNESP/Bauru, henrique.mercez@unesp.br]
+- name: Shelley Navari Christianini^[Universidade Estadual Paulista - UNESP/Bauru, shelley.navari@unesp.br]
 date: "`r format(Sys.time(), '%d de %B de %Y')`"
 tags: [ciênciadedados, covid19, analiseexploratoria, trabalhofinal]
 abstract: |
@@ -21,22 +16,63 @@ abstract: |
   - quais suas considerações a respeito das estratégias que foram adotadas pelas instituições superiores; e  
   - como estes fatores influenciaram suas vidas.
 output:
+  html_document: default
   word_document: default
   pdf_document: default
-  html_document: default
+  toc: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## 1. Introdução
 
-## Introdução
+Em março de 2020, a Organização Mundial das Nações Unidas (ONU) declarou oficialmente a pandemia da Covid-19 (UNA-SUS, 2020), doença infecciosa causada pelo vírus SARS-CoV-2, detectado pela primeira vez em dezembro de 2019, na China. No Brasil, foi dada a confirmação do primeiro caso em fevereiro de 2020, tendo o número de infectados e óbitos se multiplicado rapidamente posteriormente.
 
-Este é um documento R Markdown. Markdown é uma sintaxe de formatação simples para criar documentos HTML, PDF e MS Word. Para obter mais detalhes sobre o uso do R Markdown, consulte http://rmarkdown.rstudio.com.
+Medidas de prevenção foram implementadas em todas as regiões do país para coibir a disseminação do vírus, tendo em vista a necessidade de preparar as unidades de pronto atendimento (UPA) e hospitais para receberem pacientes em larga escala em um curto período de tempo, uma vez que a contaminação entre os seres humanos é considerada alta.
 
-Ao clicar no botão **Knit**, será gerado um documento que inclui tanto o conteúdo quanto a saída de qualquer fragmento de código R incorporado no documento. Você pode incorporar um pedaço de código R como este::
+No Brasil, a primeira vacina a ser utilizada foi a CoronaVac, desenvolvida pelo Instituto Butantã em parceria com a fabricante chinesa de medicamentos Sinovac Biontech. A vacinação da população deu-se início em janeiro de 2021. Desde então, 80,3% da população já completou o calendário vacinal  (UOL, 2023) com todas as doses recomendadas,  porém, órgãos de saúde pública e privada ainda trabalham para que a cobertura vacinal seja ainda maior, tendo em vista que a vacina deve ser reforçada, em média, a cada 4 meses.
 
-## Análise Exploratrória  
+Seu impacto global afetou diversos setores como saúde, política, economia e educação. Considerando-se os fatores causados pela COVID-19, a proposta desta pesquisa exploratória-descritiva é compreender como os estudantes universitários vivenciam a pandemia. Buscou-se investigar também de que forma se comportam frente às restrições impostas pelos riscos de contágio, quais suas considerações a respeito das estratégias que foram adotadas pelas instituições superiores, e como estes fatores influenciaram suas vidas.
+
+## 2. Fundamentação Teórica
+
+A COVID-19 é uma síndrome respiratória aguda grave (SRAG) infecciosa causada pelo coronavírus, cujo agente etiológico é o SARS-CoV-2. Sua particularidade está na rapidez com que se manifesta entre seres humanos, levando a alta contaminação e elevação do número de casos (Campos, Mônica Rodrigues et al. 2020).. Inicialmente, os sintomas mais comuns eram febre, tosse seca, perda dos sentidos, olfato e paladar, e, em casos mais moderados/graves, falta de ar. Contudo, a doença apresenta manifestações diferentes a depender do indivíduo. Desde então, variadas mutações surgiram em diferentes partes do mundo, algumas, inclusive, associadas a uma maior transmissibilidade e virulência.
+
+>Por isso, medidas de proteção como usar máscaras e higienizar as mãos com sabão e álcool em gel, evitar aglomerações e manter o distanciamento social, além de completar o esquema vacinal contra a Covid-19, são iniciativas que funcionam contra todas variantes da Covid-19. (BUTANTAN, 2021).
+
+Além disso, as medidas preventivas incluíram, inicialmente, o isolamento social, quando as autoridades recomendaram que a população permanecesse em casa, evitando assim aglomerações e, consequentemente, a transmissão do vírus. Nesse período, os estados e municípios adotaram diferentes medidas de isolamento social, com diferentes níveis de restrição dado o número de infectados. 
+
+No auge da pandemia, antes da criação de uma vacina, foi aplicado o Lockdown (ou quarentena rígida)  em determinadas localidades por um determinado período de tempo, restringindo a circulação de pessoas e o fechamento de comércios e serviços considerados não essenciais. Por último, seguiu-se a  vacinação, com uma campanha conduzida de forma descentralizada, com cada Estado e município sendo responsáveis por adquirir e distribuir as vacinas (VEJA, 2022). Além de tais medidas, também puderam adotar outras adicionais de acordo com a situação local, como fechamento de escolas, restrições de circulação noturna, entre outras.
+
+As principais críticas às decisões tomadas pelos governos, tanto na esfera federal, estadual ou municipal do Brasil, se dão pela falta de planejamento. O país sofreu com a ausência de um plano efetivo na coordenação e distribuição de vacinas, tendo dificuldades principalmente quanto à distribuição, com desequilíbrios regionais e problemas de logística. A falta de apoio econômico e social para as pessoas afetadas pela pandemia também foi um fator de grande impacto (CEPAL, 2021), pois muitos foram afetados economicamente pela pandemia e pela necessidade de isolamento social.
+
+A falta de transparência e de informações precisas sobre a pandemia, fosse pela real situação  e as medidas governamentais adotadas tem sido criticada, assim como a falta de informações consistentes e atualizadas. E uma das principais causas na demora da compra de vacinas, e impedimento de imunização no país, é a política de negacionismo, onde governadores e líderes políticos minimizaram a gravidade da pandemia (O Globo, 2021) e se recusaram a adotar medidas recomendadas pelas autoridades de saúde mundiais, fator extremamente criticado por especialistas (FIOCRUZ,2021), pois pode levou a uma disseminação descontrolada do vírus e uma sobrecarga nos sistemas de saúde.
+
+## 3. Análise Exploratória
+
+A Análise Exploratória de Dados, em inglês, _Exploratory Data Analysis (EDA)_, é uma abordagem utilizada por Cientistas de Dados para analisar e investigar dados. A partir dessa análise é possível ter uma visão panorâmica dos dados, a fim de obter sentido e extrair conhecimentos desses dados. Nessa etapa, ainda não é possível compreender o que os dados têm para dizer, mas é possível gerar insights para obter respostas para as perguntas, além de coletar informações que podem ser usadas para alimentar os modelos de _machine learning_.
+
+### 3.1 Preparação e compreensão do conteúdo de dados
+
+### 3.2 Importação dos dados
+
+Os dados deste trabalho foram originalmente digitados em um questionário de coleta de dados online no aplicativo de gerenciamento de pesquisas Google Forms®. Após a digitação os **dados brutos** (raw data) foram compilados em um *workbook* utilizando o aplicativo de computador (software) Excel® da Microsoft®. Uma amostra do conteúdo das planilhas de trabalho em OpenDocument (.ods) com os dados brutos, ou *dados não numericamente organizados*, é mostrada na Figura 2. 
+Tais dados brutos após pequenas transformações realizadas manualmente foram depois reproduzidos em arquivos .xlsx (formato Excel®), .ods (formato OpenDocument ou OpenDocument Format – ODF, no original em inglês) e .csv (formato de arquivo que significa “comma-separated-values” - valores separados por vírgulas). O objetivo de utilizar tais formatos de arquivos foi o de possibilitar a importação e exportação dos arquivos em formas que diversas linguagens utilizadas para análise de dados e/ou aplicativos possam ser utilizados.  
+
+![Figura 2. Dados brutos transferidos para uma planilha OpenDocument.](figura-aed2.png)  
+
+### 3.3 Visualização dos dados
+
+Visualização de dados é uma das etapas da AED e tem como intuito traduzir dados em um contexto visual, buscando dessa forma tornar os dados mais fáceis de serem compreendidos pelo cérebro humano e proporcionar o entendimento dos dados mostrados e assim extrair insights, afirma Tyagi (2022).   
+Dessa forma, o principal objetivo da visualização de dados, afirma da Silva (2021), é facilitar a identificação de padrões, tendências e **outliers** em um determinado conjunto de dados sendo analisados.   
+De acordo Wickham e Grolemund (2017), na etapa de visualização os dados coletados, importados, arrumados e transformados, podem ser visualizados para que conclusões sejam obtidas. Ainda de acordo com os autores, a visualização faz parte de área mais ampla dentro da arquitetura de apresentação de dados, cujos principais objetivos são: identificar, localizar, manipular, formatar e oferecer a maneira mais eficiente possível para a compreensão desses dados.  
+Portanto, neste tópico do artigo serão mostrados e discutidos os gráficos resultantes da AED realizada.
+
+Este relatório representa a análise sobre como a pandemia de Coronavírus (Covid-19) afetou a vida e cotidiano dos estudantes universitários. O questionário ficou disponível de 22 de abril de 2021 e 06 de dezembro de 2022, contendo 50 questões. A pesquisa contou com a participação de 52 integrantes, sendo que mais de 48% se declaram do gênero masculino, 46% feminino, 4% transgênero/transexual e 2% homem gay . A amostra foi composta ainda por 77% de alunos da UNESP e 23% de demais instituições
+
+Para o perfil dos entrevistados foram analisadas as respostas obtidas pelo questionário, no período disponível.
+
 ```{r echo=FALSE}
 # Import packages
 #library(tidyverse)
@@ -90,4 +126,68 @@ text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_eta
 
 ```
 
-Segundo o gráfico ....
+Como pode ser observado no Gráfico 1, A faixa etária com maior número de entrevistados, correspondendo a 35%, é a faixa etária de 17 a 24 anos.
+As faixas de 22 a 26 anos e 37 a 41 anos obtiveram 13% cada uma, 10% dos respondentes estão na faixa de 42 a 46 anos, de 47 a 51 anos e de 52 a 56 anos tiveram ambas 8%, 6% eram da faixa de 27 a 31 anos, 6% de 32 a 36 anos, e apenas 2% se enquadraram na faixa etária de 57 a 61 anos.
+
+```{r}
+
+```
+
+
+## Resultados e Discussão 
+
+Após a análise dos dados oriundos do questionário, foi observado que as respostas recebidas não estão totalmente distantes da realidade brasileira após período crítico de pandemia. Porém, deve-se ressaltar alguns tópicos que chamam a atenção por revelarem informações sobre dificuldades que, até então, pareciam representar uma parcela distante da população comparada à bolha social de cada indivíduo.
+
+Como primeiro exemplo, deve-se citar os 2% universitários que não migraram para o ensino virtual. Esse valor ainda foi superior que o identificado em escolas públicas e particulares, segundo pesquisa divulgada pela Agência Senado:
+
+>No ensino privado, 70,9% das escolas ficaram fechadas no ano passado. O número é consideravelmente menor que o da rede pública: 98,4% das escolas federais, 97,5% das municipais e 85,9% das estaduais. (Agência Senado)
+
+Contudo, de acordo com o  Presidente da Comissão de Educação da Alerj durante a pandemia, Flavio Serafini (Psol), a rede estadual não conseguia apresentar (na época) uma solução que garantisse o direito ao ensino durante a pandemia.
+
+>Mais de um terço dos alunos sequer acessou o aplicativo do estado, e a média de uso diário é inferior a 10% do total de estudantes na maioria dos dias. Isso mostra que o que foi desenvolvido até agora é muito limitado. Faltou uma política de inclusão digital mais estruturante." (EXTRA, 2021)
+
+Isso fez com que a qualidade da aprendizagem caísse e o déficit educacional aumentasse, agravando ainda mais a desigualdade.
+
+A crise financeira iniciada em 2014 foi causada por um conjunto de choques de oferta e demanda, obrigando gestores públicos a adotarem instrumentos políticos para atenuar seus efeitos (Mariano, 2016), porém a tão temida crise da pandemia não teve quaisquer indícios ou sinais semelhantes ao anterior. De acordo com  o relatório  do Banco Mundial, a recessão decorrente da pandemia atingiu seu ápice, em número de países atingidos, nos últimos 120 anos (PODER 360, 2022).
+
+>"O Brasil desembolsou 15% do PIC (...) para conter os efeitos da covid no 1 ano de pandemia. (...) O endividamento dos países tende a se agravar, disse Ramalho, por outra consequência global da pandemia: a alta da inflação." (PODER 360, 2022)
+
+De acordo com a fonte, o Banco Mundial ainda estima que 76 milhões de pessoas entraram em 2020 para a extrema pobreza. O crescimento da desigualdade não foi causado apenas por conta da pandemia, contudo os mais vulneráveis ficaram excluídos até de medidas como o  Auxílio Emergencial, já que  muitos não têm acesso à internet. Segundo o IBGE, em 2021, 92,3% dos domicílios urbanos brasileiros têm acesso à Internet (PNAD, 2022). Entretanto, a desigualdade também se apresenta nesses casos, já que 100% dos lares da classe A têm ao menos um computador, e apenas 13% dos de classe D e E. 
+
+Paralelamente, é importante destacar que boa parte dos entrevistados sofreram consequências mais brandas no âmbito educacional. Apesar de enfrentarem as mesmas dificuldades, como por exemplo, a falta de acesso à estrutura universitária em determinadas situações, de modo geral pode-se concluir que não sofreram impactos grandiosos que resultam no rompimento das atividades acadêmicas ou sua conclusão. 
+
+## Conclusão
+
+## Referências
+
+BUTANTAN. *Por que acontecem mutações do SARS-CoV-2 e quais as diferenças entre cada uma das variantes.* 2021 . Disponível em: https://butantan.gov.br/noticias/por-que-acontecem-mutacoes-do-sars-cov-2-e-quais-as-diferencas-entre-cada-uma-das-variantes
+
+Briceño-León, R. (2003). *Quatro modelos de integração de técnicas qualitativas e quantitativas de investigação nas ciências sociais.* O Clássico e o novo–tendências, objetos e abordagens em ciências sociais e saúde, 157-186. Disponível em: https://books.scielo.org/id/d5t55/pdf/goldenberg-9788575412510.pdf#page=157
+
+Campos, Mônica Rodrigues et al. *Carga de doença da COVID-19 e de suas complicações agudas e crônicas: reflexões sobre a mensuração (DALY) e perspectivas no Sistema Único de Saúde.* Cadernos de Saúde Pública [online]. v. 36, n. 11 [Acessado 23 Janeiro 2023] , e00148920. Disponível em: <https://doi.org/10.1590/0102-311X00148920>. ISSN 1678-4464. https://doi.org/10.1590/0102-311X00148920. 
+
+CEPAL. *Pandemia provoca aumento nos níveis de pobreza sem precedentes nas últimas décadas e tem um forte impacto na desigualdade e no emprego.* 2021.  Disponível em: 
+https://www.cepal.org/pt-br/comunicados/pandemia-provoca-aumento-niveis-pobreza-sem-precedentes-ultimas-decadas-tem-forte
+
+EXTRA. *Migração para as escolas públicas cresce 30% na pandemia, e rede privada perde 50 mil alunos.* 2021. Disponível em: https://extra.globo.com/noticias/rio/migracao-para-as-escolas-publicas-cresce-30-na-pandemia-rede-privada-perde-50-mil-alunos-25138212.html
+
+FIOCRUZ. 2021. *Aula inaugural analisa consequências das decisões brasileiras no enfrentamento à pandemia.* Disponível em: https://informe.ensp.fiocruz.br/noticias/51262
+
+IBGE. PNAD Contínua - *Módulo de Tecnologia de Informação e Comunicação* (TIC)  2021.  Disponível em: https://www.ibge.gov.br/estatisticas/multidominio/ciencia-tecnologia-e-inovacao/17270-pnad-continua.html?=&t=resultados
+
+MARIANO, Jefferson, Barcellos, Lívia I. (2017). *Estratégias de gestão dos municípios em cenário de crise socioeconômica.* Geografia e Pesquisa, 11(2).
+
+O GLOBO.  *Por que o negacionismo atrapalha o combate à Covid?.* 2021. Disponível em:
+https://oglobo.globo.com/podcast/por-que-negacionismo-atrapalha-combate-covid-1-24931788
+
+PODER 360.  *Pandemia causou recessão mais ampla que as guerras mundiais.* 2022. Disponível em: https://www.poder360.com.br/economia/pandemia-causou-recessao-mais-ampla-que-as-guerras-mundiais/
+
+UOL. *Covid: 172,6 milhões de brasileiros completam vacinação, 80,3% da população.* Disponível em:
+https://noticias.uol.com.br/saude/ultimas-noticias/redacao/2023/01/11/vacinacao-covid-19-coronavirus-11-de-janeiro.htm?cmpid=copiaecola. Acesso em: 12 de jan. de 2023. 
+
+UNA-SUS. *Organização Mundial de Saúde declara pandemia do novo Coronavírus.* Disponível em:
+https://www.unasus.gov.br/noticia/organizacao-mundial-de-saude-declara-pandemia-de-coronavirus. Acesso em: 10 de jan. de 2023.
+
+VEJA. *As lições da pandemia de Covid-19 – que está chegando ao fim.* 2021 . Disponível em:
+https://veja.abril.com.br/saude/os-sinais-de-que-a-pandemia-de-covid-19-vai-acabar-em-breve/.
+
