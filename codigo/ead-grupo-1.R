@@ -96,8 +96,8 @@ grafico_faixa_etaria <- barplot(tbl_faixa_etaria,
                                 ylab = "Respondentes",
                                 col = rainbow(9),
                                 ylim = c(0,max(tbl_faixa_etaria) + 5),
-                                cex.axis=1.0, cex.names=0.7)
-text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), cex=0,8, pos=3)
+                                cex.axis=1.0, cex.names=0.8)
+text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), pos=3, cex =.60 )
 
 
 # Grafico Dados Pessoais : 1.Genero
