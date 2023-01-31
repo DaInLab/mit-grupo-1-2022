@@ -1,5 +1,5 @@
 ---
-title: "Impacto da COVID-19 nos Estudantes Universitários no Brasil"
+title: "AS CONSEQUÊNCIAS ORIUNDAS DA PANDEMIA DA COVID-19 NOS ESTUDANTES UNIVERSITÁRIOS BRASILEIROS"
 subtitle: 'Trabalho Final da Disciplina Ciência de Dados - 2022'
 author:
 - name: Marcelo José dos Santos
@@ -14,6 +14,13 @@ url: <www.faac.unesp.br>
 date: "`r format(Sys.time(), '%d de %B de %Y')`"
 tags: [ciênciadedados, covid19, analiseexploratoria, trabalhofinal]
 abstract: |
+  
+  Henrique Campos Mercez dos Santos  
+  Lívia Inglesis Barcellos  
+  Marcelo José dos Santos  
+  Shelley Navari Christianini
+
+  
   Tendo em vista os fatores causados pela situação pandêmica mundial da COVID-19, a proposta desta pesquisa é a de lançar alguma luz neste âmbito e coletar dados exploratórios. O estudo proposto visa compreender como os estudantes universitários estão vivenciando a pandemia e de que forma se comportam frente a esta nova realidade.  
   Portanto, os objetivos dessa pesquisa exploratória-descritiva são de investigar:   
   - como os alunos vivenciaram a pandemia da COVID-19;   
@@ -21,74 +28,7 @@ abstract: |
   - quais suas considerações a respeito das estratégias que foram adotadas pelas instituições superiores; e  
   - como estes fatores influenciaram suas vidas.
 output:
-  pdf_document: default
   word_document: default
   html_document: default
+  pdf_document: default
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Introdução
-
-Este é um documento R Markdown. Markdown é uma sintaxe de formatação simples para criar documentos HTML, PDF e MS Word. Para obter mais detalhes sobre o uso do R Markdown, consulte <http://rmarkdown.rstudio.com>.
-
-Ao clicar no botão **Knit**, será gerado um documento que inclui tanto o conteúdo quanto a saída de qualquer fragmento de código R incorporado no documento. Você pode incorporar um pedaço de código R como este::
-
-## Análise Exploratrória
-
-```{r echo=FALSE}
-# Import packages
-#library(tidyverse)
-library(ggplot2)
-library(stringr)
-library(readxl)
-
-# Importacao arquivo CSV
-dataset.csv <-read.csv("C:/ciencia-de-dados/mit-grupo-1-2022/dados/COVID19IES.csv", header = TRUE, sep = ";", quote = "\"", dec = ".")
-
-# Grafico Dados Pessoais : 1.Idade (Faixa Etária) 
-# Qual a sua idade ? 
-idade <- table(dataset.csv$idade)
-
-# Porcentagem das faixas etárias
-pct_idade <- paste0(round(unname(idade) / sum(unname(idade)) * 100,0), "%")
-
-# Amplitude 
-valor_min = min(dataset.csv$idade)
-valor_max = max(dataset.csv$idade)
-
-df_faixa_etaria <- data.frame(faixa_etaria="", idade=dataset.csv$idade )
-
-for (k in 1:nrow(df_faixa_etaria)) {
-  if(df_faixa_etaria$idade[k] <= 24) df_faixa_etaria$faixa_etaria[k] <- "de 17 a 24 anos"
-  if(df_faixa_etaria$idade[k] >= 25 & df_faixa_etaria$idade[k] <= 26) df_faixa_etaria$faixa_etaria[k] <- "de 22 a 26 anos"
-  if(df_faixa_etaria$idade[k] >= 27 & df_faixa_etaria$idade[k] <= 31) df_faixa_etaria$faixa_etaria[k] <- "de 27 a 31 anos"
-  if(df_faixa_etaria$idade[k] >= 32 & df_faixa_etaria$idade[k] <= 36) df_faixa_etaria$faixa_etaria[k] <- "de 32 a 36 anos"
-  if(df_faixa_etaria$idade[k] >= 37 & df_faixa_etaria$idade[k] <= 41) df_faixa_etaria$faixa_etaria[k] <- "de 37 a 41 anos"
-  if(df_faixa_etaria$idade[k] >= 42 & df_faixa_etaria$idade[k] <= 46) df_faixa_etaria$faixa_etaria[k] <- "de 42 a 46 anos" 
-  if(df_faixa_etaria$idade[k] >= 47 & df_faixa_etaria$idade[k] <= 51) df_faixa_etaria$faixa_etaria[k] <- "de 47 a 51 anos" 
-  if(df_faixa_etaria$idade[k] >= 52 & df_faixa_etaria$idade[k] <= 56) df_faixa_etaria$faixa_etaria[k] <- "de 52 a 56 anos"
-  if(df_faixa_etaria$idade[k] >= 57 & df_faixa_etaria$idade[k] <= 61) df_faixa_etaria$faixa_etaria[k] <- "de 57 a 61 anos"
-  if(df_faixa_etaria$idade[k] > 61) df_faixa_etaria$faixa_etaria[k] <- "acima de 61 anos"
-}
-
-## table idade_concat
-tbl_faixa_etaria <- table(df_faixa_etaria$faixa_etaria)
-
-## Porcentagem por Faixa Etaria
-pct_faixa_etaria <- paste0(round(unname(tbl_faixa_etaria) / sum(unname(tbl_faixa_etaria)) * 100,0), "%")
-
-grafico_faixa_etaria <- barplot(tbl_faixa_etaria, 
-                                main = "Gráfico Dados Pessoais: Qual a sua idade ? ",
-                                xlab = "Idades", 
-                                ylab = "Respondentes",
-                                col = rainbow(9),
-                                ylim = c(0,max(tbl_faixa_etaria) + 5),
-                                cex.axis=1.0, cex.names=0.7)
-text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), cex=0,8, pos=3)
-
-```
-
-Segundo o gráfico ....
