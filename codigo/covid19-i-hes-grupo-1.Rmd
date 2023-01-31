@@ -12,14 +12,14 @@ abstract: |
   Tendo em vista os fatores causados pela situação pandêmica mundial da COVID-19, a proposta desta pesquisa é a de lançar alguma luz neste âmbito e coletar dados exploratórios. O estudo proposto visa compreender como os estudantes universitários estão vivenciando a pandemia e de que forma se comportam frente a esta nova realidade.  
   Portanto, os objetivos dessa pesquisa exploratória-descritiva são de investigar: a) como os alunos vivenciaram a pandemia da COVID-19; b) de que forma se comportaram frente as restrições impostas pelos riscos de contágio; c) quais suas considerações a respeito das estratégias que foram adotadas pelas instituições superiores; e d) como estes fatores influenciaram suas vidas. 
 output:
-  pdf_document:
-    latex_engine: xelatex
   html_document:
     toc: true
     toc_depth: 2
     toc_float:
       collapsed: false
       smooth scroll: false
+  pdf_document:
+    latex_engine: xelatex
   word_document: default
 ---
 
@@ -627,47 +627,15 @@ grafico_renda_financeira <- pie(renda_financeira,
                         clockwise = T,
                         density = NULL, angle = 90, col = rainbow(4),
                         labels = paste(names(renda_financeira), " ", renda_financeira, "(", pct_renda_financeira, ")"),
-                        main = "Grafico Situacao Financeira : Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira?",
+                        main = "Grafico 13 : Renda Financeira ",
                         cex.main=0.8)
-
-# Grafico 4. Financas nivel_endividamento
-# Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas: *
-
-# Tratamento das Opcoes
-df_endividamento <- data.frame(endividamento="", nivel =dataset.csv$nivel_endividamento )
-
-for (k in 1:nrow(df_endividamento)) {
-  if(df_endividamento$nivel[k] == "Aumentaram")       df_endividamento$endividamento[k] <- "Aumentaram"
-  if(df_endividamento$nivel[k] == "Diminuiram")       df_endividamento$endividamento[k] <- "Diminuiram"
-  if(df_endividamento$nivel[k] == "Estão mais ou menos as mesmas")   df_endividamento$endividamento[k] <- "Não Mudaram"
-  if(df_endividamento$nivel[k] == "N/A ou Não sabe")           df_endividamento$endividamento[k] <- "Não Sabe"
-  if(df_endividamento$nivel[k] == "São mais ou menos as mesmas")         df_endividamento$endividamento[k] <- "Não Mudaram"
-}
-
-nivel_endividamento <- table(df_endividamento$endividamento, exclude = "")
-nivel_endividamento
-
-# Aumentaram  Diminuiram Não Mudaram    Não Sabe 
-#        7           6          36           3 
-
-pct_nivel_endividamento <- paste(round(unname(nivel_endividamento) / sum(unname(nivel_endividamento)) * 100), "%")
-pct_nivel_endividamento
-
-#  "13 %" "12 %" "69 %" "6 %" 
-
-grafico_nivel_endividamento <- pie(nivel_endividamento,
-                                edges = 200, radius = 0.8,
-                                clockwise = T,
-                                density = NULL, angle = 90, col = rainbow(5),
-                                labels = paste(names(nivel_endividamento), " ", nivel_endividamento, "(", pct_nivel_endividamento, ")"),
-                                main = "Grafico 13 : Nível de Endividamento ",
-                                cex.main=1)
 
 ```
 
 Apesar da maioria dos entrevistados não terem sofrido com o aumento de despesas, no **Gráfico 13**, 44% alega que sua renda financeira continuou mais ou menos a mesma coisa. 25% observaram uma queda no poder de compra, 6% tiveram um aumento e 2% não quiseram e/ou puderam opinar.
 
 Dentre os gastos citados pelos respondentes pós pandemia, o maior foi alimentação (25%), seguido pelo transporte urbano e deslocamento. Levando em consideração que, em sua maioria, os entrevistados tiveram que retomar pelo menos parcialmente ou híbrida para seu trabalho e faculdade, justifica ser um dos itens mais marcados.
+
 
 ```{r echo=FALSE, results='hide'}
 # Grafico 2. Instituicao ajuda_financeira
@@ -720,7 +688,7 @@ grafico_migrou_virtual <- pie(migrou_virtual,
                            clockwise = T,
                            density = NULL, angle = 90, col = rainbow(2),
                            labels = paste(names(migrou_virtual), "", migrou_virtual,"(", pct_migrou_virtual, ")"),
-                           main = "Grafico ")
+                           main = "Grafico 15: Migrou Virtual ")
 ```
 
 De acordo com o **Gráfico 15**, 98% dos entrevistados migraram para o ensino remoto.
