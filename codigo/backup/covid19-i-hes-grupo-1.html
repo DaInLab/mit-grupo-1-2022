@@ -362,19 +362,11 @@ display: none;
 Universitários no Brasil</h1>
 <h3 class="subtitle">Trabalho Final da Disciplina Ciência de Dados -
 2022</h3>
-<h4 class="author">Marcelo José dos Santos</h4>
-<address class="author_afil">
-Universidade Estadual Paulista - UNESP/Bauru<br><h4 class="author">Lívia
-Inglesis Barcellos</h4>
-<address class="author_afil">
-Universidade Estadual Paulista -
-UNESP/Bauru<br><h4 class="author">Henrique Mercez</h4>
-<address class="author_afil">
-Universidade Estadual Paulista -
-UNESP/Bauru<br><h4 class="author">Shelley Navari</h4>
-<address class="author_afil">
-Universidade Estadual Paulista - UNESP/Bauru<br><h4 class="date">25 de
-janeiro de 2023</h4>
+<h4 class="author">Marcelo José dos Santos<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h4>
+<h4 class="author">Lívia Inglesis Barcellos<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></h4>
+<h4 class="author">Henrique Campos Mercez dos Santos <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></h4>
+<h4 class="author">Shelley Navari Christianini<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></h4>
+<h4 class="date">29 de janeiro de 2023</h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 <p>Tendo em vista os fatores causados pela situação pandêmica mundial da
@@ -396,19 +388,277 @@ pelas instituições superiores; e<br />
 
 
 <div id="introdução" class="section level2">
-<h2>Introdução</h2>
-<p>Este é um documento R Markdown. Markdown é uma sintaxe de formatação
-simples para criar documentos HTML, PDF e MS Word. Para obter mais
-detalhes sobre o uso do R Markdown, consulte <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>Ao clicar no botão <strong>Knit</strong>, será gerado um documento
-que inclui tanto o conteúdo quanto a saída de qualquer fragmento de
-código R incorporado no documento. Você pode incorporar um pedaço de
-código R como este::</p>
+<h2>1. Introdução</h2>
+<p>Em março de 2020, a Organização Mundial das Nações Unidas (ONU)
+declarou oficialmente a pandemia da Covid-19 (UNA-SUS, 2020), doença
+infecciosa causada pelo vírus SARS-CoV-2, detectado pela primeira vez em
+dezembro de 2019, na China. No Brasil, foi dada a confirmação do
+primeiro caso em fevereiro de 2020, tendo o número de infectados e
+óbitos se multiplicado rapidamente posteriormente.</p>
+<p>Medidas de prevenção foram implementadas em todas as regiões do país
+para coibir a disseminação do vírus, tendo em vista a necessidade de
+preparar as unidades de pronto atendimento (UPA) e hospitais para
+receberem pacientes em larga escala em um curto período de tempo, uma
+vez que a contaminação entre os seres humanos é considerada alta.</p>
+<p>No Brasil, a primeira vacina a ser utilizada foi a CoronaVac,
+desenvolvida pelo Instituto Butantã em parceria com a fabricante chinesa
+de medicamentos Sinovac Biontech. A vacinação da população deu-se início
+em janeiro de 2021. Desde então, 80,3% da população já completou o
+calendário vacinal (UOL, 2023) com todas as doses recomendadas, porém,
+órgãos de saúde pública e privada ainda trabalham para que a cobertura
+vacinal seja ainda maior, tendo em vista que a vacina deve ser
+reforçada, em média, a cada 4 meses.</p>
+<p>Seu impacto global afetou diversos setores como saúde, política,
+economia e educação. Considerando-se os fatores causados pela COVID-19,
+a proposta desta pesquisa exploratória-descritiva é compreender como os
+estudantes universitários vivenciam a pandemia. Buscou-se investigar
+também de que forma se comportam frente às restrições impostas pelos
+riscos de contágio, quais suas considerações a respeito das estratégias
+que foram adotadas pelas instituições superiores, e como estes fatores
+influenciaram suas vidas.</p>
 </div>
-<div id="análise-exploratrória" class="section level2">
-<h2>Análise Exploratrória</h2>
+<div id="fundamentação-teórica" class="section level2">
+<h2>2. Fundamentação Teórica</h2>
+<p>A COVID-19 é uma síndrome respiratória aguda grave (SRAG) infecciosa
+causada pelo coronavírus, cujo agente etiológico é o SARS-CoV-2. Sua
+particularidade está na rapidez com que se manifesta entre seres
+humanos, levando a alta contaminação e elevação do número de casos
+(Campos, Mônica Rodrigues et al. 2020).. Inicialmente, os sintomas mais
+comuns eram febre, tosse seca, perda dos sentidos, olfato e paladar, e,
+em casos mais moderados/graves, falta de ar. Contudo, a doença apresenta
+manifestações diferentes a depender do indivíduo. Desde então, variadas
+mutações surgiram em diferentes partes do mundo, algumas, inclusive,
+associadas a uma maior transmissibilidade e virulência.</p>
+<blockquote>
+<p>Por isso, medidas de proteção como usar máscaras e higienizar as mãos
+com sabão e álcool em gel, evitar aglomerações e manter o distanciamento
+social, além de completar o esquema vacinal contra a Covid-19, são
+iniciativas que funcionam contra todas variantes da Covid-19. (BUTANTAN,
+2021).</p>
+</blockquote>
+<p>Além disso, as medidas preventivas incluíram, inicialmente, o
+isolamento social, quando as autoridades recomendaram que a população
+permanecesse em casa, evitando assim aglomerações e, consequentemente, a
+transmissão do vírus. Nesse período, os estados e municípios adotaram
+diferentes medidas de isolamento social, com diferentes níveis de
+restrição dado o número de infectados.</p>
+<p>No auge da pandemia, antes da criação de uma vacina, foi aplicado o
+Lockdown (ou quarentena rígida) em determinadas localidades por um
+determinado período de tempo, restringindo a circulação de pessoas e o
+fechamento de comércios e serviços considerados não essenciais. Por
+último, seguiu-se a vacinação, com uma campanha conduzida de forma
+descentralizada, com cada Estado e município sendo responsáveis por
+adquirir e distribuir as vacinas (VEJA, 2022). Além de tais medidas,
+também puderam adotar outras adicionais de acordo com a situação local,
+como fechamento de escolas, restrições de circulação noturna, entre
+outras.</p>
+<p>As principais críticas às decisões tomadas pelos governos, tanto na
+esfera federal, estadual ou municipal do Brasil, se dão pela falta de
+planejamento. O país sofreu com a ausência de um plano efetivo na
+coordenação e distribuição de vacinas, tendo dificuldades principalmente
+quanto à distribuição, com desequilíbrios regionais e problemas de
+logística. A falta de apoio econômico e social para as pessoas afetadas
+pela pandemia também foi um fator de grande impacto (CEPAL, 2021), pois
+muitos foram afetados economicamente pela pandemia e pela necessidade de
+isolamento social.</p>
+<p>A falta de transparência e de informações precisas sobre a pandemia,
+fosse pela real situação e as medidas governamentais adotadas tem sido
+criticada, assim como a falta de informações consistentes e atualizadas.
+E uma das principais causas na demora da compra de vacinas, e
+impedimento de imunização no país, é a política de negacionismo, onde
+governadores e líderes políticos minimizaram a gravidade da pandemia (O
+Globo, 2021) e se recusaram a adotar medidas recomendadas pelas
+autoridades de saúde mundiais, fator extremamente criticado por
+especialistas (FIOCRUZ,2021), pois pode levou a uma disseminação
+descontrolada do vírus e uma sobrecarga nos sistemas de saúde.</p>
+</div>
+<div id="análise-exploratória" class="section level2">
+<h2>3. Análise Exploratória</h2>
+<p>A Análise Exploratória de Dados, em inglês, <em>Exploratory Data
+Analysis (EDA)</em>, é uma abordagem utilizada por Cientistas de Dados
+para analisar e investigar dados. A partir dessa análise é possível ter
+uma visão panorâmica dos dados, a fim de obter sentido e extrair
+conhecimentos desses dados. Nessa etapa, ainda não é possível
+compreender o que os dados têm para dizer, mas é possível gerar insights
+para obter respostas para as perguntas, além de coletar informações que
+podem ser usadas para alimentar os modelos de <em>machine
+learning</em>.</p>
+<div id="preparação-e-compreensão-do-conteúdo-de-dados" class="section level3">
+<h3>3.1 Preparação e compreensão do conteúdo de dados</h3>
+</div>
+<div id="importação-dos-dados" class="section level3">
+<h3>3.2 Importação dos dados</h3>
+<p>Os dados deste trabalho foram originalmente digitados em um
+questionário de coleta de dados online no aplicativo de gerenciamento de
+pesquisas Google Forms®. Após a digitação os <strong>dados
+brutos</strong> (raw data) foram compilados em um <em>workbook</em>
+utilizando o aplicativo de computador (software) Excel® da Microsoft®.
+Uma amostra do conteúdo das planilhas de trabalho em OpenDocument (.ods)
+com os dados brutos, ou <em>dados não numericamente organizados</em>, é
+mostrada na Figura 2. Tais dados brutos após pequenas transformações
+realizadas manualmente foram depois reproduzidos em arquivos .xlsx
+(formato Excel®), .ods (formato OpenDocument ou OpenDocument Format –
+ODF, no original em inglês) e .csv (formato de arquivo que significa
+“comma-separated-values” - valores separados por vírgulas). O objetivo
+de utilizar tais formatos de arquivos foi o de possibilitar a importação
+e exportação dos arquivos em formas que diversas linguagens utilizadas
+para análise de dados e/ou aplicativos possam ser utilizados.</p>
+<div class="figure">
+<img src="figura-aed2.png" alt />
+<p class="caption">Figura 2. Dados brutos transferidos para uma planilha
+OpenDocument.</p>
+</div>
+</div>
+<div id="visualização-dos-dados" class="section level3">
+<h3>3.3 Visualização dos dados</h3>
+<p>Visualização de dados é uma das etapas da AED e tem como intuito
+traduzir dados em um contexto visual, buscando dessa forma tornar os
+dados mais fáceis de serem compreendidos pelo cérebro humano e
+proporcionar o entendimento dos dados mostrados e assim extrair
+insights, afirma Tyagi (2022).<br />
+Dessa forma, o principal objetivo da visualização de dados, afirma da
+Silva (2021), é facilitar a identificação de padrões, tendências e
+<strong>outliers</strong> em um determinado conjunto de dados sendo
+analisados.<br />
+De acordo Wickham e Grolemund (2017), na etapa de visualização os dados
+coletados, importados, arrumados e transformados, podem ser visualizados
+para que conclusões sejam obtidas. Ainda de acordo com os autores, a
+visualização faz parte de área mais ampla dentro da arquitetura de
+apresentação de dados, cujos principais objetivos são: identificar,
+localizar, manipular, formatar e oferecer a maneira mais eficiente
+possível para a compreensão desses dados.<br />
+Portanto, neste tópico do artigo serão mostrados e discutidos os
+gráficos resultantes da AED realizada.</p>
+<p>Este relatório representa a análise sobre como a pandemia de
+Coronavírus (Covid-19) afetou a vida e cotidiano dos estudantes
+universitários. O questionário ficou disponível de 22 de abril de 2021 e
+06 de dezembro de 2022, contendo 50 questões. A pesquisa contou com a
+participação de 52 integrantes, sendo que mais de 48% se declaram do
+gênero masculino, 46% feminino, 4% transgênero/transexual e 2% homem gay
+. A amostra foi composta ainda por 77% de alunos da UNESP e 23% de
+demais instituições</p>
+<p>Para o perfil dos entrevistados foram analisadas as respostas obtidas
+pelo questionário, no período disponível.</p>
 <p><img src="data:image/png;base64,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" width="672" /></p>
-<p>Segundo o gráfico ….</p>
+<p>Como pode ser observado no Gráfico 1, A faixa etária com maior número
+de entrevistados, correspondendo a 35%, é a faixa etária de 17 a 24
+anos. As faixas de 22 a 26 anos e 37 a 41 anos obtiveram 13% cada uma,
+10% dos respondentes estão na faixa de 42 a 46 anos, de 47 a 51 anos e
+de 52 a 56 anos tiveram ambas 8%, 6% eram da faixa de 27 a 31 anos, 6%
+de 32 a 36 anos, e apenas 2% se enquadraram na faixa etária de 57 a 61
+anos.</p>
+</div>
+</div>
+<div id="resultados-e-discussão" class="section level2">
+<h2>Resultados e Discussão</h2>
+<p>Após a análise dos dados oriundos do questionário, foi observado que
+as respostas recebidas não estão totalmente distantes da realidade
+brasileira após período crítico de pandemia. Porém, deve-se ressaltar
+alguns tópicos que chamam a atenção por revelarem informações sobre
+dificuldades que, até então, pareciam representar uma parcela distante
+da população comparada à bolha social de cada indivíduo.</p>
+<p>Como primeiro exemplo, deve-se citar os 2% universitários que não
+migraram para o ensino virtual. Esse valor ainda foi superior que o
+identificado em escolas públicas e particulares, segundo pesquisa
+divulgada pela Agência Senado:</p>
+<blockquote>
+<p>No ensino privado, 70,9% das escolas ficaram fechadas no ano passado.
+O número é consideravelmente menor que o da rede pública: 98,4% das
+escolas federais, 97,5% das municipais e 85,9% das estaduais. (Agência
+Senado)</p>
+</blockquote>
+<p>Contudo, de acordo com o Presidente da Comissão de Educação da Alerj
+durante a pandemia, Flavio Serafini (Psol), a rede estadual não
+conseguia apresentar (na época) uma solução que garantisse o direito ao
+ensino durante a pandemia.</p>
+<blockquote>
+<p>Mais de um terço dos alunos sequer acessou o aplicativo do estado, e
+a média de uso diário é inferior a 10% do total de estudantes na maioria
+dos dias. Isso mostra que o que foi desenvolvido até agora é muito
+limitado. Faltou uma política de inclusão digital mais estruturante.”
+(EXTRA, 2021)</p>
+</blockquote>
+<p>Isso fez com que a qualidade da aprendizagem caísse e o déficit
+educacional aumentasse, agravando ainda mais a desigualdade.</p>
+<p>A crise financeira iniciada em 2014 foi causada por um conjunto de
+choques de oferta e demanda, obrigando gestores públicos a adotarem
+instrumentos políticos para atenuar seus efeitos (Mariano, 2016), porém
+a tão temida crise da pandemia não teve quaisquer indícios ou sinais
+semelhantes ao anterior. De acordo com o relatório do Banco Mundial, a
+recessão decorrente da pandemia atingiu seu ápice, em número de países
+atingidos, nos últimos 120 anos (PODER 360, 2022).</p>
+<blockquote>
+<p>“O Brasil desembolsou 15% do PIC (…) para conter os efeitos da covid
+no 1 ano de pandemia. (…) O endividamento dos países tende a se agravar,
+disse Ramalho, por outra consequência global da pandemia: a alta da
+inflação.” (PODER 360, 2022)</p>
+</blockquote>
+<p>De acordo com a fonte, o Banco Mundial ainda estima que 76 milhões de
+pessoas entraram em 2020 para a extrema pobreza. O crescimento da
+desigualdade não foi causado apenas por conta da pandemia, contudo os
+mais vulneráveis ficaram excluídos até de medidas como o Auxílio
+Emergencial, já que muitos não têm acesso à internet. Segundo o IBGE, em
+2021, 92,3% dos domicílios urbanos brasileiros têm acesso à Internet
+(PNAD, 2022). Entretanto, a desigualdade também se apresenta nesses
+casos, já que 100% dos lares da classe A têm ao menos um computador, e
+apenas 13% dos de classe D e E.</p>
+<p>Paralelamente, é importante destacar que boa parte dos entrevistados
+sofreram consequências mais brandas no âmbito educacional. Apesar de
+enfrentarem as mesmas dificuldades, como por exemplo, a falta de acesso
+à estrutura universitária em determinadas situações, de modo geral
+pode-se concluir que não sofreram impactos grandiosos que resultam no
+rompimento das atividades acadêmicas ou sua conclusão.</p>
+</div>
+<div id="conclusão" class="section level2">
+<h2>Conclusão</h2>
+</div>
+<div id="referências" class="section level2">
+<h2>Referências</h2>
+<p>BUTANTAN. <em>Por que acontecem mutações do SARS-CoV-2 e quais as
+diferenças entre cada uma das variantes.</em> 2021 . Disponível em: <a href="https://butantan.gov.br/noticias/por-que-acontecem-mutacoes-do-sars-cov-2-e-quais-as-diferencas-entre-cada-uma-das-variantes" class="uri">https://butantan.gov.br/noticias/por-que-acontecem-mutacoes-do-sars-cov-2-e-quais-as-diferencas-entre-cada-uma-das-variantes</a></p>
+<p>Briceño-León, R. (2003). <em>Quatro modelos de integração de técnicas
+qualitativas e quantitativas de investigação nas ciências sociais.</em>
+O Clássico e o novo–tendências, objetos e abordagens em ciências sociais
+e saúde, 157-186. Disponível em: <a href="https://books.scielo.org/id/d5t55/pdf/goldenberg-9788575412510.pdf#page=157" class="uri">https://books.scielo.org/id/d5t55/pdf/goldenberg-9788575412510.pdf#page=157</a></p>
+<p>Campos, Mônica Rodrigues et al. <em>Carga de doença da COVID-19 e de
+suas complicações agudas e crônicas: reflexões sobre a mensuração (DALY)
+e perspectivas no Sistema Único de Saúde.</em> Cadernos de Saúde Pública
+[online]. v. 36, n. 11 [Acessado 23 Janeiro 2023] , e00148920.
+Disponível em: <a href="https://doi.org/10.1590/0102-311X00148920" class="uri">https://doi.org/10.1590/0102-311X00148920</a>. ISSN
+1678-4464. <a href="https://doi.org/10.1590/0102-311X00148920" class="uri">https://doi.org/10.1590/0102-311X00148920</a>.</p>
+<p>CEPAL. <em>Pandemia provoca aumento nos níveis de pobreza sem
+precedentes nas últimas décadas e tem um forte impacto na desigualdade e
+no emprego.</em> 2021. Disponível em: <a href="https://www.cepal.org/pt-br/comunicados/pandemia-provoca-aumento-niveis-pobreza-sem-precedentes-ultimas-decadas-tem-forte" class="uri">https://www.cepal.org/pt-br/comunicados/pandemia-provoca-aumento-niveis-pobreza-sem-precedentes-ultimas-decadas-tem-forte</a></p>
+<p>EXTRA. <em>Migração para as escolas públicas cresce 30% na pandemia,
+e rede privada perde 50 mil alunos.</em> 2021. Disponível em: <a href="https://extra.globo.com/noticias/rio/migracao-para-as-escolas-publicas-cresce-30-na-pandemia-rede-privada-perde-50-mil-alunos-25138212.html" class="uri">https://extra.globo.com/noticias/rio/migracao-para-as-escolas-publicas-cresce-30-na-pandemia-rede-privada-perde-50-mil-alunos-25138212.html</a></p>
+<p>FIOCRUZ. 2021. <em>Aula inaugural analisa consequências das decisões
+brasileiras no enfrentamento à pandemia.</em> Disponível em: <a href="https://informe.ensp.fiocruz.br/noticias/51262" class="uri">https://informe.ensp.fiocruz.br/noticias/51262</a></p>
+<p>IBGE. PNAD Contínua - <em>Módulo de Tecnologia de Informação e
+Comunicação</em> (TIC) 2021. Disponível em: <a href="https://www.ibge.gov.br/estatisticas/multidominio/ciencia-tecnologia-e-inovacao/17270-pnad-continua.html?=&amp;t=resultados" class="uri">https://www.ibge.gov.br/estatisticas/multidominio/ciencia-tecnologia-e-inovacao/17270-pnad-continua.html?=&amp;t=resultados</a></p>
+<p>MARIANO, Jefferson, Barcellos, Lívia I. (2017). <em>Estratégias de
+gestão dos municípios em cenário de crise socioeconômica.</em> Geografia
+e Pesquisa, 11(2).</p>
+<p>O GLOBO. <em>Por que o negacionismo atrapalha o combate à
+Covid?.</em> 2021. Disponível em: <a href="https://oglobo.globo.com/podcast/por-que-negacionismo-atrapalha-combate-covid-1-24931788" class="uri">https://oglobo.globo.com/podcast/por-que-negacionismo-atrapalha-combate-covid-1-24931788</a></p>
+<p>PODER 360. <em>Pandemia causou recessão mais ampla que as guerras
+mundiais.</em> 2022. Disponível em: <a href="https://www.poder360.com.br/economia/pandemia-causou-recessao-mais-ampla-que-as-guerras-mundiais/" class="uri">https://www.poder360.com.br/economia/pandemia-causou-recessao-mais-ampla-que-as-guerras-mundiais/</a></p>
+<p>UOL. <em>Covid: 172,6 milhões de brasileiros completam vacinação,
+80,3% da população.</em> Disponível em: <a href="https://noticias.uol.com.br/saude/ultimas-noticias/redacao/2023/01/11/vacinacao-covid-19-coronavirus-11-de-janeiro.htm?cmpid=copiaecola" class="uri">https://noticias.uol.com.br/saude/ultimas-noticias/redacao/2023/01/11/vacinacao-covid-19-coronavirus-11-de-janeiro.htm?cmpid=copiaecola</a>.
+Acesso em: 12 de jan. de 2023.</p>
+<p>UNA-SUS. <em>Organização Mundial de Saúde declara pandemia do novo
+Coronavírus.</em> Disponível em: <a href="https://www.unasus.gov.br/noticia/organizacao-mundial-de-saude-declara-pandemia-de-coronavirus" class="uri">https://www.unasus.gov.br/noticia/organizacao-mundial-de-saude-declara-pandemia-de-coronavirus</a>.
+Acesso em: 10 de jan. de 2023.</p>
+<p>VEJA. <em>As lições da pandemia de Covid-19 – que está chegando ao
+fim.</em> 2021 . Disponível em: <a href="https://veja.abril.com.br/saude/os-sinais-de-que-a-pandemia-de-covid-19-vai-acabar-em-breve/" class="uri">https://veja.abril.com.br/saude/os-sinais-de-que-a-pandemia-de-covid-19-vai-acabar-em-breve/</a>.</p>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Universidade Estadual Paulista - UNESP/Bauru, <span class="citation">@unesp.br</span><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Universidade Estadual Paulista - UNESP/Bauru, <a href="mailto:livia.i.barcellos@unesp.br" class="email">livia.i.barcellos@unesp.br</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Universidade Estadual Paulista - UNESP/Bauru, <a href="mailto:henrique.mercez@unesp.br" class="email">henrique.mercez@unesp.br</a><a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Universidade Estadual Paulista - UNESP/Bauru, <a href="mailto:shelley.navari@unesp.br" class="email">shelley.navari@unesp.br</a><a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
 
 
