@@ -12,14 +12,14 @@ abstract: |
   Tendo em vista os fatores causados pela situação pandêmica mundial da COVID-19, a proposta desta pesquisa é a de lançar alguma luz neste âmbito e coletar dados exploratórios. O estudo proposto visa compreender como os estudantes universitários estão vivenciando a pandemia e de que forma se comportam frente a esta nova realidade.  
   Portanto, os objetivos dessa pesquisa exploratória-descritiva são de investigar: a) como os alunos vivenciaram a pandemia da COVID-19; b) de que forma se comportaram frente as restrições impostas pelos riscos de contágio; c) quais suas considerações a respeito das estratégias que foram adotadas pelas instituições superiores; e d) como estes fatores influenciaram suas vidas. 
 output:
+  pdf_document: 
+    latex_engine: xelatex
   html_document:
     toc: true
     toc_depth: 2
     toc_float:
       collapsed: false
       smooth scroll: false
-  pdf_document:
-    latex_engine: xelatex
   word_document: default
 ---
 
