@@ -28,21 +28,34 @@
 
 # Import packages
 #library(tidyverse)
+<<<<<<< HEAD
+#library(ggplot2)
+=======
 library(ggplot2)
 library(stringr)
 library(readxl)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Importacao arquivo CSV
 dataset.csv <-read.csv("./dados/COVID19IES.csv", header = TRUE, sep = ";", quote = "\"", dec = ".")
 
+<<<<<<< HEAD
+=======
 # Importacao arquivo Excel 
 dataset.xlsx <-dbf.xlsx <- read_excel("./dados/COVID19IES.xlsx")
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 # Numero Total de Questionarios respondidos
 num_questionario = as.numeric(nrow(dataset.csv))
 print(paste("Numero de Questionarios Respondidos :", num_questionario))
 
 # Grafico Dados Pessoais : 1.Idade (Faixa Etária) 
+<<<<<<< HEAD
+idade <- table(dataset.csv$idade)
+
+# Porcentagem das faixas etárias
+pct_idade <- paste0(round(unname(idade) / sum(unname(idade)) * 100,0), "%")
+=======
 # Qual a sua idade ? 
 idade <- table(dataset.csv$idade)
 idade
@@ -55,6 +68,7 @@ pct_idade <- paste0(round(unname(idade) / sum(unname(idade)) * 100,0), "%")
 pct_idade
 
 # "2%" "2%" "6%" "8%" "4%" "6%" "8%" "8%" "6%" "2%" "2%" "2%" "2%" "4%" "2%" "6%" "6%" "8%" "2%" "4%" "4%" "4%" "4%" "2%"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Amplitude 
 valor_min = min(dataset.csv$idade)
@@ -81,13 +95,23 @@ df_faixa_etaria
 tbl_faixa_etaria <- table(df_faixa_etaria$faixa_etaria)
 tbl_faixa_etaria
 
+<<<<<<< HEAD
+=======
 # de 17 a 24 anos de 22 a 26 anos de 27 a 31 anos de 32 a 36 anos de 37 a 41 anos de 42 a 46 anos de 47 a 51 anos de 52 a 56 anos de 57 a 61 anos 
 #             18               7               3               3               7               5               4               4               1 
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 ## Porcentagem por Faixa Etaria
 pct_faixa_etaria <- paste0(round(unname(tbl_faixa_etaria) / sum(unname(tbl_faixa_etaria)) * 100,0), "%")
 pct_faixa_etaria
 
+<<<<<<< HEAD
+grafico_faixa_etaria <- barplot(tbl_faixa_etaria, 
+                                main = "Gráfico Dados Pessoais: Faixa etária",
+                                xlab = "Faixa Etária", 
+                                ylab = "Respondentes",
+                                col = c("blue", "orange"),
+=======
 # "35%" "13%" "6%"  "6%"  "13%" "10%" "8%"  "8%"  "2%" 
 
 grafico_faixa_etaria <- barplot(tbl_faixa_etaria, 
@@ -95,17 +119,46 @@ grafico_faixa_etaria <- barplot(tbl_faixa_etaria,
                                 xlab = "Idades", 
                                 ylab = "Respondentes",
                                 col = rainbow(9),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                 ylim = c(0,max(tbl_faixa_etaria) + 5),
                                 cex.axis=1.0, cex.names=0.7)
 text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), cex=0,8, pos=3)
 
+<<<<<<< HEAD
+# Grafico Dados Pessoais : 1.Genero
+=======
 
 # Grafico Dados Pessoais : 1.Genero
 # Qual o seu gênero ?
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 genero <- table(dataset.csv$genero)
 df_genero <- as.data.frame(table(dataset.csv$genero))
 df_genero
 
+<<<<<<< HEAD
+pct_genero <- paste0(round(unname(genero) / sum(unname(genero)) * 100,0), "%")
+pct_genero
+
+grafico.genero2 <- ggplot(dataset.csv, aes(y=genero, fill=genero))+
+                  geom_bar()+
+                  geom_text(aes(label = pct_genero), stat = "count", size = 5, hjust = -0.3, vjust = 0, colour = "black")+theme(legend.position="none")+
+                  labs(title="Perfil : Gênero", x = "Quantidade", y = "")  
+grafico.genero2
+
+ggplot(dataset.csv, aes(genero, fill = genero)) + 
+  geom_bar(aes(y = (..count..)/sum(..count..))) + 
+  scale_y_continuous(labels=scales::percent) +
+  ylab("Frequencia")+
+ggtitle("Perfil : Gênero")+
+scale_fill_discrete(name="")
+
+grafico_genero <- barplot(genero, 
+                                main = "Gráfico Genero",
+                                ylab = "Respondentes",
+                                col = c(rainbow(4)),
+                                ylim = c(0,max(genero) + 10),
+                                cex.axis=1.0, cex.names=0.8)
+=======
 # Var1 Freq
 # 1               Feminino   24
 # 2              Homem gay    1
@@ -135,10 +188,29 @@ grafico_genero <- barplot(genero,
                                 col = c(rainbow(4)),
                                 ylim = c(0,max(genero) + 5),
                                 cex.axis=1.0, cex.names=1)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 text(x = grafico_genero, y = genero, label = paste(genero, " (", pct_genero, ")"), cex=1, pos=3)
 
 
 # Grafico Dados Pessoais : 1.Situacao_conjugal
+<<<<<<< HEAD
+sit_conjugal <- table(dataset.csv$situacao_conjugal)
+sit_conjugal
+
+# Porcentagem 
+pct_sit_conjugal <- paste0(round(unname(sit_conjugal) / sum(unname(sit_conjugal)) * 100,0), "%")
+
+grafico_sit_conjugal <- barplot(sit_conjugal, 
+                                main = "Gráfico Dados Pessoais : Situação Conjugal",
+                                xlab = "Situacao Conjugal", 
+                                ylab = "Respondentes",
+                                col = "red",
+                                ylim = c(0,max(sit_conjugal) + 10),
+                                cex.axis=1.0, cex.names=0.8)
+text(x = grafico_sit_conjugal, y = sit_conjugal, label = paste(sit_conjugal, " (", pct_sit_conjugal, ")"), cex=1, pos=3)
+
+grafico_sit_conjugal
+=======
 # Qual sua situação conjugal ?
 sit_conjugal <- table(dataset.csv$situacao_conjugal)
 sit_conjugal
@@ -161,12 +233,16 @@ grafico_sit_conjugal <- barplot(sit_conjugal,
                                 cex.axis=1.0, cex.names=0.8)
 text(x = grafico_sit_conjugal, y = sit_conjugal, label = paste(sit_conjugal, " (", pct_sit_conjugal, ")"), cex=1, pos=3)
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico Dados Pessoais : 1.Situacao_empregaticia
 # Qual sua situação empregatícia e/ou financeira atual ? 
 
 df_situacao_emp <- data.frame(situacao ="", emp=dataset.csv$situacao_empregaticia)
+<<<<<<< HEAD
+=======
 df_situacao_emp
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 for (k in 1:nrow(df_situacao_emp)) {
   if(df_situacao_emp$emp[k] == "Aposentada")       df_situacao_emp$situacao[k]<- "Aposentado"
@@ -185,6 +261,14 @@ for (k in 1:nrow(df_situacao_emp)) {
 
 df_situacao_emp
 
+<<<<<<< HEAD
+#      Aposentado    Bolsista ou Estagiário Bolsista ou Estagiário(a)       Dependente dos Pais           Desempregado(a)              Empregado(a) 
+#               1                         2                        10                         7                         2                        30 
+
+sit_emprego <- table(df_situacao_emp$situacao)
+sit_emprego
+
+=======
 sit_emprego <- table(df_situacao_emp$situacao)
 sit_emprego
 
@@ -192,6 +276,7 @@ sit_emprego
 #         1                        12                         7                         2                        30 
 
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 # Porcentagem 
 pct_sit_emprego <- paste0(round(unname(sit_emprego) / sum(unname(sit_emprego)) * 100,0), "%")
 pct_sit_emprego
@@ -205,6 +290,20 @@ grafico_sit_empregaticia <- barplot(sit_emprego,
                                     las=1,  
                                     beside = TRUE,
                                     horiz=TRUE, 
+<<<<<<< HEAD
+                                    xlim = c(0,max(sit_emprego) + 20),
+                                    legend.text = paste(rownames(sit_emprego)," (",pct_sit_emprego, ")"),
+                                    args.legend = list("top", bty="n", cex = 0.7),
+                                    col=rainbow(10),
+                                    cex.axis = 0.7,  
+                                    cex.names = 0.8)
+
+text(grafico_sit_empregaticia, x = sit_emprego, label = paste(sit_emprego, " (", pct_sit_emprego, ")"), cex=0.8, pos=4)
+
+par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
+                                    
+
+=======
                                     xlim = c(0,max(sit_emprego) + 15),
                                     legend.text = paste(rownames(sit_emprego)," (",pct_sit_emprego, ")"),
                                     args.legend = list("top", bty="n", cex = 0.7),
@@ -216,20 +315,27 @@ text(grafico_sit_empregaticia, x = sit_emprego, label = paste(sit_emprego, "(", 
 
 par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
                                     
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 # Gratico Dados Pessoais : 1.estado_reside
 # Qual o Estado no qual você reside e/ou estuda? 
 estado_reside <- table(dataset.csv$estado_reside, exclude = NULL)
 estado_reside
 
+<<<<<<< HEAD
+=======
 #    AM SP 
 #  4  1 47 
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 # Porcentagem 
 pct_estado_reside <- paste0(round(unname(estado_reside) / sum(unname(estado_reside)) * 100,0), "%")
 pct_estado_reside
 
+<<<<<<< HEAD
+=======
 # "8%"  "2%"  "90%"
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 # Tratando Nulo
 names(pct_estado_reside) <-c("Não Respondeu", "Amazonas", "São Paulo")
 
@@ -243,7 +349,10 @@ grafico_estado_reside <- pie(estado_reside,
 # Grafico Dados Pessoais : 1.Instituicao de Ensino     
 # Qual o nome da sua instituição de ensino ?
 df_ies <- data.frame(sigla_ies="", ies=dataset.csv$ies )
+<<<<<<< HEAD
+=======
 df_ies
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 for (k in 1:nrow(df_ies)) {
   if(df_ies$ies[k] == "UNESP Bauru") df_ies$sigla_ies[k]<- "UNESP Bauru"
@@ -255,12 +364,17 @@ df_ies$sigla_ies
 tbl_ies <- table(df_ies$sigla_ies)
 tbl_ies
 
+<<<<<<< HEAD
+pct_ies <- paste(round(unname(tbl_ies) / sum(unname(tbl_ies)) * 100), "%")
+pct_ies
+=======
 # Demais Instituições         UNESP Bauru 
 #             12                  40 
 
 pct_ies <- paste(round(unname(tbl_ies) / sum(unname(tbl_ies)) * 100), "%")
 pct_ies
 #  "23 %" "77 %"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 grafico_ies <- pie(tbl_ies, main = "Perfil : Qual o nome da sua instituição de ensino ?", labels = paste(df_ies$sigla_ies, " - ", pct_ies, "(", tbl_ies, ")"), col = c(4,5))
 
@@ -269,6 +383,8 @@ grafico_ies <- pie(tbl_ies, main = "Perfil : Qual o nome da sua instituição de
 nome_cursos <- table(dataset.csv$nome_curso)
 nome_cursos
 
+<<<<<<< HEAD
+=======
 #Arquitetura e Urbanismo                                       Bacharel em Direito 
 #1                                                        1 
 #Bacharelado em Ciências da Computação                   Bacharelado em Sistemas de Informação  
@@ -300,6 +416,7 @@ nome_cursos
 #Técnico em Administração 
 #1 
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 # Reduçao nome dos cursos
 names(nome_cursos) <- c("Arquitetura", "Direito", "Ciências Computação", "Sistemas Informação", "Inovação em Moda",
                        "Biologia", "Ciências Computação", "Educação Especial", "Educaçao Física", "Eng Civil",
@@ -310,10 +427,15 @@ names(nome_cursos) <- c("Arquitetura", "Direito", "Ciências Computação", "Sis
 
 pct_nome_cursos <- paste(round(unname(nome_cursos) / sum(unname(nome_cursos)) * 100), "%")
 pct_nome_cursos
+<<<<<<< HEAD
+                       
+
+=======
 
 # "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "2 %"  "6 %"  "2 %"  "2 %"  "2 %"  "4 %"  "2 %"  "2 %"  "2 %"  "4 %"  "2 %"  "4 %"  "2 %"  "2 %" 
 # "4 %"  "8 %"  "25 %" "2 %"  "6 %"  "2 %"  "2 %" 
                      
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 par(las=1) # nomes dos eixos perpendicular
 par(mar=c(5,16,1,1)+0.1)  # para aumentar a margem a esquerda 
 grafico_nome_cursos <- barplot(nome_cursos, 
@@ -324,7 +446,11 @@ grafico_nome_cursos <- barplot(nome_cursos,
                                     xlim = c(0,max(nome_cursos) + 10),
                                     legend.text = paste(rownames(nome_cursos)," (",nome_cursos, ")"),
                                     args.legend = list("top", bty="n", cex = 0.7),
+<<<<<<< HEAD
+                                    col=rainbow(20),
+=======
                                     col=rainbow(7),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                     cex.axis = 0.7,  
                                     cex.names = 0.7)
 
@@ -337,18 +463,28 @@ par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
 tbl_nivel_ensino <- table(dataset.csv$nivel_ensino)
 tbl_nivel_ensino
 
+<<<<<<< HEAD
+pct_nivel_ensino <- paste(round(unname(tbl_nivel_ensino) / sum(unname(tbl_nivel_ensino)) * 100), "%")
+pct_nivel_ensino
+=======
 #         Doutorado     Ensino Técnico Especialização/MBA          Graduação           Mestrado      Pós-doutorado 
 #              15                  1                  1                 21                 13                  1 
 
 pct_nivel_ensino <- paste(round(unname(tbl_nivel_ensino) / sum(unname(tbl_nivel_ensino)) * 100), "%")
 pct_nivel_ensino
 # "29 %" "2 %"  "2 %"  "40 %" "25 %" "2 %" 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 grafico_nivel_ensino <- pie(tbl_nivel_ensino,
                         edges = 200, radius = 0.8,
                         clockwise = T,
+<<<<<<< HEAD
+                        density = NULL, angle = 90, col = c("red", "orange", "yellow", "green", "gray", "blue"),
+                        labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino),
+=======
                         density = NULL, angle = 90, col = rainbow(6),
                         labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino, "(", pct_nivel_ensino, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                         main = "Gráfico Dados Pessoais: Qual nível de ensino você está cursando ? ")
 
 # Grafico 1.Tipo Instituicao de Ensino
@@ -364,17 +500,30 @@ pct_tipo_ies
 
 # "2 %"  "12 %" "87 %"
 
+<<<<<<< HEAD
+pie(tipo_ies,
+    edges = 200, radius = 0.8,
+    clockwise = T,
+    density = NULL, angle = 90, col = rainbow(3),
+    labels = paste(names(tipo_ies), "-", tipo_ies),
+    main = "Gráfico Dados Pessoais: Qual é o tipo da sua instituição de ensino ? ")
+=======
 grafico_tipo_ies <- pie(tipo_ies,
                     edges = 200, radius = 0.8,
                     clockwise = T,
                     density = NULL, angle = 90, col = rainbow(3),
                     labels = paste(names(tipo_ies), "-", tipo_ies, "(",pct_tipo_ies,")"),
                     main = "Gráfico Dados Pessoais: Qual é o tipo da sua instituição de ensino ? ")
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico Dados Pessoais 1. Local Estudante (você é um estudante nativo local, originário de outra cidade ou um estudante internacional)
 # Com relação à cidade onde está localizada sua instituição de ensino, você é um estudante nativo local, originário de outra cidade ou um estudante internacional ?
 local_estudante <- table(dataset.csv$local_estudante)
 local_estudante
+<<<<<<< HEAD
+
+=======
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 #        Local Outra cidade 
 #          18           34 
 
@@ -387,7 +536,11 @@ grafico_local_estudante <- pie(local_estudante,
                             edges = 200, radius = 0.8,
                             clockwise = T,
                             density = NULL, angle = 90, col = rainbow(3),
+<<<<<<< HEAD
+                            labels = paste(names(local_estudante), "-", local_estudante),
+=======
                             labels = paste(names(local_estudante), "-", local_estudante, "(", pct_local_estudante,")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                             main = "Gráfico Dados Pessoais: Com relação à cidade onde está localizada sua instituição de ensino, 
                                   você é um estudante nativo local, originário de outra cidade ou um estudante internacional ?",
                             cex.main = 0.9)
@@ -397,8 +550,13 @@ grafico_local_estudante <- pie(local_estudante,
 residencia_atual <- table(dataset.csv$residencia_atual,  exclude = "")
 residencia_atual
 
+<<<<<<< HEAD
+# Em outra cidade da instituição de ensino mas dentro do mesmo estado        18
+# Fora do campus, mas na mesma cidade da instituição de ensino                 33 
+=======
 #Em outra cidade da instituição de ensino mas dentro do mesmo estado        Fora do campus, mas na mesma cidade da instituição de ensino 
 #         18                                                                  33 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Reduçao nome 
 names(residencia_atual) <- c("Em Outra Cidade da Instituição", "Na mesma Cidade da Instituição")
@@ -408,12 +566,21 @@ pct_residencia_atual
 
 # "35 %" "65 %"
 
+<<<<<<< HEAD
+pie(residencia_atual,
+    edges = 200, radius = 0.8,
+    clockwise = T,
+    density = NULL, angle = 90, col = rainbow(3),
+    labels = paste(names(residencia_atual), "-", pct_residencia_atual),
+    main = "Gráfico Dados Pessoais: Onde você está vivendo ou residindo atualmente?")
+=======
 grafico_residencia_atual <- pie(residencia_atual,
                             edges = 100, radius = 0.8,
                             clockwise = T,
                             density = NULL, angle = 90, col = rainbow(3),
                             labels = paste(names(residencia_atual), "-", pct_residencia_atual, "(", pct_residencia_atual,")"),
                             main = "Gráfico Dados Pessoais: Onde você está vivendo ou residindo atualmente?")
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico Dados Pessoais 1. Moradia Permanente
 # Sua moradia atual é uma residência permanente e estável para você?
@@ -431,7 +598,11 @@ grafico_moradia_atual_perm <- pie(moradia_atual_perm,
                               edges = 200, radius = 0.8,
                               clockwise = T,
                               density = NULL, angle = 90, col = rainbow(3),
+<<<<<<< HEAD
+                              labels = paste(names(moradia_atual_perm), "-", pct_moradia_atual_perm),
+=======
                               labels = paste(names(moradia_atual_perm), " ", moradia_atual_perm, "(", pct_moradia_atual_perm, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                               main = "Gráfico Dados Pessoais: Sua moradia atual é uma residência permanente e estável para você?")
 
 # Grafico Dados Pessoais 1. Respondentes morando com 
@@ -444,13 +615,21 @@ morando_com
 
 pct_morando_com <- paste(round(unname(morando_com) / sum(unname(morando_com)) * 100), "%")
 pct_morando_com
+<<<<<<< HEAD
+"6 %"  "69 %" "25 %"
+=======
 # "6 %"  "69 %" "25 %"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 grafico_morando_com <- pie(morando_com,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(3),
+<<<<<<< HEAD
+                                  labels = paste(names(morando_com), "-", pct_morando_com),
+=======
                                   labels = paste(names(morando_com), "  ", morando_com, "(", pct_morando_com, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                   main = "Gráfico Dados Pessoais: Atualmente, você está morando ou residindo com/em:  ")
 
 # Grafico Dados Instituicao de Ensino  2. Migrou Virtual
@@ -470,7 +649,11 @@ grafico_migrou_virtual <- pie(migrou_virtual,
                            edges = 200, radius = 0.8,
                            clockwise = T,
                            density = NULL, angle = 90, col = rainbow(2),
+<<<<<<< HEAD
+                           labels = paste(names(migrou_virtual), "-", pct_migrou_virtual),
+=======
                            labels = paste(names(migrou_virtual), "", migrou_virtual,"(", pct_migrou_virtual, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                            main = "Gráfico Instituiçao: Sua instituição migrou para as aulas virtuais durante a pandemia da COVID-19? ")
 
 # Grafico Dados Instituicao de Ensino  2. Fechou Dormitorios
@@ -490,7 +673,11 @@ grafico_ies_fechou_dorm <- pie(ies_fechou_dorm,
                            edges = 200, radius = 0.8,
                            clockwise = T,
                            density = NULL, angle = 90, col = rainbow(4),
+<<<<<<< HEAD
+                           labels = paste(names(ies_fechou_dorm), "-", pct_ies_fechou_dorm),
+=======
                            labels = paste(names(ies_fechou_dorm), " ", ies_fechou_dorm, "(", pct_ies_fechou_dorm, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                            main = "Gráfico Instituiçao: Sua instituição fechou os dormitórios ou residências estudantis devido à crise da COVID-19? ")
 
 # Grafico Dados Instituicao de Ensino 2. Instituicao_acesso_infra
@@ -518,17 +705,29 @@ ies_infra
 pct_ies_infra <- paste(round(unname(ies_infra) / sum(unname(ies_infra)) * 100), "%")
 pct_ies_infra
 
+<<<<<<< HEAD
+# "15 %" "35 %" "6 %"  "44 %"
+=======
 # "13 %" "33 %" "13 %" "40 %"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 grafico_ies_infra <- pie(ies_infra,
                                edges = 200, radius = 0.8,
                                clockwise = T,
                                density = NULL, angle = 90, col = rainbow(4),
+<<<<<<< HEAD
+                               labels = paste(names(ies_infra), "-", pct_ies_infra),
+                               main = "Gráfico Instituiçao: Com relação às formas de acesso aos recursos de infraestrutura oferecidos pela sua 
+                                    instituição (biblioteca, coordenação, orientação de assuntos acadêmicos, matrícula, etc.) 
+                                durante a pandemia do COVID-19 você sentiu que: ",
+                                cex.main =0.8)
+=======
                                labels = paste(names(ies_infra), " ", ies_infra, "(", pct_ies_infra, ")"),
                                main = "Gráfico Instituiçao: Com relação às formas de acesso aos recursos de infraestrutura oferecidos pela sua instituição 
                                               (biblioteca, coordenação, orientação de assuntos acadêmicos, matrícula, etc.) 
                                               durante a pandemia do COVID-19 você sentiu que: ",
                                 cex.main =0.9)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico Dados Instituicao de Ensino 2. Instituicao_reinicio
 # A sua instituição já reiniciou todas as atividades presenciais no seu campus e/ou faculdade?
@@ -536,7 +735,11 @@ ies_reinicio <- table(dataset.csv$ies_reinicio, exclude = "")
 ies_reinicio
 
 # Em parte (apenas algumas atividades  presenciais retornaram)            N/A ou Não sabe 
+<<<<<<< HEAD
+#                14                                                            1 
+=======
 #                14                                                            5
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 #  Não, ainda não retornou nenhuma atividade presencial               Sim (retornou todas as atividades presenciais) 
 #           4                                                           29 
 
@@ -546,12 +749,21 @@ names(ies_reinicio) <- c("Em parte", "Não Sabe", "Não Reiniciou Presencial", "
 pct_ies_reinicio <- paste(round(unname(ies_reinicio) / sum(unname(ies_reinicio)) * 100), "%")
 pct_ies_reinicio
 
+<<<<<<< HEAD
+# "29 %" "2 %"  "8 %"  "60 %"" 
+=======
 # "27 %" "10 %" "8 %"  "56 %"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 grafico_ies_reinicio <- pie(ies_reinicio,
                          edges = 200, radius = 0.8,
                          clockwise = T,
                          density = NULL, angle = 90, col = rainbow(5),
+<<<<<<< HEAD
+                         labels = paste(names(ies_reinicio), "-", pct_ies_reinicio),
+                         main = "Gráfico Instituiçao: já reiniciou todas as atividades presenciais no seu campus e/ou faculdade?")
+
+=======
                          labels = paste(names(ies_reinicio), " ", ies_reinicio, "(", pct_ies_reinicio, ")"),
                          main = "Gráfico Instituiçao: já reiniciou todas as atividades presenciais no seu campus e/ou faculdade?")
 
@@ -576,6 +788,7 @@ grafico_ajuda_financeira <- pie(ajuda_financeira,
                                             de outra organização durante a pandemia da COVID-19?",
                                 cex.main=0.9)
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 # Grafico Dados Instituicao de Ensino 2.decisao_fechar (utilizacao de ferramenta online)
 # Com relação à decisão de fechar o campus e de utilizar ferramentas online para as aulas, por conta da pandemia da COVID-19, você sentiu que as decisões na sua instituição foram tomadas: *
 ies_decisao_fechar <- table(dataset.csv$decisao_fechar, exclude = "")
@@ -593,7 +806,11 @@ grafico_ies_decisao_fechar <- pie(ies_decisao_fechar,
                             edges = 200, radius = 0.8,
                             clockwise = T,
                             density = NULL, angle = 90, col = rainbow(3),
+<<<<<<< HEAD
+                            labels = paste(names(ies_decisao_fechar), "-", pct_ies_decisao_fechar),
+=======
                             labels = paste(names(ies_decisao_fechar), " ", ies_decisao_fechar, "(", pct_ies_decisao_fechar, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                             main = "Gráfico Instituiçao:  Com relação à decisão de fechar o campus e de utilizar ferramentas online para as aulas, por conta da pandemia da COVID-19, 
                                 você sentiu que as decisões na sua instituição foram tomadas:",
                             cex.main=0.9)
@@ -618,10 +835,15 @@ grafico_convive_risco <- pie(convive_risco,
                          edges = 200, radius = 0.8,
                          clockwise = T,
                          density = NULL, angle = 90, col = rainbow(2),
+<<<<<<< HEAD
+                         labels = paste(names(convive_risco), "-", pct_convive_risco),
+                         main = "Gráfico Pandemia Risco Relevante: Convivencia com Idoso (60-70 anos) ou alguem com Comorbidades")
+=======
                          labels = paste(names(convive_risco), " ", convive_risco, "(",pct_convive_risco, ")"),
                          main = "Gráfico Pandemia Risco Relevante:Você está morando ou convivendo atualmente com alguém na faixa etária  dos 60-70 anos,e/ou que tenha algum fator de risco relevante?
                            (Fatores de risco relevantes são problemas cardíacos, diabetes, hipertensão e/ou obesidade).",
                          cex.main =0.8)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico 3. Pandemia_quarentena imposta
 # Você, alguém com quem convive ou que está em sua moradia está ou esteve em quarentena imposta pela COVID-19  ? *
@@ -640,13 +862,23 @@ grafico_quarentena_imposta <- pie(quarentena_imposta,
                              edges = 200, radius = 0.8,
                              clockwise = T,
                              density = NULL, angle = 90, col = rainbow(2),
+<<<<<<< HEAD
+                             labels = paste(names(quarentena_imposta), "-", pct_quarentena_imposta),
+                             main = "Gráfico Pandemia Risco Relevante: Convivencia com quem convive ou que está em sua moradia está ou esteve em quarentena imposta pela COVID-19",
+                             cex.main=0.9)
+=======
                              labels = paste(names(quarentena_imposta), " ", quarentena_imposta, "(",pct_quarentena_imposta,")"),
                              main = "Gráfico Pandemia Risco Relevante: Você, alguém com quem convive ou que está em sua moradia está ou esteve em quarentena imposta pela COVID-19  ?",
                              cex.main=0.8)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 
 # Grafico 3. Pandemia_quarentena imposta
 # Durante a pandemia do COVID-19, você obteve e/ou vivenciou: *
+<<<<<<< HEAD
+  
+=======
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 vivenciou <- table(dataset.csv$vivenciou, exclude = "")
 vivenciou
 
@@ -684,7 +916,11 @@ grafico_vivenciou <- barplot(vivenciou,
                                     args.legend = list("top", bty="n", cex = 0.7),
                                     col=rainbow(6),
                                     cex.axis = 0.7,  
+<<<<<<< HEAD
+                                    cex.names = 0.6)
+=======
                                     cex.names = 0.8)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 text(grafico_vivenciou, x = vivenciou, label = pct_vivenciou, cex=0.7, pos=4)
 
@@ -721,7 +957,11 @@ grafico_acesso_servicos_saude <- pie(acesso_servicos_saude,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(4),
+<<<<<<< HEAD
+                                  labels = paste(names(acesso_servicos_saude), "-", pct_acesso_servicos_saude),
+=======
                                   labels = paste(names(acesso_servicos_saude), " ", acesso_servicos_saude, "(", pct_acesso_servicos_saude, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                   main = "Grafico Pandemia Serviços Saude : Como você classifica o seu acesso aos serviços de saúde, a antes e durante a pandemia COVID-19 ? ",
                                   cex.main=0.9)
 
@@ -733,7 +973,11 @@ df_internet <- data.frame(internet="", nivel =dataset.csv$acesso_internet)
 
 for (k in 1:nrow(df_internet)) {
   if(df_internet$nivel[k] == "Melhor do que antes")            df_internet$internet[k] <- "Melhorou"
+<<<<<<< HEAD
+  if(df_internet$nivel[k] == "Muito melhor que antes")      df_internet$internet[k] <- "Melhorou"
+=======
   if(df_internet$nivel[k] == "Muito melhor do que antes")      df_internet$internet[k] <- "Melhorou"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
   if(df_internet$nivel[k] == "Muito pior que antes")        df_internet$internet[k] <- "Piorou"
   if(df_internet$nivel[k] == "O mesmo que antes")               df_internet$internet[k] <- "Não Mudou"
   if(df_internet$nivel[k] == "Pior que antes")              df_internet$internet[k] <- "Piorou"
@@ -757,7 +1001,11 @@ grafico_acesso_internet <- pie(acesso_internet,
                                      edges = 200, radius = 0.8,
                                      clockwise = T,
                                      density = NULL, angle = 90, col = rainbow(4),
+<<<<<<< HEAD
+                                     labels = paste(names(acesso_internet), "-", pct_acesso_internet),
+=======
                                      labels = paste(names(acesso_internet), " ", acesso_internet, "(", pct_acesso_internet, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                      main = "Grafico Pandemia Acesso Internet : Como você compara o seu acesso à Internet antes e durante a pandemia da COVID-19 ?",
                                      cex.main=0.8)
 
@@ -794,7 +1042,11 @@ grafico_capacidade_prosseguir_estudos <- pie(capacidade_prosseguir_estudos,
                                edges = 200, radius = 0.8,
                                clockwise = T,
                                density = NULL, angle = 90, col = rainbow(3),
+<<<<<<< HEAD
+                               labels = paste(names(capacidade_prosseguir_estudos), "-", pct_capacidade_prosseguir_estudos),
+=======
                                labels = paste(names(capacidade_prosseguir_estudos), " ", capacidade_prosseguir_estudos, "(", pct_capacidade_prosseguir_estudos, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                main = "Grafico Pandemia Prosseguir Estudos : Em relação a antes e durante a pandemia da COVID-19, como você classifica sua capacidade em prosseguir seus estudos, 
                                       incluindo sua graduação e/ou conclusão de curso?",
                               cex.main=0.8)
@@ -843,7 +1095,11 @@ grafico_capacidade_socializacao <- pie(capacidade_socializacao,
 df_bemestar <- data.frame(bemestar="", nivel =dataset.csv$bem.estar_psicologico)
 
 for (k in 1:nrow(df_bemestar)) {
+<<<<<<< HEAD
+  if(df_bemestar$nivel[k] == "Melhor do que anteS")            df_bemestar$bemestar[k] <- "Melhorou"
+=======
   if(df_bemestar$nivel[k] == "Melhor do que antes")            df_bemestar$bemestar[k] <- "Melhorou"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
   if(df_bemestar$nivel[k] == "Muito melhor do que antes")      df_bemestar$bemestar[k] <- "Melhorou"
   if(df_bemestar$nivel[k] == "Muito pior do que antes")        df_bemestar$bemestar[k] <- "Piorou"
   if(df_bemestar$nivel[k] == "Pior do que antes")              df_bemestar$bemestar[k] <- "Piorou"
@@ -857,18 +1113,30 @@ bemestar_psicologico <- table(df_bemestar$bemestar, exclude = "")
 bemestar_psicologico
 
 # Melhorou Não Mudou  Não Sabe    Piorou 
+<<<<<<< HEAD
+#        2        12         1        35 
+=======
 #        4        12         1        35 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 pct_bemestar_psicologico <- paste(round(unname(bemestar_psicologico) / sum(unname(bemestar_psicologico)) * 100), "%")
 pct_bemestar_psicologico
 
+<<<<<<< HEAD
+# "4 %"  "24 %" "2 %"  "70 %"
+=======
 # "8 %"  "23 %" "2 %"  "67 %"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 grafico_bemestar_psicologico <- pie(bemestar_psicologico,
                                     edges = 200, radius = 0.8,
                                     clockwise = T,
                                     density = NULL, angle = 90, col = rainbow(4),
+<<<<<<< HEAD
+                                    labels = paste(names(bemestar_psicologico), "-", pct_bemestar_psicologico),
+=======
                                     labels = paste(names(bemestar_psicologico), " ", bemestar_psicologico, "(", pct_bemestar_psicologico, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                     main = "Grafico Pandemia Bem-estar Psicologico : Em relação a antes e durante a pandemia da COVID-19, como você classificaria o seu bem-estar psicológico em geral, 
                                                     incluindo sentimentos de ansiedade e/ou depressão? *",
                                     cex.main=0.8)
@@ -880,31 +1148,56 @@ df_aulas <- data.frame(aulas="", nivel =dataset.csv$aulas_durante_pandemia)
 df_aulas
 
 for (k in 1:nrow(df_aulas)) {
+<<<<<<< HEAD
+  if(df_aulas$nivel[k] == "Melhoraram")                     df_aulas$aulas[k] <- "Melhoraram"
+  if(df_aulas$nivel[k] == "Pioraram")                       df_aulas$aulas[k] <- "Pioraram"
+  if(df_aulas$nivel[k] == "Está/É mais ou menos o mesmo")      df_aulas$aulas[k] <- "Não Mudaram"
+  if(df_aulas$nivel[k] == "Foram mais ou menos o mesmo")    df_aulas$aulas[k] <- "Não Mudaram"
+=======
   if(df_aulas$nivel[k] == "Melhoraram")                     df_aulas$aulas[k] <- "Melhorou"
   if(df_aulas$nivel[k] == "Pioraram")                       df_aulas$aulas[k] <- "Piorou"
   if(df_aulas$nivel[k] == "Está/É mais ou menos o mesmo")      df_aulas$aulas[k] <- "Não Mudou"
   if(df_aulas$nivel[k] == "Foram mais ou menos o mesmo")    df_aulas$aulas[k] <- "Não Mudou"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
   if(df_aulas$nivel[k] == "N/A ou Não sabe")              df_aulas$aulas[k] <- "Não Sabe"
 }  
 
 df_aulas
 
+<<<<<<< HEAD
+
+
+aulas <- table(df_aulas$aulas, exclude = "")
+aulas
+
+#  Melhoraram Não Mudaram    Não Sabe    Pioraram 
+#         1          25           4          20 
+=======
 aulas <- table(df_aulas$aulas, exclude = "")
 aulas
 
 #  Melhorou Não Mudou  Não Sabe    Piorou 
 #        1        25         4        22 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 pct_aulas <- paste(round(unname(aulas) / sum(unname(aulas)) * 100), "%")
 pct_aulas
 
+<<<<<<< HEAD
+# "2 %"  "50 %" "8 %"  "40 %"
+=======
 # "2 %"  "48 %" "8 %"  "42 %"
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 grafico_aulas <- pie(aulas,
                                     edges = 200, radius = 0.8,
                                     clockwise = T,
                                     density = NULL, angle = 90, col = rainbow(4),
+<<<<<<< HEAD
+                                    labels = paste(names(aulas), "-", pct_aulas),
+=======
                                     labels = paste(names(aulas), " ", aulas, "(", pct_aulas, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                     main = "Grafico Pandemia Aula : Com relação à forma como as aulas foram ministradas durante a pandemia do COVID-19, você sente que",
                                     cex.main=0.8)
 
@@ -913,6 +1206,10 @@ grafico_aulas <- pie(aulas,
 
 # Tratamento opcoes
 df_professores <- data.frame(professores="", nivel =dataset.csv$acesso_professores)
+<<<<<<< HEAD
+df_pro
+=======
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 for (k in 1:nrow(df_professores)) {
   if(df_professores$nivel[k] == "Melhorou")                     df_professores$professores[k] <- "Melhorou"
@@ -938,10 +1235,17 @@ pct_acesso_professores
 grafico_acesso_professores <- pie(acesso_professores,
                      edges = 200, radius = 0.8,
                      clockwise = T,
+<<<<<<< HEAD
+                     density = NULL, angle = 90, col = rainbow(6),
+                     labels = paste(names(acesso_professores), "-", pct_acesso_professores),
+                     main = "Grafico Pandemia Acesso Professores : Durante a pandemia da COVID-19, você sentiu que as formas de acesso aos seus professores:",
+                     cex.main=0.8)
+=======
                      density = NULL, angle = 90, col = rainbow(4),
                      labels = paste(names(acesso_professores), " ", acesso_professores, "(", pct_acesso_professores, ")"),
                      main = "Grafico Pandemia Acesso Professores : Durante a pandemia da COVID-19, você sentiu que as formas de acesso aos seus professores:",
                      cex.main=0.9)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 
 # Grafico 3. Pandemia espaco_fisico
@@ -977,10 +1281,17 @@ grafico_espaco_fisico <- pie(espaco_fisico,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(4),
+<<<<<<< HEAD
+                                  labels = paste(names(espaco_fisico), "-", pct_espaco_fisico),
+                                  main = "Grafico Pandemia Espaço Fisico : Ambiente/localidade utilizado por você, durante a pandemia de COVID-19, 
+                                                            para estudar e participar das aulas e/ou atividades, você sentiu que:",
+                                  cex.main=0.8)
+=======
                                   labels = paste(names(espaco_fisico), " ", espaco_fisico, "(", pct_espaco_fisico, ")"),
                                   main = "Grafico Pandemia Espaço Fisico : Ambiente/localidade utilizado por você, durante a pandemia de COVID-19, 
                                                             para estudar e participar das aulas e/ou atividades, você sentiu que:",
                                   cex.main=0.9)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico 3. Pandemia disposicao_atividades
 # Você sentiu que, durante a pandemia do COVID-19, de forma geral, sua disposição para participar das aulas/atividades, estudar e aprender: 
@@ -1013,10 +1324,17 @@ grafico_disposicao_atividades <- pie(disposicao_atividades,
                              edges = 200, radius = 0.8,
                              clockwise = T,
                              density = NULL, angle = 90, col = rainbow(4),
+<<<<<<< HEAD
+                             labels = paste(names(disposicao_atividades), "-", pct_disposicao_atividades),
+                             main = "Grafico Pandemia Disposicao Atividades : Você sentiu que, durante a pandemia do COVID-19, de forma geral, 
+                                    sua disposição para participar das aulas/atividades, estudar e aprender: ",
+                             cex.main=0.8)
+=======
                              labels = paste(names(disposicao_atividades), " ", disposicao_atividades, "(", pct_disposicao_atividades, ")"),
                              main = "Grafico Pandemia Disposicao Atividades : Você sentiu que, durante a pandemia do COVID-19, de forma geral, 
                                     sua disposição para participar das aulas/atividades, estudar e aprender: ",
                              cex.main=0.9)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico 3. Pandemia desempenho_escolar
 # Você percebeu que o seu desempenho escolar durante a pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):
@@ -1024,6 +1342,11 @@ grafico_disposicao_atividades <- pie(disposicao_atividades,
 # Tratamento das Opcoes
 df_desempenho_escolar <- data.frame(desempenho_escolar="", nivel =dataset.csv$desempenho_escolar )
 
+<<<<<<< HEAD
+df_desempenho_escolar
+
+=======
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 for (k in 1:nrow(df_desempenho_escolar)) {
   if(df_desempenho_escolar$nivel[k] == "Aumentou")                     df_desempenho_escolar$desempenho_escolar[k] <- "Aumentou"
   if(df_desempenho_escolar$nivel[k] == "Diminuiu")                     df_desempenho_escolar$desempenho_escolar[k] <- "Diminuiu"
@@ -1049,10 +1372,16 @@ grafico_desempenho_escolar <- pie(desempenho_escolar,
                                      edges = 200, radius = 0.8,
                                      clockwise = T,
                                      density = NULL, angle = 90, col = rainbow(5),
+<<<<<<< HEAD
+                                     labels = paste(names(desempenho_escolar), "-", pct_desempenho_escolar),
+                                     main = "Grafico Pandemia Desempenho Escolar : Você percebeu que o seu desempenho escolar durante a pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):",
+                                     cex.main=0.8)
+=======
                                      labels = paste(names(desempenho_escolar), " ", desempenho_escolar, "(", pct_desempenho_escolar, ")"),
                                      main = "Grafico Pandemia Desempenho Escolar : Você percebeu que o seu desempenho escolar durante a 
                                               pandemia do COVID-19 (suas notas, aproveitamento escolar, etc.):",
                                      cex.main=0.9)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 
 # Grafico 1. Vacinado
@@ -1079,15 +1408,26 @@ grafico_vacinado <- pie(vacinado,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(5),
+<<<<<<< HEAD
+                                  labels = paste(names(vacinado), "-", pct_vacinado),
+                                  main = "Grafico Vacinação : Você já foi vacinado contra a COVID-19 ?",
+                                  cex.main=0.8)
+=======
                                   labels = paste(names(vacinado), " ", vacinado, "(", pct_vacinado, ")"),
                                   main = "Grafico Vacinação : Você já foi vacinado contra a COVID-19 ?",
                                   cex.main=1)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico 4. Financas despesas
 # Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ? *v
 # Tratamento das Opcoes
 df_despesas <- data.frame(despesas="", nivel =dataset.csv$despesas )
 
+<<<<<<< HEAD
+df_despesas
+
+=======
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 for (k in 1:nrow(df_despesas)) {
   if(df_despesas$nivel[k] == "Aumentaram")       df_despesas$despesas[k] <- "Aumentaram"
   if(df_despesas$nivel[k] == "Diminuiram")       df_despesas$despesas[k] <- "Diminuiram"
@@ -1111,7 +1451,11 @@ grafico_despesas <- pie(despesas,
                                   edges = 200, radius = 0.8,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(5),
+<<<<<<< HEAD
+                                  labels = paste(names(despesas), "-", pct_despesas),
+=======
                                   labels = paste(names(despesas), " ", despesas, "(", pct_despesas, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                   main = "Grafico Situacao Financeira : Com relação aos seus gastos e/ou despesas durante a pandemia da COVID-19, o que mudou para você  ?",
                                   cex.main=0.8)
 
@@ -1133,16 +1477,49 @@ grafico_renda_financeira <- pie(renda_financeira,
                         edges = 200, radius = 0.8,
                         clockwise = T,
                         density = NULL, angle = 90, col = rainbow(4),
+<<<<<<< HEAD
+                        labels = paste(names(renda_financeira), "-", pct_renda_financeira),
+                        main = "Grafico Situacao Financeira : Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira?",
+                        cex.main=0.8)
+
+# Grafico 2. Instituicao ajuda_financeira
+# Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19? *
+ajuda_financeira <- table(dataset.csv$ajuda_financeira, exclude = "")
+ajuda_financeira
+
+#Não Sim 
+# 44   8 
+
+pct_ajuda_financeira <- paste(round(unname(ajuda_financeira) / sum(unname(ajuda_financeira)) * 100), "%")
+pct_ajuda_financeira
+
+#  "85 %" "15 %"
+
+grafico_ajuda_financeira <- pie(ajuda_financeira,
+                                edges = 200, radius = 0.8,
+                                clockwise = T,
+                                density = NULL, angle = 90, col = rainbow(2),
+                                labels = paste(names(ajuda_financeira), "-", pct_ajuda_financeira),
+                                main = "Grafico Instituicao Ensino : Você recebe/recebeu alguma ajuda financeira da sua instituição educacional ou de outra organização durante a pandemia da COVID-19?",
+                                cex.main=0.8)
+
+=======
                         labels = paste(names(renda_financeira), " ", renda_financeira, "(", pct_renda_financeira, ")"),
                         main = "Grafico Situacao Financeira : Durante a pandemia da COVID-19 houve alguma alteração com relação à sua renda financeira?",
                         cex.main=0.8)
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 # Grafico 4. Financas nivel_endividamento
 # Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas: *
 
 # Tratamento das Opcoes
 df_endividamento <- data.frame(endividamento="", nivel =dataset.csv$nivel_endividamento )
 
+<<<<<<< HEAD
+df_endividamento
+
+=======
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 for (k in 1:nrow(df_endividamento)) {
   if(df_endividamento$nivel[k] == "Aumentaram")       df_endividamento$endividamento[k] <- "Aumentaram"
   if(df_endividamento$nivel[k] == "Diminuiram")       df_endividamento$endividamento[k] <- "Diminuiram"
@@ -1166,13 +1543,24 @@ grafico_nivel_endividamento <- pie(nivel_endividamento,
                                 edges = 200, radius = 0.8,
                                 clockwise = T,
                                 density = NULL, angle = 90, col = rainbow(5),
+<<<<<<< HEAD
+                                labels = paste(names(nivel_endividamento), "-", pct_nivel_endividamento),
+                                main = "Grafico Finanças : Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas:",
+                                cex.main=0.9)
+=======
                                 labels = paste(names(nivel_endividamento), " ", nivel_endividamento, "(", pct_nivel_endividamento, ")"),
                                 main = "Grafico Finanças : Com relação às suas dívidas (nível de endividamento), durante a pandemia da COVID-19, elas:",
                                 cex.main=1)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 
 
 # Grafico 4. Financas despesas_cresceram
+<<<<<<< HEAD
+# Quais das despesas do seu dia-a-dia aqui relacionadas você acredita que cresceram no ano/semestre, após o pico da pandemia ? (Marque todas que achar necessárias)
+
+# ??
+=======
 # Quais das despesas do seu dia-a-dia aqui relacionadas você acredita que cresceram no ano/semestre, 
 # após o pico da pandemia ? (Marque todas que achar necessárias)
 
@@ -1233,6 +1621,7 @@ grafico_despesas_cresceram <- barplot(casos_despesas_cresceram,
 text(grafico_despesas_cresceram, x = casos_despesas_cresceram, label = paste(casos_despesas_cresceram, "(", pct_despesas_cresceram, ")"), cex=0.8, pos=4)
 
 par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 
 # Grafico 5. Ansiedade nivel_ansiedade
@@ -1241,6 +1630,11 @@ par(mar=c(5,4,4,2)+0.1) # para retornar a margem default
 # Tratamento das Opcoes (Melhorou, Piorou ou Nada Mudou)
 df_nivel_ansiedade <- data.frame(nivel_ansiedade="", nivel =dataset.csv$nivel_ansiedade )
 
+<<<<<<< HEAD
+df_nivel_ansiedade
+
+=======
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 for (k in 1:nrow(df_nivel_ansiedade)) {
   if(df_nivel_ansiedade$nivel[k] == "Melhor do que antes")       df_nivel_ansiedade$nivel_ansiedade[k] <- "Melhorou"
   if(df_nivel_ansiedade$nivel[k] == "Muito melhor do que antes") df_nivel_ansiedade$nivel_ansiedade[k] <- "Melhorou"
@@ -1265,10 +1659,19 @@ grafico_nivel_ansiedade <- pie(nivel_ansiedade,
                                    edges = 200, radius = 0.8,
                                    clockwise = T,
                                    density = NULL, angle = 90, col = rainbow(6),
+<<<<<<< HEAD
+                                   labels = paste(names(nivel_ansiedade), "-", pct_nivel_ansiedade),
+                                   main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade 
+                                                          com relação ao que poderá acontecer com você nos próximos meses? ",
+                                   cex.main=0.9)
+
+
+=======
                                    labels = paste(names(nivel_ansiedade), " ", nivel_ansiedade, "(", pct_nivel_ansiedade, ")"),
                                    main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade 
                                                       com relação ao que poderá acontecer com você nos próximos meses? ",
                                    cex.main=1)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico 5. Ansiedade ansiedade_planejamento
 # Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao seu planejamento pessoal (férias, viagens, feriados, etc). 
@@ -1276,6 +1679,10 @@ grafico_nivel_ansiedade <- pie(nivel_ansiedade,
 # Tratamento das Opcoes (Melhorou, Piorou ou Nada Mudou)
 df_ansiedade_planejamento <- data.frame(ansiedade_planejamento="", aplan =dataset.csv$ansiedade_planejamento )
 
+<<<<<<< HEAD
+df_ansiedade_planejamento
+=======
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 for (k in 1:nrow(df_ansiedade_planejamento)) {
   if(df_ansiedade_planejamento$aplan[k] == "Melhor do que antes")       df_ansiedade_planejamento$ansiedade_planejamento[k] <- "Melhorou"
@@ -1299,10 +1706,16 @@ grafico_ansiedade_planejamento <- pie(ansiedade_planejamento,
                                edges = 200, radius = 0.8,
                                clockwise = T,
                                density = NULL, angle = 90, col = rainbow(5),
+<<<<<<< HEAD
+                               labels = paste(names(ansiedade_planejamento), "-", pct_ansiedade_planejamento),
+                               main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao seu planejamento pessoal (férias, viagens, feriados, etc). ",
+                               cex.main=0.8)
+=======
                                labels = paste(names(ansiedade_planejamento), " ", ansiedade_planejamento, "(",pct_ansiedade_planejamento, ")"),
                                main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação ao seu 
                                           planejamento pessoal (férias, viagens, feriados, etc). ",
                                cex.main=0.9)
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 # Grafico 5. Ansiedade ansiedade_longo_prazo
 # Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação aos planos de longo prazo (sua formatura, o término do curso atual, novos projetos etc.)
@@ -1322,7 +1735,11 @@ ansiedade_longo_prazo <- table(df_ansiedade_longo_prazo$ansiedade_longo_prazo, e
 ansiedade_longo_prazo
 
 # Melhorou Nada Mudou     Piorou 
+<<<<<<< HEAD
+        5         19         28 
+=======
 #        5         19         28 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
 
 pct_ansiedade_longo_prazo <- paste(round(unname(ansiedade_longo_prazo) / sum(unname(ansiedade_longo_prazo)) * 100), "%")
 pct_ansiedade_longo_prazo
@@ -1332,13 +1749,50 @@ grafico_ansiedade_longo_prazo <- pie(ansiedade_longo_prazo,
                                       edges = 200, radius = 0.8,
                                       clockwise = T,
                                       density = NULL, angle = 90, col = rainbow(5),
+<<<<<<< HEAD
+                                      labels = paste(names(ansiedade_longo_prazo), "-", pct_ansiedade_longo_prazo),
+=======
                                       labels = paste(names(ansiedade_longo_prazo), " ", ansiedade_longo_prazo, "(", pct_ansiedade_longo_prazo, ")"),
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
                                       main = "Grafico Ansiedade : Comparado a antes da pandemia do COVID-19, qual o seu nível de ansiedade com relação aos 
                                         planos de longo prazo (sua formatura, o término do curso atual, novos projetos etc.)",
                                       cex.main=0.9)
 
 
 # Nuvem de Palavras
+<<<<<<< HEAD
+
+# Nuvem de Palavras : Instituicao de Ensino - situacao durante pandemia
+# Ajude-nos a compreender o conjunto e a diversidade da situação durante a pandemia da COVID-19 na sua instituição, compartilhando aqui qualquer informação adicional que julgar importante. (Escreva até 250 palavras).
+library(tm)  #text mining
+## Loading required package: NLP
+library(dplyr)
+
+str(dataset.csv$situação_durante_pandemia)
+words <- as.character(dataset.csv$situação_durante_pandemia)
+
+word.corpus <- Corpus(VectorSource(dataset.csv$situação_durante_pandemia))
+word.corpus<-word.corpus%>%
+  tm_map(removePunctuation)%>% ##eliminar pontuacao
+  tm_map(removeNumbers)%>% #sem numeros
+  tm_map(stripWhitespace)# sem espacos
+
+word.counts <- as.matrix(TermDocumentMatrix(word.corpus))
+word.freq <- sort(rowSums(word.counts), decreasing = TRUE)
+head(word.freq)  ##what are the top words?
+
+word.corpus<-word.corpus%>%
+  tm_map(tolower)%>% ##make all words lowercase
+  tm_map(removeWords, stopwords("por"))
+
+library(wordcloud)  #wordcloud
+set.seed(32)  #be sure to set the seed if you want to reproduce the same again
+
+wordcloud(words = names(word.freq), freq = word.freq, scale = c(3, 0.5), max.words = 40, 
+          random.order = TRUE, shape =  , color = rainbow(10))
+
+
+=======
 #Load the packages
 if(!"wordcloud" %in% installed.packages()) install.packages("wordcloud")
 library(wordcloud)
@@ -1610,3 +2064,4 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 2,
           max.words=100, random.order=FALSE, rot.per=0.35,       
           colors=brewer.pal(8, "Dark2"))
 
+>>>>>>> ad1abef1bc914f2fa77090493d10686a2199d7ee
