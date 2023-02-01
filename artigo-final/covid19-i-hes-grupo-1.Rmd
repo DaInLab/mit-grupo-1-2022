@@ -12,15 +12,15 @@ abstract: |
   Tendo em vista os fatores causados pela situação pandêmica mundial da COVID-19, a proposta desta pesquisa é a de lançar alguma luz neste âmbito e coletar dados exploratórios. O estudo proposto visa compreender como os estudantes universitários estão vivenciando a pandemia e de que forma se comportam frente a esta nova realidade.  
   Portanto, os objetivos dessa pesquisa exploratória-descritiva são de investigar: a) como os alunos vivenciaram a pandemia da COVID-19; b) de que forma se comportaram frente as restrições impostas pelos riscos de contágio; c) quais suas considerações a respeito das estratégias que foram adotadas pelas instituições superiores; e d) como estes fatores influenciaram suas vidas. 
 output:
-  pdf_document: 
-    latex_engine: xelatex
-  word_document: default
   html_document:
     toc: true
     toc_depth: 2
     toc_float:
       collapsed: false
       smooth scroll: false
+  word_document: default
+  pdf_document: 
+    latex_engine: xelatex
 editor_options: 
   markdown: 
     wrap: 72
@@ -241,13 +241,10 @@ anos, 6% de 32 a 36 anos, e apenas 2% se enquadraram na faixa etária de
 # Grafico Dados Pessoais : 1.Situacao_conjugal
 # Qual sua situação conjugal ?
 sit_conjugal <- table(dataset.csv$situacao_conjugal)
-sit_conjugal
 
 
 # Porcentagem 
 pct_sit_conjugal <- paste0(round(unname(sit_conjugal) / sum(unname(sit_conjugal)) * 100,0), "%")
-pct_sit_conjugal
-
 
 grafico_sit_conjugal <- barplot(sit_conjugal, 
                                 main = "Gráfico 2 : Estado Civil",
@@ -357,8 +354,7 @@ grafico_vacinado <- pie(vacinado,
                                   density = NULL, angle = 90, col = rainbow(5),
                                   labels = paste(names(vacinado), " ", vacinado, "(", pct_vacinado, ")"),
                                   main = "Grafico 5 : Vacina COVID19",
-                                  cex = 0.6,
-                                  cex.main=1)
+                                  cex = 0.7)
 ```
 
 Quanto à vacinação, apresentada no **Gráfico 5**, não houve nenhum
@@ -386,7 +382,7 @@ grafico_morando_com <- pie(morando_com,
                                   density = NULL, angle = 90, col = rainbow(3),
                                   labels = paste(names(morando_com), "  ", morando_com, "(", pct_morando_com, ")"),
                                   cex = 0.9,
-                                  main = "Grafico 6: Reside com/em ")
+                                  main = "Grafico 6: Morando ou residindo com/em ")
 ```
 
 Em relação ao **Gráfico 6**, do total de respondentes, 69% moravam com a
@@ -406,7 +402,7 @@ grafico_ies_decisao_fechar <- pie(ies_decisao_fechar,
                             density = NULL, angle = 90, col = rainbow(3),
                             labels = paste(names(ies_decisao_fechar), " ", ies_decisao_fechar, "(", pct_ies_decisao_fechar, ")"),
                             main = "Grafico 7: Decisao de fechar o campus e de utilizar ferramentas online ",
-                            cex.main=1, cex = 0.7)
+                            cex = 0.7)
 
 ```
 
@@ -446,7 +442,7 @@ grafico_acesso_internet <- pie(acesso_internet,
                                      density = NULL, angle = 90, col = rainbow(4),
                                      labels = paste(names(acesso_internet), " ", acesso_internet, "(", pct_acesso_internet, ")"),
                                      main = "Grafico 8: Acesso à Internet antes e durante a pandemia ",
-                                     cex.main=1, cex = 0.8)
+                                      cex = 0.8)
 ```
 
 Partindo da necessidade em utilizar a internet para as aulas, como pode
@@ -518,7 +514,7 @@ grafico_ies_infra <- pie(ies_infra,
                                clockwise = T,
                                density = NULL, angle = 90, col = rainbow(4),
                                labels = paste(names(ies_infra), " ", ies_infra, "(", pct_ies_infra, ")"),
-                               main = "Gráfico 10: acesso aos recursos de infraestrutura oferecidos pela sua instituição ",
+                               main = "Gráfico 10: Acesso aos recursos de infraestrutura oferecidos pela sua instituição ",
                                 cex.main =1, cex = 0.8)
 
 
@@ -576,7 +572,7 @@ grafico_despesas <- pie(despesas,
                                   clockwise = T,
                                   density = NULL, angle = 90, col = rainbow(5),
                                   labels = paste(names(despesas), " ", despesas, "(", pct_despesas, ")"),
-                                  main = "Grafico 12: Situacao Financeira ",
+                                  main = "Grafico 12: Mudança nos gastos/despesas durante pandemia",
                                   cex.main=1, cex = 0.8)
 
 ```
@@ -601,8 +597,7 @@ grafico_renda_financeira <- pie(renda_financeira,
                         clockwise = T,
                         density = NULL, angle = 90, col = rainbow(4),
                         labels = paste(names(renda_financeira), " ", renda_financeira, "(", pct_renda_financeira, ")"),
-                        main = "Grafico 13 : Renda Financeira ",
-                        cex.main=1, cex = 0.8)
+                        main = "Grafico 13 : Alteraçao financeira/renda durante pandemia", cex = 0.7)
 
 ```
 
@@ -629,8 +624,7 @@ grafico_ajuda_financeira <- pie(ajuda_financeira,
                                 clockwise = T,
                                 density = NULL, angle = 90, col = rainbow(2),
                                 labels = paste(names(ajuda_financeira), " ", ajuda_financeira, "(", pct_ajuda_financeira, ")"),
-                                main = "Grafico 14 : Ajuda financeira ",
-                                cex.main=1, cex = 1)
+                                main = "Grafico 14 : Ajuda financeira da Instituição Educacional durante a pandemia",cex.main = 0.9, cex = 1)
 
 ```
 
@@ -652,7 +646,7 @@ grafico_migrou_virtual <- pie(migrou_virtual,
                            clockwise = T,
                            density = NULL, angle = 90, col = rainbow(2),
                            labels = paste(names(migrou_virtual), "", migrou_virtual,"(", pct_migrou_virtual, ")"),
-                           main = "Grafico 15: Migrou Virtual ", cex.main =1, cex = 1)
+                           main = "Grafico 15: Instituiçao Educacional migrou para aulas virtuais durante a pandemia", cex.main =1, cex = 1)
 ```
 
 De acordo com o **Gráfico 15**, 98% dos entrevistados migraram para o
@@ -684,7 +678,7 @@ grafico_desempenho_escolar <- pie(desempenho_escolar,
                                      clockwise = T,
                                      density = NULL, angle = 90, col = rainbow(5),
                                      labels = paste(names(desempenho_escolar), " ", desempenho_escolar, "(", pct_desempenho_escolar, ")"),
-                                     main = "Grafico 16 : Desempenho Escolar ",
+                                     main = "Grafico 16 : Desempenho Escolar durante a pandemia",
                                      cex.main=1, cex = 0.9)
 ```
 
@@ -719,8 +713,7 @@ grafico_acesso_internet <- pie(acesso_internet,
                                      clockwise = T,
                                      density = NULL, angle = 90, col = rainbow(4),
                                      labels = paste(names(acesso_internet), " ", acesso_internet, "(", pct_acesso_internet, ")"),
-                                     main = "Grafico 17 : Acesso à Internet antes e durante a pandemia ",
-                                     cex.main=1, cex = 0.8)
+                                     main = "Grafico 17 : Acesso à Internet antes e durante a pandemia ", cex = 0.8)
 ```
 
 De modo geral, o **Gráfico 17** mostra que o acesso a internet não mudou
@@ -753,7 +746,7 @@ grafico_capacidade_prosseguir_estudos <- pie(capacidade_prosseguir_estudos,
                                clockwise = T,
                                density = NULL, angle = 90, col = rainbow(3),
                                labels = paste(names(capacidade_prosseguir_estudos), " ", capacidade_prosseguir_estudos, "(", pct_capacidade_prosseguir_estudos, ")"),
-                               main = "Grafico 18 : Prosseguimento aos estudos antes e durante a pandemia ", cex.main=1, cex = 0.8)
+                               main = "Grafico 18 : Capacidade em prosseguir os estudos antes e durante a pandemia ", cex.main=1, cex = 0.9)
 
 ```
 
