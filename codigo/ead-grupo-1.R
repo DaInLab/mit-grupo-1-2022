@@ -63,15 +63,15 @@ valor_max = max(dataset.csv$idade)
 df_faixa_etaria <- data.frame(faixa_etaria="", idade=dataset.csv$idade )
 
 for (k in 1:nrow(df_faixa_etaria)) {
-  if(df_faixa_etaria$idade[k] <= 24) df_faixa_etaria$faixa_etaria[k] <- "de 17 a 24 anos"
-  if(df_faixa_etaria$idade[k] >= 25 & df_faixa_etaria$idade[k] <= 26) df_faixa_etaria$faixa_etaria[k] <- "de 22 a 26 anos"
-  if(df_faixa_etaria$idade[k] >= 27 & df_faixa_etaria$idade[k] <= 31) df_faixa_etaria$faixa_etaria[k] <- "de 27 a 31 anos"
-  if(df_faixa_etaria$idade[k] >= 32 & df_faixa_etaria$idade[k] <= 36) df_faixa_etaria$faixa_etaria[k] <- "de 32 a 36 anos"
-  if(df_faixa_etaria$idade[k] >= 37 & df_faixa_etaria$idade[k] <= 41) df_faixa_etaria$faixa_etaria[k] <- "de 37 a 41 anos"
-  if(df_faixa_etaria$idade[k] >= 42 & df_faixa_etaria$idade[k] <= 46) df_faixa_etaria$faixa_etaria[k] <- "de 42 a 46 anos" 
-  if(df_faixa_etaria$idade[k] >= 47 & df_faixa_etaria$idade[k] <= 51) df_faixa_etaria$faixa_etaria[k] <- "de 47 a 51 anos" 
-  if(df_faixa_etaria$idade[k] >= 52 & df_faixa_etaria$idade[k] <= 56) df_faixa_etaria$faixa_etaria[k] <- "de 52 a 56 anos"
-  if(df_faixa_etaria$idade[k] >= 57 & df_faixa_etaria$idade[k] <= 61) df_faixa_etaria$faixa_etaria[k] <- "de 57 a 61 anos"
+  if(df_faixa_etaria$idade[k] <= 24) df_faixa_etaria$faixa_etaria[k] <- "17 a 24 anos"
+  if(df_faixa_etaria$idade[k] >= 25 & df_faixa_etaria$idade[k] <= 26) df_faixa_etaria$faixa_etaria[k] <- "22a26 anos"
+  if(df_faixa_etaria$idade[k] >= 27 & df_faixa_etaria$idade[k] <= 31) df_faixa_etaria$faixa_etaria[k] <- "27a31 anos"
+  if(df_faixa_etaria$idade[k] >= 32 & df_faixa_etaria$idade[k] <= 36) df_faixa_etaria$faixa_etaria[k] <- "32a36 anos"
+  if(df_faixa_etaria$idade[k] >= 37 & df_faixa_etaria$idade[k] <= 41) df_faixa_etaria$faixa_etaria[k] <- "37a41 anos"
+  if(df_faixa_etaria$idade[k] >= 42 & df_faixa_etaria$idade[k] <= 46) df_faixa_etaria$faixa_etaria[k] <- "42a46 anos" 
+  if(df_faixa_etaria$idade[k] >= 47 & df_faixa_etaria$idade[k] <= 51) df_faixa_etaria$faixa_etaria[k] <- "47a51 anos" 
+  if(df_faixa_etaria$idade[k] >= 52 & df_faixa_etaria$idade[k] <= 56) df_faixa_etaria$faixa_etaria[k] <- "52 a 56 anos"
+  if(df_faixa_etaria$idade[k] >= 57 & df_faixa_etaria$idade[k] <= 61) df_faixa_etaria$faixa_etaria[k] <- "57 a 61 anos"
   if(df_faixa_etaria$idade[k] > 61) df_faixa_etaria$faixa_etaria[k] <- "acima de 61 anos"
 }
 
@@ -91,13 +91,13 @@ pct_faixa_etaria
 # "35%" "13%" "6%"  "6%"  "13%" "10%" "8%"  "8%"  "2%" 
 
 grafico_faixa_etaria <- barplot(tbl_faixa_etaria, 
-                                main = "Gráfico Dados Pessoais: Qual a sua idade ? ",
+                                main = "Gráfico 1: Idade (Faixa Etária)",
                                 xlab = "Idades", 
                                 ylab = "Respondentes",
                                 col = rainbow(9),
                                 ylim = c(0,max(tbl_faixa_etaria) + 5),
-                                cex.axis=1.0, cex.names=0.8)
-text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), pos=3, cex =.60 )
+                                cex.axis=0.7, cex.names=0.6 )
+text(x = grafico_faixa_etaria, y = tbl_faixa_etaria, label = paste(tbl_faixa_etaria, " (", pct_faixa_etaria, ")"), cex=0.60, pos=3)
 
 
 # Grafico Dados Pessoais : 1.Genero
@@ -206,8 +206,6 @@ grafico_sit_empregaticia <- barplot(sit_emprego,
                                     beside = TRUE,
                                     horiz=TRUE, 
                                     xlim = c(0,max(sit_emprego) + 15),
-                                    legend.text = paste(rownames(sit_emprego)," (",pct_sit_emprego, ")"),
-                                    args.legend = list("top", bty="n", cex = 0.7),
                                     col=rainbow(5),
                                     cex.axis = 0.7,  
                                     cex.names = 0.8)
@@ -347,6 +345,7 @@ pct_nivel_ensino
 grafico_nivel_ensino <- pie(tbl_nivel_ensino,
                         edges = 200, radius = 0.8,
                         clockwise = T,
+                        cex = 0.8,
                         density = NULL, angle = 90, col = rainbow(6),
                         labels = paste(names(tbl_nivel_ensino), "-", tbl_nivel_ensino, "(", pct_nivel_ensino, ")"),
                         main = "Gráfico Dados Pessoais: Qual nível de ensino você está cursando ? ")
@@ -436,7 +435,7 @@ grafico_moradia_atual_perm <- pie(moradia_atual_perm,
 
 # Grafico Dados Pessoais 1. Respondentes morando com 
 # Atualmente, você está morando ou residindo com/em: 
-morando_com <- table(dataset.csv$morando_.com)
+morando_com <- table(dataset.csv$morando_com)
 morando_com
 
 # Colega de quarto/República                    Família                 Sozinho(a) 
@@ -766,7 +765,7 @@ grafico_acesso_internet <- pie(acesso_internet,
 # incluindo sua graduação e/ou conclusão de curso?
 
 # Tratamento opcoes
-df_estudos <- data.frame(estudos="", nivel =dataset.csv$capacidade_.socializacao)
+df_estudos <- data.frame(estudos="", nivel =dataset.csv$capacidade_socializacao)
 
 for (k in 1:nrow(df_estudos)) {
   if(df_estudos$nivel[k] == "Melhor do que antes")            df_estudos$estudos[k] <- "Melhorou"
@@ -804,7 +803,7 @@ grafico_capacidade_prosseguir_estudos <- pie(capacidade_prosseguir_estudos,
 # (Socialização aqui definida como a efetiva vivência com demais pessoas em sociedade). *
 
 # Tratamento opcoes
-df_socializacao <- data.frame(socializacao="", nivel =dataset.csv$capacidade_.socializacao)
+df_socializacao <- data.frame(socializacao="", nivel =dataset.csv$capacidade_socializacao)
 
 for (k in 1:nrow(df_socializacao)) {
   if(df_socializacao$nivel[k] == "Melhor do que antes")            df_socializacao$socializacao[k] <- "Melhorou"
@@ -1062,8 +1061,7 @@ vacinado
 
 names(vacinado) <- c("Sim, duas doses ou dose unica", 
                      "Sim, duas doses, dose única e reforço", 
-                     "Sim, completamente duas doses ou dose unica ", 
-                     "Sim, duas dose ou dose unica e doses reforço")
+                     "Sim, duas doses ou dose unica e doses reforço")
 vacinado
 
 #Sim, duas doses ou dose unica        Sim, duas doses, dose única e reforço Sim, completamente duas doses ou dose unica  
@@ -1073,7 +1071,7 @@ vacinado
 
 pct_vacinado <- paste(round(unname(vacinado) / sum(unname(vacinado)) * 100), "%")
 pct_vacinado
-#  "15 %" "44 %" "2 %"  "40 %" 
+#  "17 %" "44 %" "40 %" 
 
 grafico_vacinado <- pie(vacinado,
                                   edges = 200, radius = 0.8,
@@ -1519,7 +1517,7 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 2,
 # em resposta à pandemia:  Gostaria que minha instituição tivesse feito ... 
 
 #Carregando o texto e eliminando os NA (missing data)
-texto <- na.omit(dataset.csv$ies_.melhorar)
+texto <- na.omit(dataset.csv$ies_melhorar)
 
 # Criando um corpus  
 docs <- Corpus(VectorSource(texto))
