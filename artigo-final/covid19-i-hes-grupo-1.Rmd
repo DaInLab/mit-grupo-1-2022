@@ -155,26 +155,213 @@ composta ainda por 77% de alunos da UNESP e 23% de demais instituições.
 
 ## 4. Análise Exploratória de Dados
 
-A Análise Exploratória de Dados, do inglês, *Exploratory Data Analysis
-(EDA)*, é uma abordagem utilizada por Cientistas de Dados para analisar
-e investigar dados. A partir dessa análise é possível ter uma visão
-panorâmica dos dados, a fim de obter sentido e extrair conhecimentos.
-Nessa etapa, ainda não é possível compreender o que os dados têm para
-dizer, mas é possível gerar insights para obter respostas para as
-perguntas, além de coletar informações que podem ser usadas para
-alimentar os modelos de *machine learning*.
+O processo denominado \*\*análise exploratória de dados\*\* (AED - em
+inglês EDA Exploratory Data Analysis) é utilizado por cientistas de
+dados para analisar e investigar um conjunto de dados (\*dataset\*) e
+resumir suas principais características, muitas vezes usando métodos de
+\*\*visualização de dados\*\*. A AED permite determinar a melhor forma
+de controlar as fontes de dados para obter as respostas necessárias,
+tornando mais fácil para os cientistas de dados descobrir padrões,
+detectar anomalias, testar uma hipótese ou verificar suposições (IBM,
+s/d.).
+
+A AED é usada principalmente para identificar o que os dados podem
+revelar além da tarefa formal de modelagem ou teste de hipótese e
+proporciona uma melhor compreensão das variáveis do conjunto de dados e
+as relações entre eles. Também pode determinar se as técnicas
+estatísticas utilizadas na análise são adequadas. Originalmente
+desenvolvidas pelo matemático norte-americano John Tukey na década de
+1970, as técnicas de AED continuam a ser um método amplamente utilizado
+atualmente no processo de descoberta de dados (IBM, s/d.).
+
+Por tanto, neste trabalho, a análise de dados será definida, de forma
+genérica, como o processo de obtenção de valiosos \*\*insights\*\* a
+partir da análise e interpretação de um conjunto de dados.
 
 ### 4.1 Preparação e compreensão do conteúdo de dados
 
+Em resumo, as etapas do processo da Figura 1 podem ser explicitadas como
+sendo compostas por:
+
+1.   \*\*Importar\*\* os dados de alguma fonte (Banco de dados, ou
+    planilha) para o ambiente e/ou ferramenta de AED;
+
+2.  \*\*"Arrumar"\*\* (no original, em inglês \*tidy\*) ou
+    \*\*organizar\*\*/\*\*pré-processar\*\* os dados no formato de
+    \*dataframe\* no ambiente AED limpando os dados faltantes (\*missing
+    data\*), campos digitados errados etc. Um \*dataframe\*, segundo
+    Wickham e Grolemund (2017), são objetos de dados genéricos no
+    ambiente de análise de dados usados para armazenar dados tabulares.
+    O \*dataframe\* pode ser visto como uma tabela em que cada linha
+    correspondente a um registo ou a uma observação e são compostos por
+    três componentes principais: \*dados\*, \*linhas\* e \*colunas\*.
+
+3.  \*\*Transformar\*\* os dados, de forma que possam ser aplicadas as
+    técnicas estatísticas. Em alguns casos, transformar os campos
+    categóricos alfanuméricos (por exemplo gênero, ou nivel_ensino) em
+    campos categóricos numéricos (exemplo: sexo feminino = 1, sexo
+    masculino = 2, não respondeu = 3 etc.). Nesta fase também são
+    desenvolvidos os códigos (programas) para a elaboração das análises.
+
+4.  \*\*Visualizar\*\*. Nesta etapa são gerados os gráficos e elaborado
+    o relatório da análise.
+
+5.  \*\*Modelar\*\*. Elaboração de modelos com os dados após a análise
+    exploratória dos dados. Um \*modelo estatístico\* é uma
+    representação da realidade na qual definimos a relação entre
+    variáveis para entender e prever o comportamento de um fenômeno.
+
+6\. \*\*Comunicar\*\*. Envio ou submissão do relatório final com as
+análises realizadas e as conclusões obtidas.
+
 ### 4.2 Importação dos dados
 
+Os dados originais estavam disponíveis em arquivos externos ao ambiente
+de análise de dados armazenados em planilhas de cálculo.
+
+Como em todo processo de AED, ouve a necessidade de normalização e
+padronização dos conteúdos para uso nas análises realizadas neste
+artigo.
+
+Tal processo é definido como limpeza, preparação e tratamento de dados,
+uma das etapas do processo de mineração de dados (Han, Kamber e Pei,
+2011), correspondendo a fase de pré-processamento (ou \*arrumar\*) da
+Figura 1.
+
+Segundo Wickham (2014), 80% do processo de análise de dados é consumido
+no processo de limpeza e preparação dos dados. Segundo o autor, a
+preparação de dados não é apenas uma primeira etapa, mas deve ser
+repetida muitas vezes ao longo da análise, à medida que novos problemas
+surgem ou novos dados são coletados e acrescentados. Apesar da
+quantidade de tempo que leva, ainda existem poucos trabalhos de pesquisa
+sobre como limpar bem os dados, processo também definido como
+\*higienização\* (da SILVA, 2021).
+
+Como os dados utilizados nesta análise vieram de questionários aplicados
+em diferentes estapas da pandemia (entre 2020 e 2023) alguns processos
+de limpeza e preparação foram empregados com o objetivo de normalizar as
+informações destes diferentes períodos.
+
+Para a realização das etapas de preparação, transformação, organização e
+estruturação foram utilizados recursos da \*\*Linguagem R\*\*, um
+software livre de programação voltada ao tratamento, análise e
+visualização de dados. A linguagem é largamente utilizada por
+acadêmicos, estatísticos e analistas de dados para realizar projetos de
+AED.
+
+A linguagem foi desenvolvida originalmente no departamento de
+Estatística da Universidade de Auckland, Nova Zelândia e sua manutenção
+é realizada por uma comunidade de colaboradores voluntários que
+contribuem para melhoria e otimização da linguagem e com a expansão das
+suas funcionalidades básicas por meio de bibliotecas, ou
+\*\*packages\*\* residentes no repositório \*CRAN-R\* (The Comprehensive
+R Archive Network) (LINGUAGEM R, 2022)[\^4].
+
+Com o objetivo de facilitar e agilizar o processo de desenvolvimento dos
+cálculos estatísticos e geração de gráficos na linguagem R, utilizou-se
+também o \*\*Ambiente de Desenvolvimento Integrado\*\* (do inglês
+Integrated Development Environment -- IDE) \*RStudio\*, um programa de
+computador de fonte aberta com características e ferramentas de apoio ao
+desenvolvimento acelerado de software (LINGUAGEM R, 2022).
+
+Portanto, como tarefa inicial para a organização e estruturação dos
+dados, no Quadro 1 é possível visualizar o dicionário de dados com os
+nomes e as definições das variáveis utilizadas nesta AED.
+
+Quadro 1: Dicionário de dados.
+
+    | Nome da variável | Tipo de variável | Conteúdo                          | Descrição                                                   |
+    |:------------|:-----------:|:---------------------|:------------------------|
+    | data/ano                      |      data        | dd/mm/aaaa                        | Dia, mês e ano em que o questionário foi aplicado           |
+    | idade                         |      númerica    | Idade da(o) respondente           | Faixa etária dos respondentes 
+    | genero                        |      texto       | Feminino, Masculino, Outros ou NR | Gênero da(o) inquirida(o)                                         |
+    | situacao_conjugal             |      texto       | Solteiro, Casado, União Estável/Vivendo junto, Divorciado/Separado, Viúvo, NR  | Situação conjugal |
+    | situacao_empregaticia         |      texto       | Dependente, Bolsista, Estagiário, Empregado, Desempregado | Situação empregatícia e/ou financeira atual                                         |
+    | estado_reside                 |      texto       | SP, RJ, MG...                     | 27 estados da federação e DF                                        |
+    | ies                           |      texto       | Instituição de Ensino Superior    | Nome da IES da(o) estudante                                      |
+    | nome_curso                    |      texto       | Graduação ou pós-graduação.       | Nome do curso da(o) estudante                                          |
+    | nível_ensino                  |      texto       | Graduação ou pós-graduação.       | Nível do curso da(o) estudante                                          |
+    | data_inicio_ curso            |      data        | dd/mm/aaaa                        | Dia, mês e ano em que a(o) estudante inicou o curso na IES           |
+    | tipo_ies                      |      texto       | Privada, Pública, Outras          | Tipo da IES                                       |
+    | local_estudante               |      texto       | Local, Outra cidade, NR           | Local de origem do estudante                                       |
+    | migrou_virtual                |      texto       | Sim, Não, Não sei                 | Instituição migrou para as aulas virtuais                          |
+    | ies_fechou_dorm               |      texto       | Sim, Não, Não sei, Não se aplica  | Instituição fechou dormitórios                                     |
+    | situação_durante_pandemia     |      texto       | texto livre (até 250 palavras)    | Conjunto e diversidade da situação da pandemiana sua instituição                                   |
+    | data_fechamento               |      data        | dd/mm/aaaa                        | Dia, mês e ano em que a IES fechou           |
+    | residencia_atual              |      texto       | No campus universitário instituciona, Fora do campus, mas na mesma cidade da instituição de ensino, Em outra cidade da instituição de ensino mas dentro do mesmo estado, Em uma cidade em outro Estado, Em um pais diferente da instituição  | Onde o aluno está vivendo ou residindo atualmente           |
+    | moradia_atual_permanente      |      texto       | Sim, Não                          |  Moradia atual do aluno é uma residência permanente e estável|
+    | morando_com                   |      texto       | Colega de quarto/República, Família, Sozinho(a) |  Aluno morando ou residindo com/em |
+    | convive_risco_relevante       |      texto       | Sim, Não                          | Aluno morando ou convivendo atualmente com alguém na faixa etária  dos 60-70 anos, e/ou que tenha algum fator de risco relevante |
+    | quarentena_imposta            |      texto       | Sim, Não, Não sei                |  Aluno convive ou que está ou esteve em quarentena imposta pela COVID-19 |
+    | vivenciou                     |      texto       | Ajuda ou assistência de pessoas desconhecidas, Discriminação por pessoas desconhecidas, Dificuldades devido a alterações em suas condições de vida, incluindo o fechamento de alojamentos, perda de emprego etc., Dificuldades para viajar/se deslocar, Não se aplica / Não sabe / Não se lembra| Aluno vivenciou durante a pandemia |
+    | acesso_servicos_saude         |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica o acesso aos serviços de saúde, comparado a antes e durante a pandemia |
+    | acesso_internet               |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica o acesso aos serviços de internet, comparado a antes e durante a pandemia |
+    | capacidade_prosseguir_estudos |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica sua capacidade em prosseguir seus estudos, incluindo sua graduação e/ou conclusão de curso |
+    | capacidade_socializacao       |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica a sua capacidade de socialização |
+    | bem_estar_psicologico         |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes|  Como o aluno classifica seu bem-estar psicológico em geral, incluindo sentimentos de ansiedade e/ou depressão |
+    | qualidade_de_vida             |      texto       | texto livre (até 250 palavras) | Variedade e diversidade de experiências com relação qualidade de vida do aluno |
+    | aulas_durante_pandemia        |      texto       | Pioraram, Foram mais ou menos o mesmo, Melhoraram, N/A ou Não sabe | Opinião sobre a forma como as aulas foram ministradas durante a pandemia |
+    | acesso_professores            |      texto       | Piorou, Foi mais ou menos o mesmo, Melhorou, N/A ou Não sabe | Opinião sobre formas de acesso aos seus professores durante a pandemia |
+    | acesso_infra_ies              |      texto       | Pioraram, Foram mais ou menos o mesmo, Melhorou, N/A ou Não sabe | Opinião sobre formas de acesso aos recursos de infraestrutura oferecidos pela IES |
+    | espaco_físico                 |      texto       | Piorou, Era mais ou menos o mesmo, Melhorou, N/A ou Não sabe | Opinião sobre formas de acesso aos recursos de infraestrutura oferecidos pela IES |
+    | disposicao_atividades         |      texto       | Diminuiu, Ficou mais ou menos a mesma, Aumentou, N/A ou Não sabe | Opinião sobre disposição para participar das aulas/atividades, estudar e aprender|
+    | desempenho_escolar            |      texto       | Diminuiu, Ficou mais ou menos a mesma, Aumentou, N/A ou Não sabe | Opinião sobre desempenho escolar durante a pandemia|
+    | ies_reinicio                  |      texto       | Sim (retornou todas as atividades presenciais), Não, ainda não retornou nenhuma atividade presencial, Em parte (apenas algumas atividades presenciais retornaram), N/A ou Não sabe | A IES reiniciou atividades presenciais no campus e/ou faculdade|
+    | data_reinicio                 |      data         | dd/mm/aaaa                         | Dia, mês e ano em que a IES retornou atividades|
+    | vacinado                      |      texto        | Sim, com uma dose, Sim vacinado com duas doses ou com vacina de dose única, Sim, vacinado com duas doses ou com vacina de dose única e dose(s) de reforço, Não fui vacinado ainda com nenhuma dose, N/A ou Não quero responder | Aluno vacinado contra a COVID-19 |
+    | dificuldades_academicas       |      texto       | texto livre (até 250 palavras) | Variedade e diversidade de experiências com relação às dificuldades acadêmicas do aluno na pandemia |
+    | despesas                      |      texto       | Diminuiram, Ficou mais ou menos os mesmos, Aumentaram, N/A ou Não quero responder | Gastos/despesas do aluno durante a pandemia|
+    | renda_Financeira              |      texto       | Diminuiu, Está mais ou menos a mesma, Aumentou, N/A ou Não sabe  | Alteração na renda financeira do aluno durante a pandemia|
+    | ajuda_Financeira              |      texto       | Sim, Não, NA / Não sei                                           | Recebeu ajuda financeira da IES ou outra organização durante a pandemia|
+    | nivel_endividamento           |      texto       | Diminuiram, Estão mais ou menos as mesmas, Aumentaram, N/A ou Não sabe  | Dívidas (nível de endividamento) do aluno durante a pandemia|
+    | despesas_cresceram            |      texto       | Relacionadas com saúde, Viagens/deslocamentos, Transporte urbano, Aluguel, Internet, Alimentação, Outras (não relacionadas) | Dívidas (nível de endividamento) do aluno durante a pandemia|
+    | dificuldades_financeiras       |      texto       | texto livre (até 250 palavras) | Variedade e diversidade de experiências com relação às dificuldades financeiras do aluno na pandemia |
+    | decisao_fechar                 |      texto       | Muito rapidamente, De forma oportuna e prudente, Muito lentamente, N/A ou Não sabe | Opinião sobre decisão da IES em fechar o campus e utilizar ferramentas online para as aulas|
+    | ies_positivo                   |      texto       | texto livre (até 250 palavras) | Opinião sobre o que a IES fez de positivo em resposta à pandemia|
+    | ies_melhorar                   |      texto       | texto livre (até 250 palavras) | Opinião sobre o que a IES poderia ter melhorado em resposta à pandemia|
+    | ies_ajudar                     |      texto       | texto livre (até 250 palavras) | Opinião sobre comoa IES poderia ter ajudado mais em resposta à pandemia|
+    | nivel_ansiedade                |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes | Nível de ansiedade do aluno na pandemia|
+    | ansiedade_planejamento         |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes | Ansiedade do aluno para planejamento pessoal |
+    | ansiedade_longo_prazo          |      texto       | N/A ou Não sabe, Muito pior do que antes, Pior do que antes, O mesmo de antes, Melhor do que antes, Muito melhor do que antes | Ansiedade do aluno para planejamento de longo prazo |
+    | detalhes_finais                |      texto       | texto livre (até 250 palavras) | Relatar de forma detalhada e livre como vivenciou a COVID-19|
+
+Fonte: Elaborado pelo autor (2023).
+
+Um glossário ou dicionário de dados, de acordo com Askham (2022), é
+utilizado para armazenar um conjunto limitado de metadados[\^5]
+concentrados nos nomes e definições relacionadas aos dados físicos e
+objetos relacionados.
+
+Os dados deste trabalho foram originalmente digitados em um questionário
+de coleta de dados online no aplicativo de gerenciamento de pesquisas
+Google Forms®. Após a digitação os \*\*dados brutos\*\* (raw data) foram
+compilados em um \*workbook\* utilizando o aplicativo de computador
+(software) Excel® da Microsoft®. Uma amostra do conteúdo das planilhas
+de trabalho em OpenDocument (.ods) com os dados brutos, ou \*dados não
+numericamente organizados\*.
+
+Tais dados brutos após pequenas transformações realizadas manualmente
+foram depois reproduzidos em arquivos .xlsx (formato Excel®), .ods
+(formato OpenDocument ou OpenDocument Format -- ODF, no original em
+inglês) e .csv (formato de arquivo que significa
+"comma-separated-values" - valores separados por vírgulas). O objetivo
+de utilizar tais formatos de arquivos foi o de possibilitar a importação
+e exportação dos arquivos em formas que diversas linguagens utilizadas
+para análise de dados e/ou aplicativos possam ser utilizados.
+
 ### 4.3 Visualização dos dados
+
+```{r numero_de_casos, echo=FALSE}
+# Importacao arquivo CSV
+dataset.csv <-read.csv("./dados/COVID19IES.csv", header = TRUE, sep = ";", quote = "\"", dec = ".")
+total_casos <- nrow(dataset.csv)
+```
 
 Para o perfil dos entrevistados foram analisadas as respostas obtidas
 pelo questionário, no período disponível.
 
-Portanto, neste tópico do artigo serão mostrados e discutidos os
-gráficos resultantes da AED realizada.
+A amostra utilizada neste artigo é composta por **`r total_casos`** observações que foram coletadas durante o período de
+2020 até 2023.
 
 ```{r echo=FALSE}
 # Import packages
@@ -183,8 +370,6 @@ gráficos resultantes da AED realizada.
 #library(stringr)
 # library(readxl)
 
-# Importacao arquivo CSV
-dataset.csv <-read.csv("./dados/COVID19IES.csv", header = TRUE, sep = ";", quote = "\"", dec = ".")
 
 # Grafico Dados Pessoais : 1.Idade (Faixa Etária) 
 # Qual a sua idade ? 
@@ -448,9 +633,8 @@ grafico_acesso_internet <- pie(acesso_internet,
 Partindo da necessidade em utilizar a internet para as aulas, como pode
 se observar no **Gráfico 8**, foi questionado quanto a alteração na
 acessibilidade à Internet, antes e durante a pandemia da Covid-19, de
-acordo com 65% não houve nenhuma mudança, para 10% piorou e 4% piorou
-muito. Numa outra visão, 17% sentiram uma melhora e 2% afirmaram que
-melhorou muito. Apenas 2% não souberam responder.
+acordo com 65% não houve nenhuma mudança, para 13% piorou, Numa outra
+visão, 19% sentiram uma melhora . Apenas 2% não souberam responder.
 
 ```{r echo=FALSE, results='hide'}
 # Grafico 3. Pandemia acesso professores
@@ -483,10 +667,9 @@ grafico_acesso_professores <- pie(acesso_professores,
 ```
 
 No **Gráfico 9**, ao abordarmos sobre o corpo docente das universidades,
-a maioria dos respondentes sentiu que o acesso aos professora piorou
-(52%), seguido dos que acharam que foi mais ou menos o mesmo (27%) e
-para uma parcela menor (15%) melhorou, 8% não souberam responder ou não
-se aplicava.
+a maioria dos respondentes sentiu que o acesso aos professores piorou
+(52%), seguido dos que acharam que foi mais ou menos o mesmo (25%) e
+para uma parcela menor (15%) melhorou, 8% não souberam responder.
 
 ```{r echo=FALSE, results='hide'}
 # Grafico Dados Instituicao de Ensino 2. Instituicao_acesso_infra
@@ -545,9 +728,9 @@ grafico_ies_reinicio <- pie(ies_reinicio,
 ```
 
 Após a vacinação e controle da pandemia, pode se observar no **Gráfico
-11** que, 60% dos entrevistados afirmaram que as universidades já
-retomaram as atividades de forma presencial no campus, 29% em parte, 8%
-não retomaram e 2% não sabiam informar.
+11** que, 56% dos entrevistados afirmaram que as universidades já
+retomaram as atividades de forma presencial no campus, 27% em parte, 8%
+não retomaram e 10% não sabiam informar.
 
 ```{r echo=FALSE, results='hide'}
 # Grafico 4. Financas despesas
@@ -580,7 +763,7 @@ grafico_despesas <- pie(despesas,
 Com as restrições sociais introduzidas durante o período de isolamento
 social, é importante entender como a vida financeira foi afetada. Sendo
 assim, em relação aos gastos durante o período da pandemia, assim como
-mostra no **Gráfico 12**, 40% alega que as despesas não sofreram
+mostra no **Gráfico 12**, 40% alegam que as despesas não sofreram
 alteração. 33% teve um aumento e 27% tiveram uma redução.
 
 ```{r echo=FALSE, results='hide'}
@@ -603,7 +786,7 @@ grafico_renda_financeira <- pie(renda_financeira,
 
 Apesar da maioria dos entrevistados não terem sofrido com o aumento de
 despesas, no **Gráfico 13**, 44% alega que sua renda financeira
-continuou mais ou menos a mesma coisa. 25% observaram uma queda no poder
+continuou mais ou menos a mesma coisa. 48% observaram uma queda no poder
 de compra, 6% tiveram um aumento e 2% não quiseram e/ou puderam opinar.
 
 Dentre os gastos citados pelos respondentes pós pandemia, o maior foi
@@ -630,7 +813,7 @@ grafico_ajuda_financeira <- pie(ajuda_financeira,
 
 Ainda que muitas universidades públicas ofereçam auxílio financeiro para
 que estudantes possam morar no campus (ou próximo de) para estudarem,
-durante o período de pandemia, constata-se no **Gráfico 14**, que 44%
+durante o período de pandemia, constata-se no **Gráfico 14**, que 85%
 dos entrevistados não tiveram nenhum respaldo por parte da instituição.
 
 ```{r echo=FALSE, results='hide'}
@@ -751,9 +934,9 @@ grafico_capacidade_prosseguir_estudos <- pie(capacidade_prosseguir_estudos,
 ```
 
 Por fim, o **Gráfico 18** mostra que o acesso a toda a estrutura para
-dar prosseguimento aos estudos piorou, na opinião de 40% dos estudantes.
-33% alegam que não houveram mudanças. Houve empate entre aqueles que
-alegam melhorias e não sabem responder, ambos os lados representam 13%.
+dar prosseguimento aos estudos piorou na opinião de 58% dos estudantes,
+nada mudou na opiniao de 37% dos estudantes e 6% alegam que houve
+melhorias.
 
 ## 5. Resultados e Discussão
 
