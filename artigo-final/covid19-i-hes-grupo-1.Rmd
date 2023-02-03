@@ -169,10 +169,7 @@ A AED é usada principalmente para identificar o que os dados podem
 revelar além da tarefa formal de modelagem ou teste de hipótese e
 proporciona uma melhor compreensão das variáveis do conjunto de dados e
 as relações entre eles. Também pode determinar se as técnicas
-estatísticas utilizadas na análise são adequadas. Originalmente
-desenvolvidas pelo matemático norte-americano John Tukey na década de
-1970, as técnicas de AED continuam a ser um método amplamente utilizado
-atualmente no processo de descoberta de dados (IBM, s/d.).
+estatísticas utilizadas na análise são adequadas.
 
 Por tanto, neste trabalho, a análise de dados será definida, de forma
 genérica, como o processo de obtenção de valiosos \*\*insights\*\* a
@@ -183,7 +180,7 @@ partir da análise e interpretação de um conjunto de dados.
 Em resumo, as etapas do processo da Figura 1 podem ser explicitadas como
 sendo compostas por:
 
-1.   \*\*Importar\*\* os dados de alguma fonte (Banco de dados, ou
+1.  \*\*Importar\*\* os dados de alguma fonte (Banco de dados, ou
     planilha) para o ambiente e/ou ferramenta de AED;
 
 2.  \*\*"Arrumar"\*\* (no original, em inglês \*tidy\*) ou
@@ -211,8 +208,8 @@ sendo compostas por:
     representação da realidade na qual definimos a relação entre
     variáveis para entender e prever o comportamento de um fenômeno.
 
-6\. \*\*Comunicar\*\*. Envio ou submissão do relatório final com as
-análises realizadas e as conclusões obtidas.
+6.  \*\*Comunicar\*\*. Envio ou submissão do relatório final com as
+    análises realizadas e as conclusões obtidas.
 
 ### 4.2 Importação dos dados
 
@@ -222,20 +219,6 @@ de análise de dados armazenados em planilhas de cálculo.
 Como em todo processo de AED, ouve a necessidade de normalização e
 padronização dos conteúdos para uso nas análises realizadas neste
 artigo.
-
-Tal processo é definido como limpeza, preparação e tratamento de dados,
-uma das etapas do processo de mineração de dados (Han, Kamber e Pei,
-2011), correspondendo a fase de pré-processamento (ou \*arrumar\*) da
-Figura 1.
-
-Segundo Wickham (2014), 80% do processo de análise de dados é consumido
-no processo de limpeza e preparação dos dados. Segundo o autor, a
-preparação de dados não é apenas uma primeira etapa, mas deve ser
-repetida muitas vezes ao longo da análise, à medida que novos problemas
-surgem ou novos dados são coletados e acrescentados. Apesar da
-quantidade de tempo que leva, ainda existem poucos trabalhos de pesquisa
-sobre como limpar bem os dados, processo também definido como
-\*higienização\* (da SILVA, 2021).
 
 Como os dados utilizados nesta análise vieram de questionários aplicados
 em diferentes estapas da pandemia (entre 2020 e 2023) alguns processos
@@ -360,8 +343,8 @@ total_casos <- nrow(dataset.csv)
 Para o perfil dos entrevistados foram analisadas as respostas obtidas
 pelo questionário, no período disponível.
 
-A amostra utilizada neste artigo é composta por **`r total_casos`** observações que foram coletadas durante o período de
-2020 até 2023.
+A amostra utilizada neste artigo é composta por **`r total_casos`**
+observações que foram coletadas durante o período de 2020 até 2023.
 
 ```{r echo=FALSE}
 # Import packages
