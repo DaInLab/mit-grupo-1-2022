@@ -238,7 +238,7 @@ Estatística da Universidade de Auckland, Nova Zelândia e sua manutenção
 contribuem para melhoria e otimização da linguagem e com a expansão das
 suas funcionalidades básicas por meio de bibliotecas, ou
 \*\*packages\*\* residentes no repositório \*CRAN-R\* (The Comprehensive
-R Archive Network) (LINGUAGEM R, 2022)[\^4].
+R Archive Network) (LINGUAGEM R, 2022).
 
 Com o objetivo de facilitar e agilizar o processo de desenvolvimento dos
 cálculos estatísticos e geração de gráficos na linguagem R, utilizou-se
@@ -1082,6 +1082,22 @@ Acesso em: 10 de jan. de 2023.
 VEJA. **As lições da pandemia de Covid-19 -- que está chegando ao fim.**
 2021 . Disponível em:
 <https://veja.abril.com.br/saude/os-sinais-de-que-a-pandemia-de-covid-19-vai-acabar-em-breve/>.
+
+da SILVA, D. **Higienização de dados: o que é e 7 boas práticas para
+realizá-la**. Blog da Zendesk, 11 ago 2021. Disponível em:
+<https://www.zendesk.com.br/blog/higienizacao-de-dados/>. Acesso em: 26
+jun. 2022.
+
+HAN, J.; KAMBER, M.; PEI, J. (2011). **Data Mining: Concepts and
+Techniques (3rd ed.).** Morgan Kaufmann. ISBN 978-0-12-381479-1.
+
+WICKHAM, Hadley, GROLEMUND, Garret. **R for Data Science: Import, Tidy,
+Transform, Visualize and Model Data.** Sebastopol: O'Relly Media, 2017.
+
+WICKHAM, H. Tidy Data. **Journal of Statistical Software, [S. l.], v.
+59, n. 10, p. 1--23, 2014. DOI: 10.18637/jss.v059.i10.** Disponível em:
+<https://www.jstatsoft.org/index.php/jss/article/view/v059i10.> Acesso
+em: 26 jul. 2022.
 
 ##### Pesquisa Reproduzível
 
